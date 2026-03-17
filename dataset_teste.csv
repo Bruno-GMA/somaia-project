@@ -1,4 +1,4 @@
-ID,Type,Level,Question,Operation,Answer
+ID,Type,Level,Question,Operation,Comparação
 1,Non-contextualized,Simples,82 + 15 = ?,82 + 15,97
 2,Non-contextualized,Simples,4 + 95 = ?,4 + 95,99
 3,Non-contextualized,Simples,36 + 32 = ?,36 + 32,68

@@ -107,7 +107,7 @@ ollama pull nomic-embed-text
 ### 4. Execute o LocalMind
 
 ```bash
-python rag_math.py questoes.csv
+python main.py dataset_teste.csv
 ```
 
 O arquivo de saída será salvo automaticamente como `questoes_respondido.csv`.
