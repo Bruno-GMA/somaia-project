@@ -1,0 +1,27 @@
+# Ambiente Virtual
+venv/
+.venv/
+env/
+ENV/
+
+# Arquivos de Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configurações de IDEs (opcional, mas recomendado)
+.vscode/
+.idea/
+
+# Arquivos de ambiente e segredos (APIs, chaves)
+.env
+.flaskenv
+
+# Relatórios de cobertura e builds
+htmlcov/
+.tox/
+.coverage
+.cache
+dist/
+build/
+*.egg-info/
