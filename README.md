@@ -83,7 +83,7 @@ questao
 ### 1. Clone ou baixe o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/localmind.git
+git clone https://github.com/Bruno-GMA/somaia-project.git
 cd localmind
 ```
 
