@@ -1,12 +1,12 @@
-# 🧠 LocalMind
+
 
 > RAG de questões matemáticas conectado ao **Ollama local** — sem nuvem, sem API paga, 100% na sua máquina.
 
 ---
 
-## 📌 O que é o LocalMind?
+##  O que é o Sistema?
 
-O **LocalMind** é um pipeline de **Retrieval-Augmented Generation (RAG)** que:
+ É um pipeline de **Retrieval-Augmented Generation (RAG)** que:
 
 1. Recebe um arquivo `.csv` com questões matemáticas
 1.1 O Repositório vem com 3 `.csv` de exemplo deixe apenas um, ou adicione o seu
@@ -19,25 +19,25 @@ Tudo isso **offline**, usando modelos que rodam diretamente na sua máquina.
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 | Funcionalidade | Descrição |
 |---|---|
-| 🗄️ **Banco SQLite** | Questões, respostas e embeddings persistidos localmente |
-| 🔢 **Embeddings semânticos** | Gerados via `nomic-embed-text` pelo Ollama |
-| 🔍 **Busca por similaridade** | Cosine similarity para encontrar os exemplos mais relevantes |
-| 🤖 **Geração com RAG** | Prompt enriquecido com exemplos similares antes de chamar o LLM |
-| ♻️ **Idepotente** | Questões já respondidas são puladas em execuções futuras |
-| 🔄 **Compatibilidade Ollama** | Suporte automático a `/api/chat` e fallback para `/api/generate` |
-| 📄 **CSV de saída** | Gera `<nome>_respondido.csv` com coluna `resposta` preenchida |
-| 🎯 **Detecção automática** | Identifica a coluna de questões automaticamente pelo nome |
+|  **Banco SQLite** | Questões, respostas e embeddings persistidos localmente |
+|  **Embeddings semânticos** | Gerados via `nomic-embed-text` pelo Ollama |
+|  **Busca por similaridade** | Cosine similarity para encontrar os exemplos mais relevantes |
+|  **Geração com RAG** | Prompt enriquecido com exemplos similares antes de chamar o LLM |
+|  **Idepotente** | Questões já respondidas são puladas em execuções futuras |
+|  **Compatibilidade Ollama** | Suporte automático a `/api/chat` e fallback para `/api/generate` |
+|  **CSV de saída** | Gera `<nome>_respondido.csv` com coluna `resposta` preenchida |
+|  **Detecção automática** | Identifica a coluna de questões automaticamente pelo nome |
 
 ---
 
-## 🗂️ Estrutura do projeto
+##  Estrutura do projeto
 
 ```
-LocalMind/
+SOMAIA-PROJECT/
 ├── rag_math.py            # Script principal
 ├── requirements.txt       # Dependências Python
 ├── questoes_exemplo.csv   # CSV de exemplo
@@ -47,7 +47,7 @@ LocalMind/
 
 ---
 
-## 📋 Formato do CSV de entrada
+##  Formato do CSV de entrada
 
 A coluna de questões pode ter qualquer um desses nomes (case-insensitive):
 
@@ -70,7 +70,7 @@ questao
 
 ---
 
-## ⚙️ Pré-requisitos
+## Pré-requisitos
 
 - Python **3.11+**
 - [Ollama](https://ollama.com) instalado e rodando
@@ -78,7 +78,7 @@ questao
 
 ---
 
-## 🚀 Como rodar
+##  Como rodar
 
 ### 1. Clone ou baixe o projeto
 
@@ -100,7 +100,7 @@ pip install -r requirements.txt
 ollama serve
 
 # Em outro terminal, baixar os modelos necessários
-ollama pull llama3 #pode ser outro
+ollama pull gemma2:2b #pode ser outro
 ollama pull nomic-embed-text
 ```
 
@@ -114,7 +114,7 @@ O arquivo de saída será salvo automaticamente como `questoes_respondido.csv`.
 
 ---
 
-## 🛠️ Configurações
+##  Configurações
 
 Edite as constantes no topo do `rag_math.py` conforme necessário:
 
@@ -127,11 +127,11 @@ ANSWER_COLUMN   = "resposta"                # Nome da coluna de saída no CSV
 TOP_K           = 3                         # Nº de exemplos similares no contexto
 ```
 
-> Você pode trocar `llama3` por qualquer outro modelo disponível no Ollama, como `mistral`, `gemma3` ou `phi3`.
+> Você pode trocar `gemma2` por qualquer outro modelo disponível no Ollama, como `mistral`, `gemma3` ou `phi3`.
 
 ---
 
-## 🔄 Fluxo interno
+##  Fluxo interno
 
 ```
 CSV de entrada
@@ -152,12 +152,12 @@ Para cada questão sem resposta:
 Salvar respostas no SQLite e no CSV
      │
      ▼
-questoes_respondido.csv ✅
+questoes_respondido.csv
 ```
 
 ---
 
-## 🧩 Dependências
+##  Dependências
 
 ```
 numpy>=1.26
@@ -168,15 +168,15 @@ requests>=2.31
 
 ---
 
-## 🐛 Solução de problemas
+##  Solução de problemas
 
 | Erro | Causa provável | Solução |
 |---|---|---|
-| `❌ Ollama não está acessível` | Servidor não iniciado | Execute `ollama serve` |
+| ` Ollama não está acessível` | Servidor não iniciado | Execute `ollama serve` |
 | `405 Method Not Allowed` | Versão antiga do Ollama | O script faz fallback automático; ou rode `ollama update` |
 | `Model not found` | Modelo não baixado | Execute `ollama pull <modelo>` |
 | `timeout` | Modelo muito pesado | Aumente o `timeout` nas chamadas ou use um modelo menor |
 
 
 
-<p align="center">Feito para pesquisa apelidado de <strong>LocalMind</strong></p>
+<p align="center">Feito para pesquisa!</p>

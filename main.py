@@ -1,7 +1,3 @@
-"""
-RAG Math Solver — Conectado ao Ollama local
-Fluxo: CSV de questões → SQLite → embeddings → RAG → resposta na última coluna
-"""
 
 import csv
 import json
@@ -60,7 +56,7 @@ def check_ollama():
         resp = requests.get(f"{OLLAMA_BASE_URL}/api/tags", timeout=5)
         resp.raise_for_status()
     except Exception:
-        print("❌  Ollama não está acessível em", OLLAMA_BASE_URL)
+        print("  Ollama não está acessível em", OLLAMA_BASE_URL)
         print("    Inicie com: ollama serve")
         sys.exit(1)
 
@@ -68,13 +64,13 @@ def check_ollama():
     for model in (CHAT_MODEL, EMBED_MODEL):
         base = model.split(":")[0]
         if base not in available:
-            print(f"⚠️  Modelo '{model}' não encontrado. Baixando…")
+            print(f"  Modelo '{model}' não encontrado. Baixando…")
             requests.post(
                 f"{OLLAMA_BASE_URL}/api/pull",
                 json={"name": model},
                 timeout=600,
             )
-            print(f"✅  '{model}' baixado.")
+            print(f"  '{model}' baixado.")
 
 
 # BANCO DE DADOS (SQLite)
@@ -205,7 +201,7 @@ def detect_question_column(headers: list[str]) -> str:
 def process_csv(csv_path: str):
     path = Path(csv_path)
     if not path.exists():
-        print(f"❌  Arquivo não encontrado: {csv_path}")
+        print(f"  Arquivo não encontrado: {csv_path}")
         sys.exit(1)
 
     # ── Ler CSV ──────────────────────────────
@@ -215,12 +211,12 @@ def process_csv(csv_path: str):
         rows = list(reader)
 
     if not rows:
-        print("⚠️  CSV vazio.")
+        print("  CSV vazio.")
         return
 
     question_col = detect_question_column(headers)
-    print(f"📋  Coluna de questões detectada: '{question_col}'")
-    print(f"📊  {len(rows)} questão(ões) encontrada(s).\n")
+    print(f"  Coluna de questões detectada: '{question_col}'")
+    print(f"  {len(rows)} questão(ões) encontrada(s).\n")
 
 
     if ANSWER_COLUMN not in headers:
@@ -230,7 +226,7 @@ def process_csv(csv_path: str):
     conn = init_db(DB_PATH)
 
 
-    print("🔢  Gerando embeddings e populando banco…")
+    print("  Gerando embeddings e populando banco…")
     question_ids: dict[str, int] = {}
     for i, row in enumerate(rows, 1):
         q = row[question_col].strip()
@@ -245,16 +241,16 @@ def process_csv(csv_path: str):
             store_embedding(conn, qid, emb)
         print(f"  [{i}/{len(rows)}] ✔ embedding armazenado", end="\r")
 
-    print("\n✅  Embeddings prontos.\n")
+    print("\n Embeddings prontos.\n")
 
     # ── Fase 2: RAG — responder questões sem resposta ──
     corpus = get_all_with_embeddings(conn)
     to_answer = [r for r in rows if not r.get(ANSWER_COLUMN, "").strip()]
 
     if not to_answer:
-        print("ℹ️  Todas as questões já possuem resposta. Nada a fazer.")
+        print("ℹ  Todas as questões já possuem resposta. Nada a fazer.")
     else:
-        print(f"🤖  Respondendo {len(to_answer)} questão(ões) com RAG…\n")
+        print(f"  Respondendo {len(to_answer)} questão(ões) com RAG…\n")
 
     for i, row in enumerate(rows, 1):
         q = row[question_col].strip()
@@ -262,7 +258,7 @@ def process_csv(csv_path: str):
 
         if existing:
             row[ANSWER_COLUMN] = existing
-            print(f"  [{i}/{len(rows)}] ⏩ já respondida — pulando")
+            print(f"  [{i}/{len(rows)}]  já respondida — pulando")
             continue
 
         qid = question_ids[q]
@@ -273,11 +269,11 @@ def process_csv(csv_path: str):
         similar = retrieve_similar(q_emb, corpus, top_k=TOP_K, exclude_id=qid)
         prompt  = build_prompt(q, similar)
 
-        print(f"  [{i}/{len(rows)}] 💬 Resolvendo: {q[:60]}…")
+        print(f"  [{i}/{len(rows)}]  Resolvendo: {q[:60]}…")
         t0 = time.time()
         answer = ollama_chat(prompt)
         elapsed = time.time() - t0
-        print(f"         ✅ ({elapsed:.1f}s) → {answer[:80]}")
+        print(f"          ({elapsed:.1f}s) → {answer[:80]}")
 
         row[ANSWER_COLUMN] = answer
         upsert_question(conn, q, answer)
@@ -296,8 +292,8 @@ def process_csv(csv_path: str):
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"\n🎉  Concluído! CSV salvo em: {output_path}")
-    print(f"🗄️  Banco SQLite: {DB_PATH}")
+    print(f"\n  Concluído! CSV salvo em: {output_path}")
+    print(f"  Banco SQLite: {DB_PATH}")
 
 
 
