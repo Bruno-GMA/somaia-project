@@ -252,6 +252,8 @@ def process_csv(csv_path: str):
     else:
         print(f"  Respondendo {len(to_answer)} questão(ões) com RAG…\n")
 
+    total_model_time = 0.0  # tempo total do modelo
+
     for i, row in enumerate(rows, 1):
         q = row[question_col].strip()
         existing = row.get(ANSWER_COLUMN, "").strip()
@@ -273,6 +275,7 @@ def process_csv(csv_path: str):
         t0 = time.time()
         answer = ollama_chat(prompt)
         elapsed = time.time() - t0
+        total_model_time += elapsed
         print(f"          ({elapsed:.1f}s) → {answer[:80]}")
 
         row[ANSWER_COLUMN] = answer
