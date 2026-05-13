@@ -1,5 +1,3 @@
-
-
 > RAG de questões matemáticas conectado ao **Ollama local** — sem nuvem, sem API paga, 100% na sua máquina.
 
 ---
@@ -80,16 +78,18 @@ questao
 
 ##  Como rodar
 
-### 1. Clone ou baixe o projeto
+### 1. Acesse diretório do projeto
 
 ```bash
-git clone https://github.com/Bruno-GMA/somaia-project.git
 cd localmind
 ```
 
 ### 2. Instale as dependências
 
 ```bash
+python -m venv venv
+.\venv\Scripts\activate (windows)
+source venv/bin/activate (linux debian)
 pip install -r requirements.txt
 ```
 
@@ -100,7 +100,7 @@ pip install -r requirements.txt
 ollama serve
 
 # Em outro terminal, baixar os modelos necessários
-ollama pull gemma2:2b #pode ser outro
+ollama pull gemma2:2b #pode ser outro SLM
 ollama pull nomic-embed-text
 ```
 
