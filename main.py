@@ -297,6 +297,7 @@ def process_csv(csv_path: str):
 
     print(f"\n  Concluído! CSV salvo em: {output_path}")
     print(f"  Banco SQLite: {DB_PATH}")
+    print(f"  Tempo total gasto no modelo: {total_model_time:.1f} segundos.")
 
 
 

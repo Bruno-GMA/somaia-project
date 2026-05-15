@@ -83,25 +83,24 @@ questao
 ```bash
 cd localmind
 ```
-
-### 2. Instale as dependências
+### 2. Inicie o Ollama e baixe os modelos
 
 ```bash
+# Em outro terminal, Iniciar o servidor Ollama
+ollama serve
+# Baixar modelos necessários
+ollama pull gemma2:2b #pode ser outro SLM
+ollama pull nomic-embed-text
+```
+
+### 3. Instale as dependências
+
+```bash
+# Volute no mesmo terminal do diretório localmind
 python -m venv venv
 .\venv\Scripts\activate (windows)
 source venv/bin/activate (linux debian)
 pip install -r requirements.txt
-```
-
-### 3. Inicie o Ollama e baixe os modelos
-
-```bash
-# Iniciar o servidor Ollama
-ollama serve
-
-# Em outro terminal, baixar os modelos necessários
-ollama pull gemma2:2b #pode ser outro SLM
-ollama pull nomic-embed-text
 ```
 
 ### 4. Execute o LocalMind
@@ -146,7 +145,7 @@ Gerar embeddings (nomic-embed-text)
 Para cada questão sem resposta:
   ├─ Buscar TOP_K mais similares (cosine similarity)
   ├─ Montar prompt RAG com exemplos
-  └─ Chamar LLM (llama3) via Ollama
+  └─ Chamar SLM via Ollama
      │
      ▼
 Salvar respostas no SQLite e no CSV
@@ -157,12 +156,6 @@ questoes_respondido.csv
 
 ---
 
-##  Dependências
-
-```
-numpy>=1.26
-requests>=2.31
-```
 
 > O SQLite já vem embutido no Python — nenhuma instalação extra necessária.
 
