@@ -81,7 +81,7 @@ questao
 ### 1. Acesse diretório do projeto
 
 ```bash
-cd localmind
+cd somaia-project
 ```
 ### 2. Inicie o Ollama e baixe os modelos
 
@@ -96,14 +96,14 @@ ollama pull nomic-embed-text
 ### 3. Instale as dependências
 
 ```bash
-# Volute no mesmo terminal do diretório localmind
+# Volute no mesmo terminal do diretório =
 python -m venv venv
 .\venv\Scripts\activate (windows)
 source venv/bin/activate (linux debian)
 pip install -r requirements.txt
 ```
 
-### 4. Execute o LocalMind
+### 4. Execute o Script
 
 ```bash
 python main.py dataset_teste.csv
