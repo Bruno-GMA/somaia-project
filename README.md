@@ -170,6 +170,12 @@ questoes_respondido.csv
 | `Model not found` | Modelo não baixado | Execute `ollama pull <modelo>` |
 | `timeout` | Modelo muito pesado | Aumente o `timeout` nas chamadas ou use um modelo menor |
 
+## Após a Execução
 
+Rode o comando abaixo para ver a acurácia
+
+```bash
+python acerto.py
+```
 
 <p align="center">Feito para pesquisa!</p>
