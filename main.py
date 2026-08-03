@@ -1,23 +1,26 @@
 
 import csv
-import json
 import sqlite3
 import sys
 import time
 from pathlib import Path
 
-import numpy as np
 import requests
+import sqlite_vec
+from sqlite_vec import serialize_float32
 
 
 # CONFIGURAÇÕES
 
 OLLAMA_BASE_URL   = "http://localhost:11434"
 CHAT_MODEL        = "gemma2:2b"          #escolha modelo para responder  (ollama run gemma2:2b)
-EMBED_MODEL       = "nomic-embed-text"# modelo para embeddings (ollama run nomic-embed-text)
+EMBED_MODEL       = "nomic-embed-text"   # modelo para embeddings (ollama run nomic-embed-text)
+EMBED_DIM         = 768                  # dimensão dos vetores do nomic-embed-text
 DB_PATH           = "math_rag.db"
 ANSWER_COLUMN     = "resposta"
-TOP_K             = 3                 # nº de exemplos similares usados como contexto
+TOP_K             = 3                    # nº de exemplos similares usados como contexto
+CHUNK_THRESHOLD   = 256                  # nº de palavras acima do qual a questão é fatiada em chunks
+CHUNK_OVERLAP     = 32                   # sobreposição em palavras entre chunks consecutivos
 
 
 # ──────────────────────────────────────────────
@@ -73,18 +76,46 @@ def check_ollama():
             print(f"  '{model}' baixado.")
 
 
-# BANCO DE DADOS (SQLite)
+# BANCO DE DADOS (SQLite + sqlite-vec)
 
 def init_db(db_path: str) -> sqlite3.Connection:
-    """Cria/abre o banco e garante que as tabelas existem."""
+    """Cria/abre o banco, carrega a extensão sqlite-vec e garante que as tabelas existem."""
     conn = sqlite3.connect(db_path)
+    conn.enable_load_extension(True)
+    sqlite_vec.load(conn)
+    conn.enable_load_extension(False)
     conn.execute("PRAGMA journal_mode=WAL")
+
+    # Tabela principal — sem embedding (vetores agora vivem na virtual table)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS questions (
             id        INTEGER PRIMARY KEY AUTOINCREMENT,
             question  TEXT    NOT NULL,
-            answer    TEXT,
-            embedding TEXT                        -- JSON array de floats
+            answer    TEXT
+        )
+    """)
+
+    # Virtual table vetorial — busca por similaridade de cosseno no próprio banco
+    conn.execute(f"""
+        CREATE VIRTUAL TABLE IF NOT EXISTS vss_questions USING vec0(
+            embedding float[{EMBED_DIM}] distance_metric=cosine
+        )
+    """)
+
+    # Tabela de chunks — para suportar enunciados longos fatiados
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS chunks (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            question_id INTEGER NOT NULL REFERENCES questions(id),
+            chunk_index INTEGER NOT NULL,
+            chunk_text  TEXT    NOT NULL,
+            UNIQUE(question_id, chunk_index)
+        )
+    """)
+    # Virtual table vetorial para os chunks
+    conn.execute(f"""
+        CREATE VIRTUAL TABLE IF NOT EXISTS vss_chunks USING vec0(
+            embedding float[{EMBED_DIM}] distance_metric=cosine
         )
     """)
     conn.commit()
@@ -96,11 +127,12 @@ def upsert_question(conn: sqlite3.Connection, question: str, answer: str | None 
     cur = conn.execute("SELECT id FROM questions WHERE question = ?", (question,))
     row = cur.fetchone()
     if row:
-        conn.execute(
-            "UPDATE questions SET answer = ? WHERE id = ?",
-            (answer, row[0]),
-        )
-        conn.commit()
+        if answer is not None:
+            conn.execute(
+                "UPDATE questions SET answer = ? WHERE id = ?",
+                (answer, row[0]),
+            )
+            conn.commit()
         return row[0]
     cur = conn.execute(
         "INSERT INTO questions (question, answer) VALUES (?, ?)",
@@ -111,52 +143,163 @@ def upsert_question(conn: sqlite3.Connection, question: str, answer: str | None 
 
 
 def store_embedding(conn: sqlite3.Connection, question_id: int, embedding: list[float]):
+    """Armazena o vetor de embedding como BLOB binário na virtual table vss_questions."""
+    blob = serialize_float32(embedding)
+    # vec0 não suporta UPDATE — remove e reinsere
+    conn.execute("DELETE FROM vss_questions WHERE rowid = ?", (question_id,))
     conn.execute(
-        "UPDATE questions SET embedding = ? WHERE id = ?",
-        (json.dumps(embedding), question_id),
+        "INSERT INTO vss_questions (rowid, embedding) VALUES (?, ?)",
+        (question_id, blob),
     )
     conn.commit()
 
 
-def get_all_with_embeddings(conn: sqlite3.Connection) -> list[dict]:
-    cur = conn.execute(
-        "SELECT id, question, answer, embedding FROM questions WHERE embedding IS NOT NULL"
+def store_chunk_embedding(conn: sqlite3.Connection, chunk_id: int, embedding: list[float]):
+    """Armazena o embedding de um chunk na virtual table vss_chunks."""
+    blob = serialize_float32(embedding)
+    conn.execute("DELETE FROM vss_chunks WHERE rowid = ?", (chunk_id,))
+    conn.execute(
+        "INSERT INTO vss_chunks (rowid, embedding) VALUES (?, ?)",
+        (chunk_id, blob),
     )
-    rows = []
-    for row in cur.fetchall():
-        rows.append({
-            "id": row[0],
-            "question": row[1],
-            "answer": row[2],
-            "embedding": np.array(json.loads(row[3]), dtype=np.float32),
-        })
-    return rows
+    conn.commit()
+
+
+def has_embedding(conn: sqlite3.Connection, question_id: int) -> bool:
+    """Verifica se uma questão já possui embedding na virtual table."""
+    cur = conn.execute("SELECT 1 FROM vss_questions WHERE rowid = ?", (question_id,))
+    return cur.fetchone() is not None
+
+
+def has_chunk_embeddings(conn: sqlite3.Connection, question_id: int) -> bool:
+    """Verifica se os chunks de uma questão já possuem embeddings."""
+    cur = conn.execute(
+        """
+        SELECT 1 FROM vss_chunks v
+        JOIN chunks c ON c.id = v.rowid
+        WHERE c.question_id = ?
+        LIMIT 1
+        """,
+        (question_id,),
+    )
+    return cur.fetchone() is not None
 
 
 
-# SIMILARIDADE & RECUPERAÇÃO
+# CHUNKING
 
 
-def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
-    denom = np.linalg.norm(a) * np.linalg.norm(b)
-    return float(np.dot(a, b) / denom) if denom else 0.0
+def chunk_question(text: str, max_words: int = CHUNK_THRESHOLD, overlap: int = CHUNK_OVERLAP) -> list[str]:
+    """Divide um enunciado longo em chunks de palavras com sobreposição.
+    Retorna uma lista com um único chunk (o texto original) quando cabe no limite."""
+    words = text.split()
+    if len(words) <= max_words:
+        return [text]
+
+    chunks: list[str] = []
+    start = 0
+    while start < len(words):
+        end = min(start + max_words, len(words))
+        chunks.append(" ".join(words[start:end]))
+        if end == len(words):
+            break
+        start += max_words - overlap
+    return chunks
 
 
-def retrieve_similar(
+
+# RECUPERAÇÃO (VSS — busca vetorial no banco)
+
+
+def retrieve_similar_vss(
+    conn: sqlite3.Connection,
     query_embedding: list[float],
-    corpus: list[dict],
     top_k: int,
     exclude_id: int | None = None,
 ) -> list[dict]:
-    """Retorna os top_k documentos mais similares à query."""
-    qv = np.array(query_embedding, dtype=np.float32)
-    scored = [
-        (cosine_similarity(qv, doc["embedding"]), doc)
-        for doc in corpus
-        if doc["id"] != exclude_id and doc["answer"]  # só exemplos já resolvidos
+    """Retorna os top_k documentos mais similares à query usando sqlite-vec.
+
+    Faz a busca por cosseno diretamente no banco, sem carregar embeddings em memória.
+    Apenas questões que já possuem resposta são consideradas como exemplos.
+    """
+    blob = serialize_float32(query_embedding)
+
+    if exclude_id is not None:
+        sql = """
+            SELECT v.rowid, v.distance, q.question, q.answer
+            FROM vss_questions v
+            JOIN questions q ON q.id = v.rowid
+            WHERE v.embedding MATCH ?
+              AND k = ?
+              AND v.rowid != ?
+              AND q.answer IS NOT NULL
+              AND q.answer != ''
+        """
+        cur = conn.execute(sql, (blob, top_k, exclude_id))
+    else:
+        sql = """
+            SELECT v.rowid, v.distance, q.question, q.answer
+            FROM vss_questions v
+            JOIN questions q ON q.id = v.rowid
+            WHERE v.embedding MATCH ?
+              AND k = ?
+              AND q.answer IS NOT NULL
+              AND q.answer != ''
+        """
+        cur = conn.execute(sql, (blob, top_k))
+
+    return [
+        {"id": row[0], "distance": row[1], "question": row[2], "answer": row[3]}
+        for row in cur.fetchall()
     ]
-    scored.sort(key=lambda x: x[0], reverse=True)
-    return [doc for _, doc in scored[:top_k]]
+
+
+def retrieve_similar_chunks_vss(
+    conn: sqlite3.Connection,
+    query_embedding: list[float],
+    top_k: int,
+    exclude_question_id: int | None = None,
+) -> list[dict]:
+    """Busca exemplos similares via chunks (para enunciados longos).
+    Retorna a questão pai de cada chunk encontrado."""
+    blob = serialize_float32(query_embedding)
+
+    if exclude_question_id is not None:
+        sql = """
+            SELECT v.rowid, v.distance, c.chunk_text, q.id, q.question, q.answer
+            FROM vss_chunks v
+            JOIN chunks c ON c.id = v.rowid
+            JOIN questions q ON q.id = c.question_id
+            WHERE v.embedding MATCH ?
+              AND k = ?
+              AND c.question_id != ?
+              AND q.answer IS NOT NULL
+              AND q.answer != ''
+        """
+        cur = conn.execute(sql, (blob, top_k, exclude_question_id))
+    else:
+        sql = """
+            SELECT v.rowid, v.distance, c.chunk_text, q.id, q.question, q.answer
+            FROM vss_chunks v
+            JOIN chunks c ON c.id = v.rowid
+            JOIN questions q ON q.id = c.question_id
+            WHERE v.embedding MATCH ?
+              AND k = ?
+              AND q.answer IS NOT NULL
+              AND q.answer != ''
+        """
+        cur = conn.execute(sql, (blob, top_k))
+
+    return [
+        {
+            "id": row[3],
+            "distance": row[1],
+            "question": row[4],
+            "answer": row[5],
+            "chunk_text": row[2],
+        }
+        for row in cur.fetchall()
+    ]
 
 
 
@@ -226,7 +369,8 @@ def process_csv(csv_path: str):
     conn = init_db(DB_PATH)
 
 
-    print("  Gerando embeddings e populando banco…")
+    # ── Fase 1: Inserir questões, gerar embeddings e chunks ──
+    print("  Gerando embeddings e populando banco vetorial…")
     question_ids: dict[str, int] = {}
     for i, row in enumerate(rows, 1):
         q = row[question_col].strip()
@@ -234,23 +378,41 @@ def process_csv(csv_path: str):
         qid = upsert_question(conn, q, existing_answer)
         question_ids[q] = qid
 
-        # Embedding apenas se ainda não existir
-        cur = conn.execute("SELECT embedding FROM questions WHERE id = ?", (qid,))
-        if cur.fetchone()[0] is None:
+        # Embedding da questão inteira — apenas se ainda não existir
+        if not has_embedding(conn, qid):
             emb = ollama_embed(q)
             store_embedding(conn, qid, emb)
+
+        # Chunking opcional para enunciados longos
+        chunks = chunk_question(q)
+        if len(chunks) > 1:
+            for chunk_idx, chunk_text in enumerate(chunks):
+                conn.execute(
+                    "INSERT OR IGNORE INTO chunks (question_id, chunk_index, chunk_text) VALUES (?, ?, ?)",
+                    (qid, chunk_idx, chunk_text),
+                )
+            conn.commit()
+            if not has_chunk_embeddings(conn, qid):
+                for chunk_idx, chunk_text in enumerate(chunks):
+                    chunk_row = conn.execute(
+                        "SELECT id FROM chunks WHERE question_id = ? AND chunk_index = ?",
+                        (qid, chunk_idx),
+                    ).fetchone()
+                    if chunk_row:
+                        chunk_emb = ollama_embed(chunk_text)
+                        store_chunk_embedding(conn, chunk_row[0], chunk_emb)
+
         print(f"  [{i}/{len(rows)}] ✔ embedding armazenado", end="\r")
 
     print("\n Embeddings prontos.\n")
 
     # ── Fase 2: RAG — responder questões sem resposta ──
-    corpus = get_all_with_embeddings(conn)
     to_answer = [r for r in rows if not r.get(ANSWER_COLUMN, "").strip()]
 
     if not to_answer:
         print("ℹ  Todas as questões já possuem resposta. Nada a fazer.")
     else:
-        print(f"  Respondendo {len(to_answer)} questão(ões) com RAG…\n")
+        print(f"  Respondendo {len(to_answer)} questão(ões) com RAG (sqlite-vec)…\n")
 
     total_model_time = 0.0  # tempo total do modelo
 
@@ -264,12 +426,23 @@ def process_csv(csv_path: str):
             continue
 
         qid = question_ids[q]
-        cur = conn.execute("SELECT embedding FROM questions WHERE id = ?", (qid,))
-        emb_json = cur.fetchone()[0]
-        q_emb = json.loads(emb_json) if emb_json else ollama_embed(q)
 
-        similar = retrieve_similar(q_emb, corpus, top_k=TOP_K, exclude_id=qid)
-        prompt  = build_prompt(q, similar)
+        # Se a questão foi fatiada em chunks, busca pelos chunks;
+        # caso contrário, busca direto pela vss_questions
+        has_chunks = conn.execute(
+            "SELECT 1 FROM chunks WHERE question_id = ? LIMIT 1", (qid,)
+        ).fetchone() is not None
+
+        if has_chunks:
+            # Gera embedding do primeiro chunk (ou do texto completo se curto)
+            chunks = chunk_question(q)
+            first_chunk_emb = ollama_embed(chunks[0])
+            similar = retrieve_similar_chunks_vss(conn, first_chunk_emb, TOP_K, exclude_question_id=qid)
+        else:
+            q_emb = ollama_embed(q)
+            similar = retrieve_similar_vss(conn, q_emb, TOP_K, exclude_id=qid)
+
+        prompt = build_prompt(q, similar)
 
         print(f"  [{i}/{len(rows)}]  Resolvendo: {q[:60]}…")
         t0 = time.time()
@@ -280,11 +453,6 @@ def process_csv(csv_path: str):
 
         row[ANSWER_COLUMN] = answer
         upsert_question(conn, q, answer)
-
-        # Atualiza corpus com a nova resposta para próximas iterações
-        for doc in corpus:
-            if doc["id"] == qid:
-                doc["answer"] = answer
 
     conn.close()
 
