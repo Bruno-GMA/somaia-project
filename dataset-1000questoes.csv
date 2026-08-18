@@ -1,0 +1,1001 @@
+ID,Type,Level,Question,Operation,Comparação
+1,Non-contextualized,Simples,82 + 15 = ?,82 + 15,97
+2,Non-contextualized,Simples,4 + 95 = ?,4 + 95,99
+3,Non-contextualized,Simples,36 + 32 = ?,36 + 32,68
+4,Non-contextualized,Simples,29 + 18 = ?,29 + 18,47
+5,Non-contextualized,Simples,95 + 14 = ?,95 + 14,109
+6,Non-contextualized,Simples,87 + 95 = ?,87 + 95,182
+7,Non-contextualized,Simples,70 + 12 = ?,70 + 12,82
+8,Non-contextualized,Simples,76 + 55 = ?,76 + 55,131
+9,Non-contextualized,Simples,5 + 4 = ?,5 + 4,9
+10,Non-contextualized,Simples,12 + 28 = ?,12 + 28,40
+11,Non-contextualized,Simples,30 + 65 = ?,30 + 65,95
+12,Non-contextualized,Simples,78 + 4 = ?,78 + 4,82
+13,Non-contextualized,Simples,72 + 26 = ?,72 + 26,98
+14,Non-contextualized,Simples,92 + 84 = ?,92 + 84,176
+15,Non-contextualized,Simples,90 + 70 = ?,90 + 70,160
+16,Non-contextualized,Simples,54 + 29 = ?,54 + 29,83
+17,Non-contextualized,Simples,58 + 76 = ?,58 + 76,134
+18,Non-contextualized,Simples,36 + 1 = ?,36 + 1,37
+19,Non-contextualized,Simples,98 + 21 = ?,98 + 21,119
+20,Non-contextualized,Simples,90 + 55 = ?,90 + 55,145
+21,Non-contextualized,Simples,44 + 36 = ?,44 + 36,80
+22,Non-contextualized,Simples,20 + 28 = ?,20 + 28,48
+23,Non-contextualized,Simples,98 + 44 = ?,98 + 44,142
+24,Non-contextualized,Simples,14 + 12 = ?,14 + 12,26
+25,Non-contextualized,Simples,49 + 13 = ?,49 + 13,62
+26,Non-contextualized,Simples,46 + 45 = ?,46 + 45,91
+27,Non-contextualized,Simples,78 + 34 = ?,78 + 34,112
+28,Non-contextualized,Simples,6 + 94 = ?,6 + 94,100
+29,Non-contextualized,Simples,59 + 69 = ?,59 + 69,128
+30,Non-contextualized,Simples,16 + 49 = ?,16 + 49,65
+31,Non-contextualized,Simples,11 + 71 = ?,11 + 71,82
+32,Non-contextualized,Simples,38 + 81 = ?,38 + 81,119
+33,Non-contextualized,Simples,80 + 47 = ?,80 + 47,127
+34,Non-contextualized,Simples,74 + 25 = ?,74 + 25,99
+35,Non-contextualized,Simples,91 + 9 = ?,91 + 9,100
+36,Non-contextualized,Simples,6 + 85 = ?,6 + 85,91
+37,Non-contextualized,Simples,30 + 99 = ?,30 + 99,129
+38,Non-contextualized,Simples,38 + 11 = ?,38 + 11,49
+39,Non-contextualized,Simples,30 + 13 = ?,30 + 13,43
+40,Non-contextualized,Simples,49 + 36 = ?,49 + 36,85
+41,Non-contextualized,Simples,59 + 82 = ?,59 + 82,141
+42,Non-contextualized,Simples,47 + 21 = ?,47 + 21,68
+43,Non-contextualized,Intermediário,479 + 463 = ?,479 + 463,942
+44,Non-contextualized,Intermediário,314 + 786 = ?,314 + 786,1100
+45,Non-contextualized,Intermediário,373 + 818 = ?,373 + 818,1191
+46,Non-contextualized,Intermediário,799 + 763 = ?,799 + 763,1562
+47,Non-contextualized,Intermediário,173 + 723 = ?,173 + 723,896
+48,Non-contextualized,Intermediário,750 + 275 = ?,750 + 275,1025
+49,Non-contextualized,Intermediário,646 + 846 = ?,646 + 846,1492
+50,Non-contextualized,Intermediário,350 + 267 = ?,350 + 267,617
+51,Non-contextualized,Intermediário,573 + 488 = ?,573 + 488,1061
+52,Non-contextualized,Intermediário,376 + 755 = ?,376 + 755,1131
+53,Non-contextualized,Intermediário,804 + 670 = ?,804 + 670,1474
+54,Non-contextualized,Intermediário,324 + 801 = ?,324 + 801,1125
+55,Non-contextualized,Intermediário,432 + 963 = ?,432 + 963,1395
+56,Non-contextualized,Intermediário,886 + 894 = ?,886 + 894,1780
+57,Non-contextualized,Intermediário,157 + 334 = ?,157 + 334,491
+58,Non-contextualized,Intermediário,941 + 132 = ?,941 + 132,1073
+59,Non-contextualized,Intermediário,924 + 423 = ?,924 + 423,1347
+60,Non-contextualized,Intermediário,510 + 374 = ?,510 + 374,884
+61,Non-contextualized,Intermediário,167 + 316 = ?,167 + 316,483
+62,Non-contextualized,Intermediário,680 + 997 = ?,680 + 997,1677
+63,Non-contextualized,Intermediário,835 + 422 = ?,835 + 422,1257
+64,Non-contextualized,Intermediário,317 + 771 = ?,317 + 771,1088
+65,Non-contextualized,Intermediário,611 + 505 = ?,611 + 505,1116
+66,Non-contextualized,Intermediário,758 + 569 = ?,758 + 569,1327
+67,Non-contextualized,Intermediário,246 + 371 = ?,246 + 371,617
+68,Non-contextualized,Intermediário,242 + 352 = ?,242 + 352,594
+69,Non-contextualized,Intermediário,862 + 674 = ?,862 + 674,1536
+70,Non-contextualized,Intermediário,651 + 369 = ?,651 + 369,1020
+71,Non-contextualized,Intermediário,864 + 698 = ?,864 + 698,1562
+72,Non-contextualized,Intermediário,538 + 697 = ?,538 + 697,1235
+73,Non-contextualized,Intermediário,508 + 470 = ?,508 + 470,978
+74,Non-contextualized,Intermediário,324 + 241 = ?,324 + 241,565
+75,Non-contextualized,Intermediário,621 + 605 = ?,621 + 605,1226
+76,Non-contextualized,Intermediário,193 + 873 = ?,193 + 873,1066
+77,Non-contextualized,Intermediário,148 + 981 = ?,148 + 981,1129
+78,Non-contextualized,Intermediário,212 + 256 = ?,212 + 256,468
+79,Non-contextualized,Intermediário,742 + 263 = ?,742 + 263,1005
+80,Non-contextualized,Intermediário,911 + 796 = ?,911 + 796,1707
+81,Non-contextualized,Intermediário,532 + 710 = ?,532 + 710,1242
+82,Non-contextualized,Intermediário,165 + 494 = ?,165 + 494,659
+83,Non-contextualized,Intermediário,490 + 710 = ?,490 + 710,1200
+84,Non-contextualized,Intermediário,579 + 641 = ?,579 + 641,1220
+85,Non-contextualized,Complexo,"3262,7 + 5576,9 = ?","3262,7 + 5576,9","8839,6"
+86,Non-contextualized,Complexo,"9481,8 + 6834,7 = ?","9481,8 + 6834,7","16316,5"
+87,Non-contextualized,Complexo,"2031,0 + 8859,3 = ?","2031,0 + 8859,3","10890,3"
+88,Non-contextualized,Complexo,"7757,8 + 7709,1 = ?","7757,8 + 7709,1","15466,9"
+89,Non-contextualized,Complexo,"4061,5 + 3005,6 = ?","4061,5 + 3005,6","7067,1"
+90,Non-contextualized,Complexo,"2423,4 + 132,1 = ?","2423,4 + 132,1","2555,5"
+91,Non-contextualized,Complexo,"7498,8 + 7224,8 = ?","7498,8 + 7224,8","14723,6"
+92,Non-contextualized,Complexo,"9746,9 + 7643,3 = ?","9746,9 + 7643,3","17390,2"
+93,Non-contextualized,Complexo,"5569,1 + 1153,5 = ?","5569,1 + 1153,5","6722,6"
+94,Non-contextualized,Complexo,"6627,6 + 8432,4 = ?","6627,6 + 8432,4","15060,0"
+95,Non-contextualized,Complexo,"5568,9 + 2069,2 = ?","5568,9 + 2069,2","7638,1"
+96,Non-contextualized,Complexo,"4365,2 + 1699,3 = ?","4365,2 + 1699,3","6064,5"
+97,Non-contextualized,Complexo,"9581,4 + 9232,0 = ?","9581,4 + 9232,0","18813,4"
+98,Non-contextualized,Complexo,"9266,3 + 6029,5 = ?","9266,3 + 6029,5","15295,8"
+99,Non-contextualized,Complexo,"5397,4 + 1207,5 = ?","5397,4 + 1207,5","6604,9"
+100,Non-contextualized,Complexo,"4266,8 + 9854,6 = ?","4266,8 + 9854,6","14121,4"
+101,Non-contextualized,Complexo,"8260,9 + 2470,6 = ?","8260,9 + 2470,6","10731,5"
+102,Non-contextualized,Complexo,"3167,8 + 5716,8 = ?","3167,8 + 5716,8","8884,6"
+103,Non-contextualized,Complexo,"1708,8 + 7345,8 = ?","1708,8 + 7345,8","9054,6"
+104,Non-contextualized,Complexo,"8344,1 + 9781,9 = ?","8344,1 + 9781,9","18126,0"
+105,Non-contextualized,Complexo,"5794,3 + 1345,0 = ?","5794,3 + 1345,0","7139,3"
+106,Non-contextualized,Complexo,"6937,7 + 9473,7 = ?","6937,7 + 9473,7","16411,4"
+107,Non-contextualized,Complexo,"2486,1 + 5323,9 = ?","2486,1 + 5323,9","7810,0"
+108,Non-contextualized,Complexo,"6459,3 + 9647,1 = ?","6459,3 + 9647,1","16106,4"
+109,Non-contextualized,Complexo,"9360,1 + 7577,0 = ?","9360,1 + 7577,0","16937,1"
+110,Non-contextualized,Complexo,"7208,7 + 7158,1 = ?","7208,7 + 7158,1","14366,8"
+111,Non-contextualized,Complexo,"4590,9 + 6749,6 = ?","4590,9 + 6749,6","11340,5"
+112,Non-contextualized,Complexo,"4360,7 + 9006,1 = ?","4360,7 + 9006,1","13366,8"
+113,Non-contextualized,Complexo,"5063,3 + 2554,2 = ?","5063,3 + 2554,2","7617,5"
+114,Non-contextualized,Complexo,"1576,2 + 308,2 = ?","1576,2 + 308,2","1884,4"
+115,Non-contextualized,Complexo,"5985,2 + 5925,5 = ?","5985,2 + 5925,5","11910,7"
+116,Non-contextualized,Complexo,"1064,7 + 7107,6 = ?","1064,7 + 7107,6","8172,3"
+117,Non-contextualized,Complexo,"1529,9 + 767,3 = ?","1529,9 + 767,3","2297,2"
+118,Non-contextualized,Complexo,"1282,7 + 3371,2 = ?","1282,7 + 3371,2","4653,9"
+119,Non-contextualized,Complexo,"5627,4 + 2856,9 = ?","5627,4 + 2856,9","8484,3"
+120,Non-contextualized,Complexo,"5368,7 + 5438,4 = ?","5368,7 + 5438,4","10807,1"
+121,Non-contextualized,Complexo,"7510,1 + 8835,5 = ?","7510,1 + 8835,5","16345,6"
+122,Non-contextualized,Complexo,"6185,8 + 2505,6 = ?","6185,8 + 2505,6","8691,4"
+123,Non-contextualized,Complexo,"5256,7 + 4129,9 = ?","5256,7 + 4129,9","9386,6"
+124,Non-contextualized,Complexo,"1848,9 + 6623,9 = ?","1848,9 + 6623,9","8472,8"
+125,Non-contextualized,Complexo,"4188,6 + 4169,9 = ?","4188,6 + 4169,9","8358,5"
+126,Contextualized,Simples,Uma biblioteca catalogou 94 livros e mais 7. Quantos livros agora?,94 + 7,101
+127,Contextualized,Simples,Larissa vendeu 52 pães pela manhã e mais 94 à tarde. Quantos pães no total?,52 + 94,146
+128,Contextualized,Simples,Bruno plantou 25 árvores pela manhã e mais 25 à tarde. Quantos árvores no total?,25 + 25,50
+129,Contextualized,Simples,Bruno vendeu 55 pães pela manhã e mais 24 à tarde. Quantos pães no total?,55 + 24,79
+130,Contextualized,Simples,Uma fazenda plantou 10 árvores e mais 57. Quantos árvores agora?,10 + 57,67
+131,Contextualized,Simples,Diego recebeu 84 produtos pela manhã e mais 70 à tarde. Quantos produtos no total?,84 + 70,154
+132,Contextualized,Simples,Aline matriculou 22 alunos pela manhã e mais 53 à tarde. Quantos alunos no total?,22 + 53,75
+133,Contextualized,Simples,Uma ônibus transportou 52 passageiros e mais 8. Quantos passageiros agora?,52 + 8,60
+134,Contextualized,Simples,Beatriz tinha 50 alunos e ganhou mais 34. Quantos alunos tem agora?,50 + 34,84
+135,Contextualized,Simples,Aline plantou 90 árvores pela manhã e mais 94 à tarde. Quantos árvores no total?,90 + 94,184
+136,Contextualized,Simples,Uma ônibus transportou 25 passageiros e mais 38. Quantos passageiros agora?,25 + 38,63
+137,Contextualized,Simples,Ana tinha 96 produtos e ganhou mais 41. Quantos produtos tem agora?,96 + 41,137
+138,Contextualized,Simples,Uma ônibus transportou 65 passageiros e mais 68. Quantos passageiros agora?,65 + 68,133
+139,Contextualized,Simples,Diego plantou 24 árvores pela manhã e mais 9 à tarde. Quantos árvores no total?,24 + 9,33
+140,Contextualized,Simples,Uma fazenda plantou 52 árvores e mais 16. Quantos árvores agora?,52 + 16,68
+141,Contextualized,Simples,"Em uma corrida, Felipe percorreu 80 metros e depois mais 11. Qual a distância total?",80 + 11,91
+142,Contextualized,Simples,Rafael catalogou 34 livros pela manhã e mais 27 à tarde. Quantos livros no total?,34 + 27,61
+143,Contextualized,Simples,Beatriz tinha 34 passageiros e ganhou mais 51. Quantos passageiros tem agora?,34 + 51,85
+144,Contextualized,Simples,João tinha 41 produtos e ganhou mais 97. Quantos produtos tem agora?,41 + 97,138
+145,Contextualized,Simples,Diego recebeu 80 produtos pela manhã e mais 73 à tarde. Quantos produtos no total?,80 + 73,153
+146,Contextualized,Simples,Uma ônibus transportou 65 passageiros e mais 34. Quantos passageiros agora?,65 + 34,99
+147,Contextualized,Simples,Camila tinha 32 pães e ganhou mais 48. Quantos pães tem agora?,32 + 48,80
+148,Contextualized,Simples,Uma padaria vendeu 70 pães e mais 91. Quantos pães agora?,70 + 91,161
+149,Contextualized,Simples,Larissa vendeu 86 pães pela manhã e mais 71 à tarde. Quantos pães no total?,86 + 71,157
+150,Contextualized,Simples,Renata recebeu 34 produtos pela manhã e mais 15 à tarde. Quantos produtos no total?,34 + 15,49
+151,Contextualized,Simples,"Em uma corrida, Maria percorreu 35 metros e depois mais 37. Qual a distância total?",35 + 37,72
+152,Contextualized,Simples,Lucas tinha 27 livros e ganhou mais 88. Quantos livros tem agora?,27 + 88,115
+153,Contextualized,Simples,"Em uma corrida, Patrícia percorreu 33 metros e depois mais 7. Qual a distância total?",33 + 7,40
+154,Contextualized,Simples,"Em uma corrida, Fernanda percorreu 6 metros e depois mais 1. Qual a distância total?",6 + 1,7
+155,Contextualized,Simples,Renata tinha 21 alunos e ganhou mais 95. Quantos alunos tem agora?,21 + 95,116
+156,Contextualized,Simples,Diego recebeu 72 produtos pela manhã e mais 2 à tarde. Quantos produtos no total?,72 + 2,74
+157,Contextualized,Simples,Felipe vendeu 70 pães pela manhã e mais 5 à tarde. Quantos pães no total?,70 + 5,75
+158,Contextualized,Simples,"Em uma corrida, Beatriz percorreu 56 metros e depois mais 17. Qual a distância total?",56 + 17,73
+159,Contextualized,Simples,Uma ônibus transportou 6 passageiros e mais 46. Quantos passageiros agora?,6 + 46,52
+160,Contextualized,Simples,Vanessa matriculou 46 alunos pela manhã e mais 72 à tarde. Quantos alunos no total?,46 + 72,118
+161,Contextualized,Simples,Uma ônibus transportou 31 passageiros e mais 21. Quantos passageiros agora?,31 + 21,52
+162,Contextualized,Simples,Patrícia vendeu 23 pães pela manhã e mais 95 à tarde. Quantos pães no total?,23 + 95,118
+163,Contextualized,Simples,Larissa tinha 35 livros e ganhou mais 21. Quantos livros tem agora?,35 + 21,56
+164,Contextualized,Simples,Maria tinha 5 passageiros e ganhou mais 61. Quantos passageiros tem agora?,5 + 61,66
+165,Contextualized,Simples,Uma ônibus transportou 45 passageiros e mais 40. Quantos passageiros agora?,45 + 40,85
+166,Contextualized,Simples,"Em uma corrida, Rafael percorreu 85 metros e depois mais 25. Qual a distância total?",85 + 25,110
+167,Contextualized,Simples,Juliana tinha 9 pães e ganhou mais 99. Quantos pães tem agora?,9 + 99,108
+168,Contextualized,Intermediário,Uma fazenda plantou 795 árvores e mais 963. Quantos árvores agora?,795 + 963,1758
+169,Contextualized,Intermediário,"Em uma corrida, Camila percorreu 218 metros e depois mais 998. Qual a distância total?",218 + 998,1216
+170,Contextualized,Intermediário,"Em uma corrida, Patrícia percorreu 139 metros e depois mais 211. Qual a distância total?",139 + 211,350
+171,Contextualized,Intermediário,Uma padaria vendeu 846 pães e mais 905. Quantos pães agora?,846 + 905,1751
+172,Contextualized,Intermediário,Uma ônibus transportou 494 passageiros e mais 690. Quantos passageiros agora?,494 + 690,1184
+173,Contextualized,Intermediário,Gustavo recebeu 825 produtos pela manhã e mais 546 à tarde. Quantos produtos no total?,825 + 546,1371
+174,Contextualized,Intermediário,"Em uma corrida, Rafael percorreu 472 metros e depois mais 541. Qual a distância total?",472 + 541,1013
+175,Contextualized,Intermediário,"Em uma corrida, Beatriz percorreu 779 metros e depois mais 968. Qual a distância total?",779 + 968,1747
+176,Contextualized,Intermediário,"Em uma corrida, Carlos percorreu 782 metros e depois mais 518. Qual a distância total?",782 + 518,1300
+177,Contextualized,Intermediário,Patrícia tinha 667 passageiros e ganhou mais 230. Quantos passageiros tem agora?,667 + 230,897
+178,Contextualized,Intermediário,"Em uma corrida, Vanessa percorreu 793 metros e depois mais 866. Qual a distância total?",793 + 866,1659
+179,Contextualized,Intermediário,"Em uma corrida, Beatriz percorreu 515 metros e depois mais 661. Qual a distância total?",515 + 661,1176
+180,Contextualized,Intermediário,"Em uma corrida, Vanessa percorreu 315 metros e depois mais 540. Qual a distância total?",315 + 540,855
+181,Contextualized,Intermediário,Maria tinha 576 alunos e ganhou mais 552. Quantos alunos tem agora?,576 + 552,1128
+182,Contextualized,Intermediário,Uma biblioteca catalogou 912 livros e mais 915. Quantos livros agora?,912 + 915,1827
+183,Contextualized,Intermediário,"Em uma corrida, Vanessa percorreu 390 metros e depois mais 627. Qual a distância total?",390 + 627,1017
+184,Contextualized,Intermediário,Beatriz transportou 195 passageiros pela manhã e mais 938 à tarde. Quantos passageiros no total?,195 + 938,1133
+185,Contextualized,Intermediário,Uma ônibus transportou 925 passageiros e mais 303. Quantos passageiros agora?,925 + 303,1228
+186,Contextualized,Intermediário,Diego tinha 350 árvores e ganhou mais 586. Quantos árvores tem agora?,350 + 586,936
+187,Contextualized,Intermediário,Maria tinha 524 árvores e ganhou mais 744. Quantos árvores tem agora?,524 + 744,1268
+188,Contextualized,Intermediário,Uma ônibus transportou 606 passageiros e mais 509. Quantos passageiros agora?,606 + 509,1115
+189,Contextualized,Intermediário,Patrícia recebeu 868 produtos pela manhã e mais 981 à tarde. Quantos produtos no total?,868 + 981,1849
+190,Contextualized,Intermediário,Gustavo tinha 280 livros e ganhou mais 923. Quantos livros tem agora?,280 + 923,1203
+191,Contextualized,Intermediário,Larissa tinha 151 passageiros e ganhou mais 670. Quantos passageiros tem agora?,151 + 670,821
+192,Contextualized,Intermediário,"Em uma corrida, Gustavo percorreu 236 metros e depois mais 920. Qual a distância total?",236 + 920,1156
+193,Contextualized,Intermediário,Gustavo tinha 873 árvores e ganhou mais 553. Quantos árvores tem agora?,873 + 553,1426
+194,Contextualized,Intermediário,Camila tinha 950 alunos e ganhou mais 661. Quantos alunos tem agora?,950 + 661,1611
+195,Contextualized,Intermediário,Lucas tinha 560 passageiros e ganhou mais 365. Quantos passageiros tem agora?,560 + 365,925
+196,Contextualized,Intermediário,Uma padaria vendeu 741 pães e mais 344. Quantos pães agora?,741 + 344,1085
+197,Contextualized,Intermediário,"Em uma corrida, Lucas percorreu 830 metros e depois mais 392. Qual a distância total?",830 + 392,1222
+198,Contextualized,Intermediário,Fernanda recebeu 427 produtos pela manhã e mais 653 à tarde. Quantos produtos no total?,427 + 653,1080
+199,Contextualized,Intermediário,Fernanda catalogou 336 livros pela manhã e mais 492 à tarde. Quantos livros no total?,336 + 492,828
+200,Contextualized,Intermediário,Rafael tinha 165 alunos e ganhou mais 524. Quantos alunos tem agora?,165 + 524,689
+201,Contextualized,Intermediário,Patrícia tinha 525 passageiros e ganhou mais 163. Quantos passageiros tem agora?,525 + 163,688
+202,Contextualized,Intermediário,João tinha 888 livros e ganhou mais 698. Quantos livros tem agora?,888 + 698,1586
+203,Contextualized,Intermediário,Beatriz tinha 588 pães e ganhou mais 106. Quantos pães tem agora?,588 + 106,694
+204,Contextualized,Intermediário,Renata matriculou 973 alunos pela manhã e mais 955 à tarde. Quantos alunos no total?,973 + 955,1928
+205,Contextualized,Intermediário,Patrícia tinha 599 pães e ganhou mais 324. Quantos pães tem agora?,599 + 324,923
+206,Contextualized,Intermediário,Carlos vendeu 129 pães pela manhã e mais 498 à tarde. Quantos pães no total?,129 + 498,627
+207,Contextualized,Intermediário,Uma ônibus transportou 960 passageiros e mais 578. Quantos passageiros agora?,960 + 578,1538
+208,Contextualized,Intermediário,Uma fazenda plantou 503 árvores e mais 706. Quantos árvores agora?,503 + 706,1209
+209,Contextualized,Intermediário,Bruno transportou 758 passageiros pela manhã e mais 538 à tarde. Quantos passageiros no total?,758 + 538,1296
+210,Contextualized,Complexo,"Em uma corrida, Bruno percorreu 1452,6 metros e depois mais 3853,1. Qual a distância total?","1452,6 + 3853,1","5305,7"
+211,Contextualized,Complexo,"Em uma corrida, Patrícia percorreu 4037,5 metros e depois mais 8808,3. Qual a distância total?","4037,5 + 8808,3","12845,8"
+212,Contextualized,Complexo,"Uma biblioteca catalogou 8514,1 livros e mais 4756,0. Quantos livros agora?","8514,1 + 4756,0","13270,1"
+213,Contextualized,Complexo,"Uma biblioteca catalogou 9999,1 livros e mais 3564,6. Quantos livros agora?","9999,1 + 3564,6","13563,7"
+214,Contextualized,Complexo,"João transportou 7788,0 passageiros pela manhã e mais 9501,1 à tarde. Quantos passageiros no total?","7788,0 + 9501,1","17289,1"
+215,Contextualized,Complexo,"Felipe recebeu 3146,9 produtos pela manhã e mais 4788,2 à tarde. Quantos produtos no total?","3146,9 + 4788,2","7935,1"
+216,Contextualized,Complexo,"Uma padaria vendeu 5185,3 pães e mais 2636,8. Quantos pães agora?","5185,3 + 2636,8","7822,1"
+217,Contextualized,Complexo,"Uma padaria vendeu 8000,0 pães e mais 1721,3. Quantos pães agora?","8000,0 + 1721,3","9721,3"
+218,Contextualized,Complexo,"Carlos matriculou 9359,9 alunos pela manhã e mais 5800,3 à tarde. Quantos alunos no total?","9359,9 + 5800,3","15160,2"
+219,Contextualized,Complexo,"Uma biblioteca catalogou 1684,0 livros e mais 6937,0. Quantos livros agora?","1684,0 + 6937,0","8621,0"
+220,Contextualized,Complexo,"Uma biblioteca catalogou 7274,7 livros e mais 3085,6. Quantos livros agora?","7274,7 + 3085,6","10360,3"
+221,Contextualized,Complexo,"Juliana tinha 8166,0 produtos e ganhou mais 5702,7. Quantos produtos tem agora?","8166,0 + 5702,7","13868,7"
+222,Contextualized,Complexo,"Uma biblioteca catalogou 6953,6 livros e mais 782,7. Quantos livros agora?","6953,6 + 782,7","7736,3"
+223,Contextualized,Complexo,"Em uma corrida, Patrícia percorreu 8646,1 metros e depois mais 8241,0. Qual a distância total?","8646,1 + 8241,0","16887,1"
+224,Contextualized,Complexo,"Fernanda tinha 6720,2 livros e ganhou mais 8304,1. Quantos livros tem agora?","6720,2 + 8304,1","15024,3"
+225,Contextualized,Complexo,"Lucas tinha 2585,2 livros e ganhou mais 5265,2. Quantos livros tem agora?","2585,2 + 5265,2","7850,4"
+226,Contextualized,Complexo,"Em uma corrida, Lucas percorreu 5183,8 metros e depois mais 8274,7. Qual a distância total?","5183,8 + 8274,7","13458,5"
+227,Contextualized,Complexo,"Lucas tinha 8665,3 produtos e ganhou mais 8324,2. Quantos produtos tem agora?","8665,3 + 8324,2","16989,5"
+228,Contextualized,Complexo,"Em uma corrida, Carlos percorreu 3194,7 metros e depois mais 4700,6. Qual a distância total?","3194,7 + 4700,6","7895,3"
+229,Contextualized,Complexo,"Aline transportou 1258,3 passageiros pela manhã e mais 8524,3 à tarde. Quantos passageiros no total?","1258,3 + 8524,3","9782,6"
+230,Contextualized,Complexo,"Em uma corrida, Vanessa percorreu 4193,4 metros e depois mais 2657,7. Qual a distância total?","4193,4 + 2657,7","6851,1"
+231,Contextualized,Complexo,"Diego transportou 6002,1 passageiros pela manhã e mais 5214,6 à tarde. Quantos passageiros no total?","6002,1 + 5214,6","11216,7"
+232,Contextualized,Complexo,"Aline tinha 7480,6 passageiros e ganhou mais 4936,9. Quantos passageiros tem agora?","7480,6 + 4936,9","12417,5"
+233,Contextualized,Complexo,"Pedro tinha 5033,5 pães e ganhou mais 270,7. Quantos pães tem agora?","5033,5 + 270,7","5304,2"
+234,Contextualized,Complexo,"Juliana tinha 7226,0 árvores e ganhou mais 3131,4. Quantos árvores tem agora?","7226,0 + 3131,4","10357,4"
+235,Contextualized,Complexo,"Em uma corrida, Renata percorreu 5981,2 metros e depois mais 3503,2. Qual a distância total?","5981,2 + 3503,2","9484,4"
+236,Contextualized,Complexo,"Lucas vendeu 4166,3 pães pela manhã e mais 4592,0 à tarde. Quantos pães no total?","4166,3 + 4592,0","8758,3"
+237,Contextualized,Complexo,"Renata recebeu 2085,9 produtos pela manhã e mais 2006,6 à tarde. Quantos produtos no total?","2085,9 + 2006,6","4092,5"
+238,Contextualized,Complexo,"Em uma corrida, Felipe percorreu 2723,8 metros e depois mais 7412,1. Qual a distância total?","2723,8 + 7412,1","10135,9"
+239,Contextualized,Complexo,"Em uma corrida, Pedro percorreu 9824,5 metros e depois mais 8342,9. Qual a distância total?","9824,5 + 8342,9","18167,4"
+240,Contextualized,Complexo,"Em uma corrida, Fernanda percorreu 2615,0 metros e depois mais 240,1. Qual a distância total?","2615,0 + 240,1","2855,1"
+241,Contextualized,Complexo,"Fernanda tinha 1409,6 pães e ganhou mais 639,8. Quantos pães tem agora?","1409,6 + 639,8","2049,4"
+242,Contextualized,Complexo,"Aline tinha 1923,3 pães e ganhou mais 221,4. Quantos pães tem agora?","1923,3 + 221,4","2144,7"
+243,Contextualized,Complexo,"Lucas tinha 4964,2 produtos e ganhou mais 1925,2. Quantos produtos tem agora?","4964,2 + 1925,2","6889,4"
+244,Contextualized,Complexo,"Uma escola matriculou 2026,8 alunos e mais 746,9. Quantos alunos agora?","2026,8 + 746,9","2773,7"
+245,Contextualized,Complexo,"Diego vendeu 2365,5 pães pela manhã e mais 8130,2 à tarde. Quantos pães no total?","2365,5 + 8130,2","10495,7"
+246,Contextualized,Complexo,"Vanessa plantou 2066,1 árvores pela manhã e mais 7667,9 à tarde. Quantos árvores no total?","2066,1 + 7667,9","9734,0"
+247,Contextualized,Complexo,"Beatriz tinha 7981,2 alunos e ganhou mais 3865,7. Quantos alunos tem agora?","7981,2 + 3865,7","11846,9"
+248,Contextualized,Complexo,"Larissa plantou 3748,4 árvores pela manhã e mais 6248,1 à tarde. Quantos árvores no total?","3748,4 + 6248,1","9996,5"
+249,Contextualized,Complexo,"Camila recebeu 6629,6 produtos pela manhã e mais 2720,0 à tarde. Quantos produtos no total?","6629,6 + 2720,0","9349,6"
+250,Contextualized,Complexo,"Patrícia tinha 2564,3 produtos e ganhou mais 843,1. Quantos produtos tem agora?","2564,3 + 843,1","3407,4"
+251,Non-contextualized,Simples,98 - 77 = ?,98 - 77,21
+252,Non-contextualized,Simples,70 - 38 = ?,70 - 38,32
+253,Non-contextualized,Simples,14 - 4 = ?,14 - 4,10
+254,Non-contextualized,Simples,46 - 46 = ?,46 - 46,0
+255,Non-contextualized,Simples,46 - 45 = ?,46 - 45,1
+256,Non-contextualized,Simples,68 - 10 = ?,68 - 10,58
+257,Non-contextualized,Simples,97 - 30 = ?,97 - 30,67
+258,Non-contextualized,Simples,43 - 41 = ?,43 - 41,2
+259,Non-contextualized,Simples,85 - 85 = ?,85 - 85,0
+260,Non-contextualized,Simples,35 - 28 = ?,35 - 28,7
+261,Non-contextualized,Simples,24 - 18 = ?,24 - 18,6
+262,Non-contextualized,Simples,38 - 10 = ?,38 - 10,28
+263,Non-contextualized,Simples,44 - 10 = ?,44 - 10,34
+264,Non-contextualized,Simples,19 - 2 = ?,19 - 2,17
+265,Non-contextualized,Simples,31 - 26 = ?,31 - 26,5
+266,Non-contextualized,Simples,49 - 39 = ?,49 - 39,10
+267,Non-contextualized,Simples,82 - 37 = ?,82 - 37,45
+268,Non-contextualized,Simples,66 - 16 = ?,66 - 16,50
+269,Non-contextualized,Simples,69 - 39 = ?,69 - 39,30
+270,Non-contextualized,Simples,99 - 52 = ?,99 - 52,47
+271,Non-contextualized,Simples,44 - 33 = ?,44 - 33,11
+272,Non-contextualized,Simples,79 - 64 = ?,79 - 64,15
+273,Non-contextualized,Simples,66 - 11 = ?,66 - 11,55
+274,Non-contextualized,Simples,86 - 6 = ?,86 - 6,80
+275,Non-contextualized,Simples,65 - 42 = ?,65 - 42,23
+276,Non-contextualized,Simples,87 - 33 = ?,87 - 33,54
+277,Non-contextualized,Simples,13 - 2 = ?,13 - 2,11
+278,Non-contextualized,Simples,39 - 37 = ?,39 - 37,2
+279,Non-contextualized,Simples,85 - 3 = ?,85 - 3,82
+280,Non-contextualized,Simples,96 - 35 = ?,96 - 35,61
+281,Non-contextualized,Simples,83 - 6 = ?,83 - 6,77
+282,Non-contextualized,Simples,32 - 31 = ?,32 - 31,1
+283,Non-contextualized,Simples,76 - 57 = ?,76 - 57,19
+284,Non-contextualized,Simples,45 - 12 = ?,45 - 12,33
+285,Non-contextualized,Simples,84 - 56 = ?,84 - 56,28
+286,Non-contextualized,Simples,91 - 63 = ?,91 - 63,28
+287,Non-contextualized,Simples,21 - 16 = ?,21 - 16,5
+288,Non-contextualized,Simples,54 - 27 = ?,54 - 27,27
+289,Non-contextualized,Simples,52 - 21 = ?,52 - 21,31
+290,Non-contextualized,Simples,95 - 14 = ?,95 - 14,81
+291,Non-contextualized,Simples,30 - 11 = ?,30 - 11,19
+292,Non-contextualized,Simples,62 - 45 = ?,62 - 45,17
+293,Non-contextualized,Intermediário,707 - 395 = ?,707 - 395,312
+294,Non-contextualized,Intermediário,878 - 510 = ?,878 - 510,368
+295,Non-contextualized,Intermediário,978 - 663 = ?,978 - 663,315
+296,Non-contextualized,Intermediário,237 - 216 = ?,237 - 216,21
+297,Non-contextualized,Intermediário,290 - 180 = ?,290 - 180,110
+298,Non-contextualized,Intermediário,458 - 265 = ?,458 - 265,193
+299,Non-contextualized,Intermediário,318 - 297 = ?,318 - 297,21
+300,Non-contextualized,Intermediário,613 - 101 = ?,613 - 101,512
+301,Non-contextualized,Intermediário,873 - 655 = ?,873 - 655,218
+302,Non-contextualized,Intermediário,673 - 523 = ?,673 - 523,150
+303,Non-contextualized,Intermediário,255 - 148 = ?,255 - 148,107
+304,Non-contextualized,Intermediário,730 - 470 = ?,730 - 470,260
+305,Non-contextualized,Intermediário,837 - 610 = ?,837 - 610,227
+306,Non-contextualized,Intermediário,840 - 552 = ?,840 - 552,288
+307,Non-contextualized,Intermediário,978 - 152 = ?,978 - 152,826
+308,Non-contextualized,Intermediário,408 - 236 = ?,408 - 236,172
+309,Non-contextualized,Intermediário,762 - 234 = ?,762 - 234,528
+310,Non-contextualized,Intermediário,494 - 324 = ?,494 - 324,170
+311,Non-contextualized,Intermediário,915 - 596 = ?,915 - 596,319
+312,Non-contextualized,Intermediário,324 - 107 = ?,324 - 107,217
+313,Non-contextualized,Intermediário,845 - 723 = ?,845 - 723,122
+314,Non-contextualized,Intermediário,445 - 181 = ?,445 - 181,264
+315,Non-contextualized,Intermediário,518 - 382 = ?,518 - 382,136
+316,Non-contextualized,Intermediário,214 - 170 = ?,214 - 170,44
+317,Non-contextualized,Intermediário,617 - 195 = ?,617 - 195,422
+318,Non-contextualized,Intermediário,430 - 158 = ?,430 - 158,272
+319,Non-contextualized,Intermediário,672 - 220 = ?,672 - 220,452
+320,Non-contextualized,Intermediário,863 - 257 = ?,863 - 257,606
+321,Non-contextualized,Intermediário,710 - 398 = ?,710 - 398,312
+322,Non-contextualized,Intermediário,721 - 379 = ?,721 - 379,342
+323,Non-contextualized,Intermediário,625 - 594 = ?,625 - 594,31
+324,Non-contextualized,Intermediário,683 - 349 = ?,683 - 349,334
+325,Non-contextualized,Intermediário,667 - 664 = ?,667 - 664,3
+326,Non-contextualized,Intermediário,348 - 198 = ?,348 - 198,150
+327,Non-contextualized,Intermediário,395 - 360 = ?,395 - 360,35
+328,Non-contextualized,Intermediário,964 - 239 = ?,964 - 239,725
+329,Non-contextualized,Intermediário,271 - 170 = ?,271 - 170,101
+330,Non-contextualized,Intermediário,991 - 908 = ?,991 - 908,83
+331,Non-contextualized,Intermediário,624 - 448 = ?,624 - 448,176
+332,Non-contextualized,Intermediário,719 - 373 = ?,719 - 373,346
+333,Non-contextualized,Intermediário,202 - 136 = ?,202 - 136,66
+334,Non-contextualized,Intermediário,943 - 405 = ?,943 - 405,538
+335,Non-contextualized,Complexo,"8537,2 - 4992,9 = ?","8537,2 - 4992,9","3544,3"
+336,Non-contextualized,Complexo,"6939,4 - 6017,9 = ?","6939,4 - 6017,9","921,5"
+337,Non-contextualized,Complexo,"5018,9 - 2482,4 = ?","5018,9 - 2482,4","2536,5"
+338,Non-contextualized,Complexo,"3991,9 - 3069,0 = ?","3991,9 - 3069,0","922,9"
+339,Non-contextualized,Complexo,"4394,9 - 4106,5 = ?","4394,9 - 4106,5","288,4"
+340,Non-contextualized,Complexo,"8826,3 - 8658,5 = ?","8826,3 - 8658,5","167,8"
+341,Non-contextualized,Complexo,"3149,2 - 1267,8 = ?","3149,2 - 1267,8","1881,4"
+342,Non-contextualized,Complexo,"8704,0 - 3634,3 = ?","8704,0 - 3634,3","5069,7"
+343,Non-contextualized,Complexo,"3863,6 - 1880,1 = ?","3863,6 - 1880,1","1983,5"
+344,Non-contextualized,Complexo,"9220,8 - 3577,1 = ?","9220,8 - 3577,1","5643,7"
+345,Non-contextualized,Complexo,"9895,6 - 7862,0 = ?","9895,6 - 7862,0","2033,6"
+346,Non-contextualized,Complexo,"6868,1 - 1129,5 = ?","6868,1 - 1129,5","5738,6"
+347,Non-contextualized,Complexo,"9683,3 - 1309,9 = ?","9683,3 - 1309,9","8373,4"
+348,Non-contextualized,Complexo,"9688,1 - 3283,2 = ?","9688,1 - 3283,2","6404,9"
+349,Non-contextualized,Complexo,"1903,3 - 1623,9 = ?","1903,3 - 1623,9","279,4"
+350,Non-contextualized,Complexo,"1897,4 - 1736,4 = ?","1897,4 - 1736,4","161,0"
+351,Non-contextualized,Complexo,"1138,1 - 249,6 = ?","1138,1 - 249,6","888,5"
+352,Non-contextualized,Complexo,"8838,3 - 8575,8 = ?","8838,3 - 8575,8","262,5"
+353,Non-contextualized,Complexo,"1673,4 - 1329,7 = ?","1673,4 - 1329,7","343,7"
+354,Non-contextualized,Complexo,"3385,2 - 2147,5 = ?","3385,2 - 2147,5","1237,7"
+355,Non-contextualized,Complexo,"4577,3 - 459,6 = ?","4577,3 - 459,6","4117,7"
+356,Non-contextualized,Complexo,"3957,1 - 2701,1 = ?","3957,1 - 2701,1","1256,0"
+357,Non-contextualized,Complexo,"5802,5 - 5541,0 = ?","5802,5 - 5541,0","261,5"
+358,Non-contextualized,Complexo,"6641,1 - 5904,8 = ?","6641,1 - 5904,8","736,3"
+359,Non-contextualized,Complexo,"5391,5 - 2962,8 = ?","5391,5 - 2962,8","2428,7"
+360,Non-contextualized,Complexo,"6557,1 - 1615,9 = ?","6557,1 - 1615,9","4941,2"
+361,Non-contextualized,Complexo,"7159,5 - 2128,8 = ?","7159,5 - 2128,8","5030,7"
+362,Non-contextualized,Complexo,"3047,4 - 366,4 = ?","3047,4 - 366,4","2681,0"
+363,Non-contextualized,Complexo,"9804,9 - 7479,3 = ?","9804,9 - 7479,3","2325,6"
+364,Non-contextualized,Complexo,"7334,9 - 827,2 = ?","7334,9 - 827,2","6507,7"
+365,Non-contextualized,Complexo,"2497,3 - 817,9 = ?","2497,3 - 817,9","1679,4"
+366,Non-contextualized,Complexo,"1260,5 - 476,4 = ?","1260,5 - 476,4","784,1"
+367,Non-contextualized,Complexo,"1505,1 - 603,7 = ?","1505,1 - 603,7","901,4"
+368,Non-contextualized,Complexo,"4876,1 - 1266,3 = ?","4876,1 - 1266,3","3609,8"
+369,Non-contextualized,Complexo,"4708,4 - 3242,0 = ?","4708,4 - 3242,0","1466,4"
+370,Non-contextualized,Complexo,"2620,5 - 541,3 = ?","2620,5 - 541,3","2079,2"
+371,Non-contextualized,Complexo,"6485,4 - 2542,7 = ?","6485,4 - 2542,7","3942,7"
+372,Non-contextualized,Complexo,"7148,1 - 3607,6 = ?","7148,1 - 3607,6","3540,5"
+373,Non-contextualized,Complexo,"6248,4 - 1527,6 = ?","6248,4 - 1527,6","4720,8"
+374,Non-contextualized,Complexo,"6741,1 - 3152,1 = ?","6741,1 - 3152,1","3589,0"
+375,Non-contextualized,Complexo,"7001,5 - 6303,8 = ?","7001,5 - 6303,8","697,7"
+376,Contextualized,Simples,Uma biblioteca tinha 69 livros em estoque e despachou 37. Quantos livros sobraram?,69 - 37,32
+377,Contextualized,Simples,Felipe possuía 19 reais e gastou 15. Quanto dinheiro restou?,19 - 15,4
+378,Contextualized,Simples,Havia 91 passageiros no ônibus e 55 desceram no ponto. Quantos passageiros ficaram?,91 - 55,36
+379,Contextualized,Simples,Aline tinha 48 alunos e vendeu 13. Quantos alunos restaram?,48 - 13,35
+380,Contextualized,Simples,Juliana tinha 40 figurinhas e trocou 25 com um amigo. Quantas figurinhas ele(a) ficou?,40 - 25,15
+381,Contextualized,Simples,Havia 47 passageiros no ônibus e 45 desceram no ponto. Quantos passageiros ficaram?,47 - 45,2
+382,Contextualized,Simples,Ana tinha 45 figurinhas e trocou 1 com um amigo. Quantas figurinhas ele(a) ficou?,45 - 1,44
+383,Contextualized,Simples,Vanessa possuía 73 reais e gastou 37. Quanto dinheiro restou?,73 - 37,36
+384,Contextualized,Simples,Uma fazenda tinha 38 árvores em estoque e despachou 13. Quantos árvores sobraram?,38 - 13,25
+385,Contextualized,Simples,Ana possuía 90 reais e gastou 13. Quanto dinheiro restou?,90 - 13,77
+386,Contextualized,Simples,Uma fazenda tinha 66 árvores em estoque e despachou 5. Quantos árvores sobraram?,66 - 5,61
+387,Contextualized,Simples,Uma padaria tinha 21 pães em estoque e despachou 10. Quantos pães sobraram?,21 - 10,11
+388,Contextualized,Simples,Juliana tinha 35 figurinhas e trocou 9 com um amigo. Quantas figurinhas ele(a) ficou?,35 - 9,26
+389,Contextualized,Simples,Havia 74 passageiros no ônibus e 35 desceram no ponto. Quantos passageiros ficaram?,74 - 35,39
+390,Contextualized,Simples,Bruno tinha 47 produtos e vendeu 22. Quantos produtos restaram?,47 - 22,25
+391,Contextualized,Simples,Carlos tinha 28 figurinhas e trocou 25 com um amigo. Quantas figurinhas ele(a) ficou?,28 - 25,3
+392,Contextualized,Simples,João possuía 56 reais e gastou 6. Quanto dinheiro restou?,56 - 6,50
+393,Contextualized,Simples,Juliana possuía 78 reais e gastou 16. Quanto dinheiro restou?,78 - 16,62
+394,Contextualized,Simples,Juliana tinha 84 livros e vendeu 49. Quantos livros restaram?,84 - 49,35
+395,Contextualized,Simples,João tinha 96 figurinhas e trocou 30 com um amigo. Quantas figurinhas ele(a) ficou?,96 - 30,66
+396,Contextualized,Simples,Pedro tinha 81 árvores e vendeu 42. Quantos árvores restaram?,81 - 42,39
+397,Contextualized,Simples,Havia 91 passageiros no ônibus e 60 desceram no ponto. Quantos passageiros ficaram?,91 - 60,31
+398,Contextualized,Simples,Ana possuía 24 reais e gastou 5. Quanto dinheiro restou?,24 - 5,19
+399,Contextualized,Simples,Pedro tinha 73 figurinhas e trocou 15 com um amigo. Quantas figurinhas ele(a) ficou?,73 - 15,58
+400,Contextualized,Simples,Juliana tinha 27 figurinhas e trocou 13 com um amigo. Quantas figurinhas ele(a) ficou?,27 - 13,14
+401,Contextualized,Simples,Havia 63 passageiros no ônibus e 38 desceram no ponto. Quantos passageiros ficaram?,63 - 38,25
+402,Contextualized,Simples,Havia 93 passageiros no ônibus e 13 desceram no ponto. Quantos passageiros ficaram?,93 - 13,80
+403,Contextualized,Simples,Uma biblioteca tinha 45 livros em estoque e despachou 3. Quantos livros sobraram?,45 - 3,42
+404,Contextualized,Simples,Juliana tinha 66 passageiros e vendeu 57. Quantos passageiros restaram?,66 - 57,9
+405,Contextualized,Simples,Juliana tinha 97 árvores e vendeu 48. Quantos árvores restaram?,97 - 48,49
+406,Contextualized,Simples,Havia 60 passageiros no ônibus e 18 desceram no ponto. Quantos passageiros ficaram?,60 - 18,42
+407,Contextualized,Simples,Vanessa tinha 21 livros e vendeu 7. Quantos livros restaram?,21 - 7,14
+408,Contextualized,Simples,Fernanda tinha 16 figurinhas e trocou 11 com um amigo. Quantas figurinhas ele(a) ficou?,16 - 11,5
+409,Contextualized,Simples,Maria tinha 36 figurinhas e trocou 5 com um amigo. Quantas figurinhas ele(a) ficou?,36 - 5,31
+410,Contextualized,Simples,Fernanda tinha 37 figurinhas e trocou 15 com um amigo. Quantas figurinhas ele(a) ficou?,37 - 15,22
+411,Contextualized,Simples,Fernanda tinha 10 figurinhas e trocou 5 com um amigo. Quantas figurinhas ele(a) ficou?,10 - 5,5
+412,Contextualized,Simples,Uma loja tinha 42 produtos em estoque e despachou 12. Quantos produtos sobraram?,42 - 12,30
+413,Contextualized,Simples,Felipe possuía 11 reais e gastou 6. Quanto dinheiro restou?,11 - 6,5
+414,Contextualized,Simples,Uma padaria tinha 12 pães em estoque e despachou 3. Quantos pães sobraram?,12 - 3,9
+415,Contextualized,Simples,Havia 63 passageiros no ônibus e 34 desceram no ponto. Quantos passageiros ficaram?,63 - 34,29
+416,Contextualized,Simples,Felipe tinha 67 árvores e vendeu 47. Quantos árvores restaram?,67 - 47,20
+417,Contextualized,Simples,Vanessa tinha 67 passageiros e vendeu 65. Quantos passageiros restaram?,67 - 65,2
+418,Contextualized,Intermediário,Gustavo possuía 944 reais e gastou 902. Quanto dinheiro restou?,944 - 902,42
+419,Contextualized,Intermediário,Havia 669 passageiros no ônibus e 131 desceram no ponto. Quantos passageiros ficaram?,669 - 131,538
+420,Contextualized,Intermediário,Bruno tinha 636 alunos e vendeu 210. Quantos alunos restaram?,636 - 210,426
+421,Contextualized,Intermediário,Fernanda tinha 282 árvores e vendeu 182. Quantos árvores restaram?,282 - 182,100
+422,Contextualized,Intermediário,Felipe tinha 329 figurinhas e trocou 170 com um amigo. Quantas figurinhas ele(a) ficou?,329 - 170,159
+423,Contextualized,Intermediário,Vanessa tinha 929 figurinhas e trocou 432 com um amigo. Quantas figurinhas ele(a) ficou?,929 - 432,497
+424,Contextualized,Intermediário,Havia 501 passageiros no ônibus e 332 desceram no ponto. Quantos passageiros ficaram?,501 - 332,169
+425,Contextualized,Intermediário,Uma loja tinha 301 produtos em estoque e despachou 279. Quantos produtos sobraram?,301 - 279,22
+426,Contextualized,Intermediário,Patrícia possuía 640 reais e gastou 562. Quanto dinheiro restou?,640 - 562,78
+427,Contextualized,Intermediário,Larissa possuía 664 reais e gastou 508. Quanto dinheiro restou?,664 - 508,156
+428,Contextualized,Intermediário,Lucas possuía 637 reais e gastou 420. Quanto dinheiro restou?,637 - 420,217
+429,Contextualized,Intermediário,Diego tinha 356 produtos e vendeu 342. Quantos produtos restaram?,356 - 342,14
+430,Contextualized,Intermediário,Uma loja tinha 295 produtos em estoque e despachou 210. Quantos produtos sobraram?,295 - 210,85
+431,Contextualized,Intermediário,Renata tinha 769 figurinhas e trocou 161 com um amigo. Quantas figurinhas ele(a) ficou?,769 - 161,608
+432,Contextualized,Intermediário,Patrícia possuía 537 reais e gastou 443. Quanto dinheiro restou?,537 - 443,94
+433,Contextualized,Intermediário,Ana possuía 881 reais e gastou 868. Quanto dinheiro restou?,881 - 868,13
+434,Contextualized,Intermediário,Larissa tinha 814 figurinhas e trocou 419 com um amigo. Quantas figurinhas ele(a) ficou?,814 - 419,395
+435,Contextualized,Intermediário,Uma ônibus tinha 719 passageiros em estoque e despachou 317. Quantos passageiros sobraram?,719 - 317,402
+436,Contextualized,Intermediário,Juliana tinha 310 árvores e vendeu 189. Quantos árvores restaram?,310 - 189,121
+437,Contextualized,Intermediário,Havia 980 passageiros no ônibus e 385 desceram no ponto. Quantos passageiros ficaram?,980 - 385,595
+438,Contextualized,Intermediário,Renata tinha 774 árvores e vendeu 736. Quantos árvores restaram?,774 - 736,38
+439,Contextualized,Intermediário,Lucas tinha 823 livros e vendeu 773. Quantos livros restaram?,823 - 773,50
+440,Contextualized,Intermediário,Beatriz possuía 384 reais e gastou 239. Quanto dinheiro restou?,384 - 239,145
+441,Contextualized,Intermediário,Fernanda tinha 559 figurinhas e trocou 103 com um amigo. Quantas figurinhas ele(a) ficou?,559 - 103,456
+442,Contextualized,Intermediário,Fernanda tinha 873 produtos e vendeu 510. Quantos produtos restaram?,873 - 510,363
+443,Contextualized,Intermediário,Havia 293 passageiros no ônibus e 291 desceram no ponto. Quantos passageiros ficaram?,293 - 291,2
+444,Contextualized,Intermediário,Camila possuía 629 reais e gastou 564. Quanto dinheiro restou?,629 - 564,65
+445,Contextualized,Intermediário,Felipe tinha 519 figurinhas e trocou 469 com um amigo. Quantas figurinhas ele(a) ficou?,519 - 469,50
+446,Contextualized,Intermediário,Camila tinha 286 figurinhas e trocou 113 com um amigo. Quantas figurinhas ele(a) ficou?,286 - 113,173
+447,Contextualized,Intermediário,Havia 250 passageiros no ônibus e 120 desceram no ponto. Quantos passageiros ficaram?,250 - 120,130
+448,Contextualized,Intermediário,Uma escola tinha 697 alunos em estoque e despachou 552. Quantos alunos sobraram?,697 - 552,145
+449,Contextualized,Intermediário,Havia 973 passageiros no ônibus e 624 desceram no ponto. Quantos passageiros ficaram?,973 - 624,349
+450,Contextualized,Intermediário,Havia 313 passageiros no ônibus e 172 desceram no ponto. Quantos passageiros ficaram?,313 - 172,141
+451,Contextualized,Intermediário,Havia 739 passageiros no ônibus e 415 desceram no ponto. Quantos passageiros ficaram?,739 - 415,324
+452,Contextualized,Intermediário,Maria possuía 813 reais e gastou 156. Quanto dinheiro restou?,813 - 156,657
+453,Contextualized,Intermediário,Beatriz possuía 416 reais e gastou 170. Quanto dinheiro restou?,416 - 170,246
+454,Contextualized,Intermediário,Uma escola tinha 322 alunos em estoque e despachou 101. Quantos alunos sobraram?,322 - 101,221
+455,Contextualized,Intermediário,Pedro tinha 332 figurinhas e trocou 197 com um amigo. Quantas figurinhas ele(a) ficou?,332 - 197,135
+456,Contextualized,Intermediário,Carlos tinha 772 produtos e vendeu 462. Quantos produtos restaram?,772 - 462,310
+457,Contextualized,Intermediário,Diego possuía 646 reais e gastou 119. Quanto dinheiro restou?,646 - 119,527
+458,Contextualized,Intermediário,Havia 789 passageiros no ônibus e 539 desceram no ponto. Quantos passageiros ficaram?,789 - 539,250
+459,Contextualized,Intermediário,João possuía 496 reais e gastou 158. Quanto dinheiro restou?,496 - 158,338
+460,Contextualized,Complexo,"Juliana tinha 2546,8 alunos e vendeu 2418,6. Quantos alunos restaram?","2546,8 - 2418,6","128,2"
+461,Contextualized,Complexo,"Havia 4930,4 passageiros no ônibus e 611,4 desceram no ponto. Quantos passageiros ficaram?","4930,4 - 611,4","4319,0"
+462,Contextualized,Complexo,"Uma padaria tinha 5715,6 pães em estoque e despachou 2322,5. Quantos pães sobraram?","5715,6 - 2322,5","3393,1"
+463,Contextualized,Complexo,"Larissa tinha 3997,6 figurinhas e trocou 755,3 com um amigo. Quantas figurinhas ele(a) ficou?","3997,6 - 755,3","3242,3"
+464,Contextualized,Complexo,"Uma padaria tinha 5589,5 pães em estoque e despachou 5073,1. Quantos pães sobraram?","5589,5 - 5073,1","516,4"
+465,Contextualized,Complexo,"Camila tinha 3126,4 figurinhas e trocou 543,2 com um amigo. Quantas figurinhas ele(a) ficou?","3126,4 - 543,2","2583,2"
+466,Contextualized,Complexo,"Havia 2375,8 passageiros no ônibus e 1827,7 desceram no ponto. Quantos passageiros ficaram?","2375,8 - 1827,7","548,1"
+467,Contextualized,Complexo,"Bruno tinha 5175,5 figurinhas e trocou 2961,2 com um amigo. Quantas figurinhas ele(a) ficou?","5175,5 - 2961,2","2214,3"
+468,Contextualized,Complexo,"Uma padaria tinha 6786,9 pães em estoque e despachou 6696,8. Quantos pães sobraram?","6786,9 - 6696,8","90,1"
+469,Contextualized,Complexo,"Beatriz possuía 4957,8 reais e gastou 2377,9. Quanto dinheiro restou?","4957,8 - 2377,9","2579,9"
+470,Contextualized,Complexo,"Havia 6322,7 passageiros no ônibus e 2290,0 desceram no ponto. Quantos passageiros ficaram?","6322,7 - 2290,0","4032,7"
+471,Contextualized,Complexo,"Diego tinha 5067,2 pães e vendeu 382,6. Quantos pães restaram?","5067,2 - 382,6","4684,6"
+472,Contextualized,Complexo,"Felipe tinha 6535,0 figurinhas e trocou 3363,0 com um amigo. Quantas figurinhas ele(a) ficou?","6535,0 - 3363,0","3172,0"
+473,Contextualized,Complexo,"Bruno tinha 9588,0 figurinhas e trocou 7110,9 com um amigo. Quantas figurinhas ele(a) ficou?","9588,0 - 7110,9","2477,1"
+474,Contextualized,Complexo,"Uma escola tinha 6866,5 alunos em estoque e despachou 2275,6. Quantos alunos sobraram?","6866,5 - 2275,6","4590,9"
+475,Contextualized,Complexo,"Diego tinha 9619,4 figurinhas e trocou 4388,7 com um amigo. Quantas figurinhas ele(a) ficou?","9619,4 - 4388,7","5230,7"
+476,Contextualized,Complexo,"Havia 6815,1 passageiros no ônibus e 362,8 desceram no ponto. Quantos passageiros ficaram?","6815,1 - 362,8","6452,3"
+477,Contextualized,Complexo,"Juliana possuía 5716,6 reais e gastou 3525,0. Quanto dinheiro restou?","5716,6 - 3525,0","2191,6"
+478,Contextualized,Complexo,"Vanessa tinha 4486,7 livros e vendeu 3497,3. Quantos livros restaram?","4486,7 - 3497,3","989,4"
+479,Contextualized,Complexo,"Rafael tinha 8103,0 produtos e vendeu 5280,4. Quantos produtos restaram?","8103,0 - 5280,4","2822,6"
+480,Contextualized,Complexo,"Uma padaria tinha 6021,6 pães em estoque e despachou 2389,1. Quantos pães sobraram?","6021,6 - 2389,1","3632,5"
+481,Contextualized,Complexo,"Juliana possuía 4000,2 reais e gastou 2372,8. Quanto dinheiro restou?","4000,2 - 2372,8","1627,4"
+482,Contextualized,Complexo,"Fernanda tinha 9709,2 figurinhas e trocou 6811,8 com um amigo. Quantas figurinhas ele(a) ficou?","9709,2 - 6811,8","2897,4"
+483,Contextualized,Complexo,"Carlos possuía 7379,4 reais e gastou 716,7. Quanto dinheiro restou?","7379,4 - 716,7","6662,7"
+484,Contextualized,Complexo,"Gustavo tinha 8318,6 livros e vendeu 5607,4. Quantos livros restaram?","8318,6 - 5607,4","2711,2"
+485,Contextualized,Complexo,"João possuía 6814,2 reais e gastou 2942,8. Quanto dinheiro restou?","6814,2 - 2942,8","3871,4"
+486,Contextualized,Complexo,"Uma padaria tinha 3779,8 pães em estoque e despachou 3600,1. Quantos pães sobraram?","3779,8 - 3600,1","179,7"
+487,Contextualized,Complexo,"Beatriz tinha 3038,9 produtos e vendeu 504,3. Quantos produtos restaram?","3038,9 - 504,3","2534,6"
+488,Contextualized,Complexo,"Gustavo tinha 5569,2 livros e vendeu 3052,1. Quantos livros restaram?","5569,2 - 3052,1","2517,1"
+489,Contextualized,Complexo,"Fernanda tinha 6957,3 figurinhas e trocou 6109,7 com um amigo. Quantas figurinhas ele(a) ficou?","6957,3 - 6109,7","847,6"
+490,Contextualized,Complexo,"Uma biblioteca tinha 4390,4 livros em estoque e despachou 796,1. Quantos livros sobraram?","4390,4 - 796,1","3594,3"
+491,Contextualized,Complexo,"Havia 7490,6 passageiros no ônibus e 422,9 desceram no ponto. Quantos passageiros ficaram?","7490,6 - 422,9","7067,7"
+492,Contextualized,Complexo,"Pedro tinha 6495,3 figurinhas e trocou 4911,8 com um amigo. Quantas figurinhas ele(a) ficou?","6495,3 - 4911,8","1583,5"
+493,Contextualized,Complexo,"Maria possuía 3152,5 reais e gastou 3047,5. Quanto dinheiro restou?","3152,5 - 3047,5","105,0"
+494,Contextualized,Complexo,"Bruno possuía 7104,7 reais e gastou 4095,6. Quanto dinheiro restou?","7104,7 - 4095,6","3009,1"
+495,Contextualized,Complexo,"Uma escola tinha 8003,0 alunos em estoque e despachou 4074,5. Quantos alunos sobraram?","8003,0 - 4074,5","3928,5"
+496,Contextualized,Complexo,"Havia 8211,3 passageiros no ônibus e 1222,6 desceram no ponto. Quantos passageiros ficaram?","8211,3 - 1222,6","6988,7"
+497,Contextualized,Complexo,"Gustavo tinha 8867,0 produtos e vendeu 4961,7. Quantos produtos restaram?","8867,0 - 4961,7","3905,3"
+498,Contextualized,Complexo,"Bruno tinha 3565,5 figurinhas e trocou 2744,6 com um amigo. Quantas figurinhas ele(a) ficou?","3565,5 - 2744,6","820,9"
+499,Contextualized,Complexo,"Bruno possuía 2326,1 reais e gastou 1073,9. Quanto dinheiro restou?","2326,1 - 1073,9","1252,2"
+500,Contextualized,Complexo,"Gustavo possuía 9374,2 reais e gastou 3947,8. Quanto dinheiro restou?","9374,2 - 3947,8","5426,4"
+501,Non-contextualized,Simples,9 x 8 = ?,9 x 8,72
+502,Non-contextualized,Simples,4 x 7 = ?,4 x 7,28
+503,Non-contextualized,Simples,9 x 2 = ?,9 x 2,18
+504,Non-contextualized,Simples,12 x 3 = ?,12 x 3,36
+505,Non-contextualized,Simples,12 x 4 = ?,12 x 4,48
+506,Non-contextualized,Simples,6 x 2 = ?,6 x 2,12
+507,Non-contextualized,Simples,11 x 9 = ?,11 x 9,99
+508,Non-contextualized,Simples,6 x 9 = ?,6 x 9,54
+509,Non-contextualized,Simples,16 x 11 = ?,16 x 11,176
+510,Non-contextualized,Simples,2 x 3 = ?,2 x 3,6
+511,Non-contextualized,Simples,2 x 6 = ?,2 x 6,12
+512,Non-contextualized,Simples,8 x 4 = ?,8 x 4,32
+513,Non-contextualized,Simples,19 x 11 = ?,19 x 11,209
+514,Non-contextualized,Simples,18 x 8 = ?,18 x 8,144
+515,Non-contextualized,Simples,5 x 6 = ?,5 x 6,30
+516,Non-contextualized,Simples,9 x 6 = ?,9 x 6,54
+517,Non-contextualized,Simples,5 x 2 = ?,5 x 2,10
+518,Non-contextualized,Simples,9 x 8 = ?,9 x 8,72
+519,Non-contextualized,Simples,16 x 3 = ?,16 x 3,48
+520,Non-contextualized,Simples,5 x 9 = ?,5 x 9,45
+521,Non-contextualized,Simples,19 x 2 = ?,19 x 2,38
+522,Non-contextualized,Simples,18 x 11 = ?,18 x 11,198
+523,Non-contextualized,Simples,9 x 4 = ?,9 x 4,36
+524,Non-contextualized,Simples,11 x 8 = ?,11 x 8,88
+525,Non-contextualized,Simples,2 x 11 = ?,2 x 11,22
+526,Non-contextualized,Simples,13 x 5 = ?,13 x 5,65
+527,Non-contextualized,Simples,20 x 8 = ?,20 x 8,160
+528,Non-contextualized,Simples,7 x 12 = ?,7 x 12,84
+529,Non-contextualized,Simples,4 x 10 = ?,4 x 10,40
+530,Non-contextualized,Simples,13 x 3 = ?,13 x 3,39
+531,Non-contextualized,Simples,18 x 10 = ?,18 x 10,180
+532,Non-contextualized,Simples,18 x 10 = ?,18 x 10,180
+533,Non-contextualized,Simples,19 x 2 = ?,19 x 2,38
+534,Non-contextualized,Simples,14 x 9 = ?,14 x 9,126
+535,Non-contextualized,Simples,3 x 12 = ?,3 x 12,36
+536,Non-contextualized,Simples,14 x 7 = ?,14 x 7,98
+537,Non-contextualized,Simples,10 x 2 = ?,10 x 2,20
+538,Non-contextualized,Simples,13 x 3 = ?,13 x 3,39
+539,Non-contextualized,Simples,13 x 5 = ?,13 x 5,65
+540,Non-contextualized,Simples,5 x 11 = ?,5 x 11,55
+541,Non-contextualized,Simples,12 x 4 = ?,12 x 4,48
+542,Non-contextualized,Simples,3 x 7 = ?,3 x 7,21
+543,Non-contextualized,Intermediário,79 x 53 = ?,79 x 53,4187
+544,Non-contextualized,Intermediário,92 x 32 = ?,92 x 32,2944
+545,Non-contextualized,Intermediário,97 x 69 = ?,97 x 69,6693
+546,Non-contextualized,Intermediário,99 x 71 = ?,99 x 71,7029
+547,Non-contextualized,Intermediário,90 x 33 = ?,90 x 33,2970
+548,Non-contextualized,Intermediário,27 x 18 = ?,27 x 18,486
+549,Non-contextualized,Intermediário,68 x 14 = ?,68 x 14,952
+550,Non-contextualized,Intermediário,47 x 35 = ?,47 x 35,1645
+551,Non-contextualized,Intermediário,15 x 35 = ?,15 x 35,525
+552,Non-contextualized,Intermediário,15 x 50 = ?,15 x 50,750
+553,Non-contextualized,Intermediário,49 x 75 = ?,49 x 75,3675
+554,Non-contextualized,Intermediário,60 x 79 = ?,60 x 79,4740
+555,Non-contextualized,Intermediário,70 x 42 = ?,70 x 42,2940
+556,Non-contextualized,Intermediário,14 x 92 = ?,14 x 92,1288
+557,Non-contextualized,Intermediário,34 x 46 = ?,34 x 46,1564
+558,Non-contextualized,Intermediário,55 x 16 = ?,55 x 16,880
+559,Non-contextualized,Intermediário,93 x 52 = ?,93 x 52,4836
+560,Non-contextualized,Intermediário,44 x 25 = ?,44 x 25,1100
+561,Non-contextualized,Intermediário,57 x 65 = ?,57 x 65,3705
+562,Non-contextualized,Intermediário,61 x 66 = ?,61 x 66,4026
+563,Non-contextualized,Intermediário,59 x 53 = ?,59 x 53,3127
+564,Non-contextualized,Intermediário,33 x 73 = ?,33 x 73,2409
+565,Non-contextualized,Intermediário,98 x 73 = ?,98 x 73,7154
+566,Non-contextualized,Intermediário,57 x 76 = ?,57 x 76,4332
+567,Non-contextualized,Intermediário,44 x 20 = ?,44 x 20,880
+568,Non-contextualized,Intermediário,64 x 20 = ?,64 x 20,1280
+569,Non-contextualized,Intermediário,65 x 87 = ?,65 x 87,5655
+570,Non-contextualized,Intermediário,33 x 79 = ?,33 x 79,2607
+571,Non-contextualized,Intermediário,47 x 51 = ?,47 x 51,2397
+572,Non-contextualized,Intermediário,23 x 20 = ?,23 x 20,460
+573,Non-contextualized,Intermediário,51 x 94 = ?,51 x 94,4794
+574,Non-contextualized,Intermediário,47 x 49 = ?,47 x 49,2303
+575,Non-contextualized,Intermediário,67 x 87 = ?,67 x 87,5829
+576,Non-contextualized,Intermediário,64 x 31 = ?,64 x 31,1984
+577,Non-contextualized,Intermediário,98 x 66 = ?,98 x 66,6468
+578,Non-contextualized,Intermediário,54 x 67 = ?,54 x 67,3618
+579,Non-contextualized,Intermediário,15 x 55 = ?,15 x 55,825
+580,Non-contextualized,Intermediário,88 x 65 = ?,88 x 65,5720
+581,Non-contextualized,Intermediário,45 x 91 = ?,45 x 91,4095
+582,Non-contextualized,Intermediário,17 x 19 = ?,17 x 19,323
+583,Non-contextualized,Intermediário,95 x 91 = ?,95 x 91,8645
+584,Non-contextualized,Intermediário,61 x 56 = ?,61 x 56,3416
+585,Non-contextualized,Complexo,"56,1 x 7 = ?","56,1 x 7","392,7"
+586,Non-contextualized,Complexo,"95,7 x 6 = ?","95,7 x 6","574,2"
+587,Non-contextualized,Complexo,"86,3 x 16 = ?","86,3 x 16","1380,8"
+588,Non-contextualized,Complexo,"13,1 x 4 = ?","13,1 x 4","52,4"
+589,Non-contextualized,Complexo,"31,2 x 13 = ?","31,2 x 13","405,6"
+590,Non-contextualized,Complexo,"42,6 x 20 = ?","42,6 x 20","852,0"
+591,Non-contextualized,Complexo,"12,9 x 6 = ?","12,9 x 6","77,4"
+592,Non-contextualized,Complexo,"71,0 x 13 = ?","71,0 x 13","923,0"
+593,Non-contextualized,Complexo,"43,4 x 4 = ?","43,4 x 4","173,6"
+594,Non-contextualized,Complexo,"61,6 x 18 = ?","61,6 x 18","1108,8"
+595,Non-contextualized,Complexo,"43,0 x 12 = ?","43,0 x 12","516,0"
+596,Non-contextualized,Complexo,"68,4 x 9 = ?","68,4 x 9","615,6"
+597,Non-contextualized,Complexo,"96,4 x 2 = ?","96,4 x 2","192,8"
+598,Non-contextualized,Complexo,"76,1 x 17 = ?","76,1 x 17","1293,7"
+599,Non-contextualized,Complexo,"56,5 x 19 = ?","56,5 x 19","1073,5"
+600,Non-contextualized,Complexo,"20,6 x 10 = ?","20,6 x 10","206,0"
+601,Non-contextualized,Complexo,"73,3 x 8 = ?","73,3 x 8","586,4"
+602,Non-contextualized,Complexo,"99,6 x 11 = ?","99,6 x 11","1095,6"
+603,Non-contextualized,Complexo,"72,4 x 17 = ?","72,4 x 17","1230,8"
+604,Non-contextualized,Complexo,"28,0 x 6 = ?","28,0 x 6","168,0"
+605,Non-contextualized,Complexo,"86,7 x 16 = ?","86,7 x 16","1387,2"
+606,Non-contextualized,Complexo,"25,5 x 16 = ?","25,5 x 16","408,0"
+607,Non-contextualized,Complexo,"99,7 x 12 = ?","99,7 x 12","1196,4"
+608,Non-contextualized,Complexo,"70,0 x 4 = ?","70,0 x 4","280,0"
+609,Non-contextualized,Complexo,"59,4 x 11 = ?","59,4 x 11","653,4"
+610,Non-contextualized,Complexo,"90,1 x 7 = ?","90,1 x 7","630,7"
+611,Non-contextualized,Complexo,"74,0 x 7 = ?","74,0 x 7","518,0"
+612,Non-contextualized,Complexo,"81,4 x 18 = ?","81,4 x 18","1465,2"
+613,Non-contextualized,Complexo,"30,2 x 8 = ?","30,2 x 8","241,6"
+614,Non-contextualized,Complexo,"81,2 x 9 = ?","81,2 x 9","730,8"
+615,Non-contextualized,Complexo,"81,1 x 2 = ?","81,1 x 2","162,2"
+616,Non-contextualized,Complexo,"42,4 x 20 = ?","42,4 x 20","848,0"
+617,Non-contextualized,Complexo,"43,2 x 19 = ?","43,2 x 19","820,8"
+618,Non-contextualized,Complexo,"21,7 x 4 = ?","21,7 x 4","86,8"
+619,Non-contextualized,Complexo,"15,9 x 14 = ?","15,9 x 14","222,6"
+620,Non-contextualized,Complexo,"99,9 x 17 = ?","99,9 x 17","1698,3"
+621,Non-contextualized,Complexo,"57,3 x 15 = ?","57,3 x 15","859,5"
+622,Non-contextualized,Complexo,"84,0 x 4 = ?","84,0 x 4","336,0"
+623,Non-contextualized,Complexo,"21,3 x 12 = ?","21,3 x 12","255,6"
+624,Non-contextualized,Complexo,"67,7 x 16 = ?","67,7 x 16","1083,2"
+625,Non-contextualized,Complexo,"51,9 x 18 = ?","51,9 x 18","934,2"
+626,Contextualized,Simples,Renata lê 13 páginas por dia durante 4 dias. Quantas páginas ele(a) leu no total?,13 x 4,52
+627,Contextualized,Simples,Patrícia lê 7 páginas por dia durante 4 dias. Quantas páginas ele(a) leu no total?,7 x 4,28
+628,Contextualized,Simples,Gustavo comprou 3 pacotes com 3 balas cada. Quantas balas ele(a) comprou no total?,3 x 3,9
+629,Contextualized,Simples,Uma sala tem 4 fileiras com 11 cadeiras cada. Quantas cadeiras há na sala?,11 x 4,44
+630,Contextualized,Simples,Uma sala tem 7 fileiras com 9 cadeiras cada. Quantas cadeiras há na sala?,9 x 7,63
+631,Contextualized,Simples,Maria lê 4 páginas por dia durante 6 dias. Quantas páginas ele(a) leu no total?,4 x 6,24
+632,Contextualized,Simples,Beatriz lê 10 páginas por dia durante 4 dias. Quantas páginas ele(a) leu no total?,10 x 4,40
+633,Contextualized,Simples,Gustavo comprou 3 pacotes com 19 balas cada. Quantas balas ele(a) comprou no total?,19 x 3,57
+634,Contextualized,Simples,Fernanda comprou 11 pacotes com 20 balas cada. Quantas balas ele(a) comprou no total?,20 x 11,220
+635,Contextualized,Simples,"Cada caixa tem 12 itens. Se há 11 caixas, quantos itens há ao todo?",12 x 11,132
+636,Contextualized,Simples,Uma sala tem 2 fileiras com 4 cadeiras cada. Quantas cadeiras há na sala?,4 x 2,8
+637,Contextualized,Simples,Patrícia lê 8 páginas por dia durante 11 dias. Quantas páginas ele(a) leu no total?,8 x 11,88
+638,Contextualized,Simples,Uma sala tem 9 fileiras com 2 cadeiras cada. Quantas cadeiras há na sala?,2 x 9,18
+639,Contextualized,Simples,"Um ônibus faz 9 viagens por dia, levando 11 passageiros por viagem. Quantos passageiros transporta por dia?",11 x 9,99
+640,Contextualized,Simples,"Cada caixa tem 11 itens. Se há 9 caixas, quantos itens há ao todo?",11 x 9,99
+641,Contextualized,Simples,"Um ônibus faz 9 viagens por dia, levando 7 passageiros por viagem. Quantos passageiros transporta por dia?",7 x 9,63
+642,Contextualized,Simples,Rafael lê 16 páginas por dia durante 5 dias. Quantas páginas ele(a) leu no total?,16 x 5,80
+643,Contextualized,Simples,Uma sala tem 7 fileiras com 6 cadeiras cada. Quantas cadeiras há na sala?,6 x 7,42
+644,Contextualized,Simples,Juliana lê 14 páginas por dia durante 4 dias. Quantas páginas ele(a) leu no total?,14 x 4,56
+645,Contextualized,Simples,Rafael comprou 3 pacotes com 19 balas cada. Quantas balas ele(a) comprou no total?,19 x 3,57
+646,Contextualized,Simples,"Um ônibus faz 3 viagens por dia, levando 16 passageiros por viagem. Quantos passageiros transporta por dia?",16 x 3,48
+647,Contextualized,Simples,"Cada caixa tem 9 itens. Se há 4 caixas, quantos itens há ao todo?",9 x 4,36
+648,Contextualized,Simples,"Um ônibus faz 8 viagens por dia, levando 11 passageiros por viagem. Quantos passageiros transporta por dia?",11 x 8,88
+649,Contextualized,Simples,Rafael lê 9 páginas por dia durante 4 dias. Quantas páginas ele(a) leu no total?,9 x 4,36
+650,Contextualized,Simples,"Um ônibus faz 5 viagens por dia, levando 12 passageiros por viagem. Quantos passageiros transporta por dia?",12 x 5,60
+651,Contextualized,Simples,Uma sala tem 9 fileiras com 18 cadeiras cada. Quantas cadeiras há na sala?,18 x 9,162
+652,Contextualized,Simples,"Um ônibus faz 2 viagens por dia, levando 17 passageiros por viagem. Quantos passageiros transporta por dia?",17 x 2,34
+653,Contextualized,Simples,Pedro comprou 9 pacotes com 18 balas cada. Quantas balas ele(a) comprou no total?,18 x 9,162
+654,Contextualized,Simples,"Cada caixa tem 20 itens. Se há 7 caixas, quantos itens há ao todo?",20 x 7,140
+655,Contextualized,Simples,"Um ônibus faz 9 viagens por dia, levando 11 passageiros por viagem. Quantos passageiros transporta por dia?",11 x 9,99
+656,Contextualized,Simples,"Cada caixa tem 11 itens. Se há 10 caixas, quantos itens há ao todo?",11 x 10,110
+657,Contextualized,Simples,Uma sala tem 4 fileiras com 15 cadeiras cada. Quantas cadeiras há na sala?,15 x 4,60
+658,Contextualized,Simples,"Um ônibus faz 7 viagens por dia, levando 14 passageiros por viagem. Quantos passageiros transporta por dia?",14 x 7,98
+659,Contextualized,Simples,Renata comprou 11 pacotes com 3 balas cada. Quantas balas ele(a) comprou no total?,3 x 11,33
+660,Contextualized,Simples,"Cada caixa tem 13 itens. Se há 10 caixas, quantos itens há ao todo?",13 x 10,130
+661,Contextualized,Simples,Bruno lê 14 páginas por dia durante 10 dias. Quantas páginas ele(a) leu no total?,14 x 10,140
+662,Contextualized,Simples,"Cada caixa tem 10 itens. Se há 11 caixas, quantos itens há ao todo?",10 x 11,110
+663,Contextualized,Simples,Uma sala tem 3 fileiras com 6 cadeiras cada. Quantas cadeiras há na sala?,6 x 3,18
+664,Contextualized,Simples,Juliana comprou 10 pacotes com 12 balas cada. Quantas balas ele(a) comprou no total?,12 x 10,120
+665,Contextualized,Simples,"Um ônibus faz 11 viagens por dia, levando 8 passageiros por viagem. Quantos passageiros transporta por dia?",8 x 11,88
+666,Contextualized,Simples,"Cada caixa tem 18 itens. Se há 2 caixas, quantos itens há ao todo?",18 x 2,36
+667,Contextualized,Simples,Aline lê 6 páginas por dia durante 7 dias. Quantas páginas ele(a) leu no total?,6 x 7,42
+668,Contextualized,Intermediário,Vanessa lê 68 páginas por dia durante 29 dias. Quantas páginas ele(a) leu no total?,68 x 29,1972
+669,Contextualized,Intermediário,Uma sala tem 51 fileiras com 27 cadeiras cada. Quantas cadeiras há na sala?,27 x 51,1377
+670,Contextualized,Intermediário,Uma sala tem 60 fileiras com 30 cadeiras cada. Quantas cadeiras há na sala?,30 x 60,1800
+671,Contextualized,Intermediário,Gustavo lê 85 páginas por dia durante 53 dias. Quantas páginas ele(a) leu no total?,85 x 53,4505
+672,Contextualized,Intermediário,Uma sala tem 72 fileiras com 78 cadeiras cada. Quantas cadeiras há na sala?,78 x 72,5616
+673,Contextualized,Intermediário,Uma sala tem 12 fileiras com 70 cadeiras cada. Quantas cadeiras há na sala?,70 x 12,840
+674,Contextualized,Intermediário,Patrícia lê 96 páginas por dia durante 24 dias. Quantas páginas ele(a) leu no total?,96 x 24,2304
+675,Contextualized,Intermediário,João lê 49 páginas por dia durante 98 dias. Quantas páginas ele(a) leu no total?,49 x 98,4802
+676,Contextualized,Intermediário,Felipe lê 70 páginas por dia durante 43 dias. Quantas páginas ele(a) leu no total?,70 x 43,3010
+677,Contextualized,Intermediário,"Um ônibus faz 16 viagens por dia, levando 39 passageiros por viagem. Quantos passageiros transporta por dia?",39 x 16,624
+678,Contextualized,Intermediário,"Um ônibus faz 77 viagens por dia, levando 31 passageiros por viagem. Quantos passageiros transporta por dia?",31 x 77,2387
+679,Contextualized,Intermediário,"Cada caixa tem 28 itens. Se há 97 caixas, quantos itens há ao todo?",28 x 97,2716
+680,Contextualized,Intermediário,Larissa comprou 99 pacotes com 83 balas cada. Quantas balas ele(a) comprou no total?,83 x 99,8217
+681,Contextualized,Intermediário,"Um ônibus faz 66 viagens por dia, levando 12 passageiros por viagem. Quantos passageiros transporta por dia?",12 x 66,792
+682,Contextualized,Intermediário,"Um ônibus faz 62 viagens por dia, levando 29 passageiros por viagem. Quantos passageiros transporta por dia?",29 x 62,1798
+683,Contextualized,Intermediário,"Cada caixa tem 74 itens. Se há 88 caixas, quantos itens há ao todo?",74 x 88,6512
+684,Contextualized,Intermediário,Maria lê 27 páginas por dia durante 76 dias. Quantas páginas ele(a) leu no total?,27 x 76,2052
+685,Contextualized,Intermediário,Aline lê 51 páginas por dia durante 94 dias. Quantas páginas ele(a) leu no total?,51 x 94,4794
+686,Contextualized,Intermediário,"Um ônibus faz 50 viagens por dia, levando 58 passageiros por viagem. Quantos passageiros transporta por dia?",58 x 50,2900
+687,Contextualized,Intermediário,Uma sala tem 53 fileiras com 78 cadeiras cada. Quantas cadeiras há na sala?,78 x 53,4134
+688,Contextualized,Intermediário,Lucas lê 96 páginas por dia durante 97 dias. Quantas páginas ele(a) leu no total?,96 x 97,9312
+689,Contextualized,Intermediário,Uma sala tem 34 fileiras com 71 cadeiras cada. Quantas cadeiras há na sala?,71 x 34,2414
+690,Contextualized,Intermediário,Uma sala tem 48 fileiras com 81 cadeiras cada. Quantas cadeiras há na sala?,81 x 48,3888
+691,Contextualized,Intermediário,Uma sala tem 36 fileiras com 46 cadeiras cada. Quantas cadeiras há na sala?,46 x 36,1656
+692,Contextualized,Intermediário,Uma sala tem 54 fileiras com 71 cadeiras cada. Quantas cadeiras há na sala?,71 x 54,3834
+693,Contextualized,Intermediário,Felipe lê 46 páginas por dia durante 25 dias. Quantas páginas ele(a) leu no total?,46 x 25,1150
+694,Contextualized,Intermediário,Juliana comprou 60 pacotes com 58 balas cada. Quantas balas ele(a) comprou no total?,58 x 60,3480
+695,Contextualized,Intermediário,"Cada caixa tem 47 itens. Se há 15 caixas, quantos itens há ao todo?",47 x 15,705
+696,Contextualized,Intermediário,"Um ônibus faz 66 viagens por dia, levando 54 passageiros por viagem. Quantos passageiros transporta por dia?",54 x 66,3564
+697,Contextualized,Intermediário,Uma sala tem 35 fileiras com 37 cadeiras cada. Quantas cadeiras há na sala?,37 x 35,1295
+698,Contextualized,Intermediário,Lucas comprou 99 pacotes com 81 balas cada. Quantas balas ele(a) comprou no total?,81 x 99,8019
+699,Contextualized,Intermediário,Felipe comprou 88 pacotes com 23 balas cada. Quantas balas ele(a) comprou no total?,23 x 88,2024
+700,Contextualized,Intermediário,Gustavo comprou 16 pacotes com 41 balas cada. Quantas balas ele(a) comprou no total?,41 x 16,656
+701,Contextualized,Intermediário,"Cada caixa tem 91 itens. Se há 39 caixas, quantos itens há ao todo?",91 x 39,3549
+702,Contextualized,Intermediário,"Cada caixa tem 62 itens. Se há 52 caixas, quantos itens há ao todo?",62 x 52,3224
+703,Contextualized,Intermediário,João lê 97 páginas por dia durante 27 dias. Quantas páginas ele(a) leu no total?,97 x 27,2619
+704,Contextualized,Intermediário,"Um ônibus faz 62 viagens por dia, levando 30 passageiros por viagem. Quantos passageiros transporta por dia?",30 x 62,1860
+705,Contextualized,Intermediário,Uma sala tem 35 fileiras com 93 cadeiras cada. Quantas cadeiras há na sala?,93 x 35,3255
+706,Contextualized,Intermediário,"Cada caixa tem 46 itens. Se há 92 caixas, quantos itens há ao todo?",46 x 92,4232
+707,Contextualized,Intermediário,Pedro lê 93 páginas por dia durante 83 dias. Quantas páginas ele(a) leu no total?,93 x 83,7719
+708,Contextualized,Intermediário,Patrícia comprou 32 pacotes com 14 balas cada. Quantas balas ele(a) comprou no total?,14 x 32,448
+709,Contextualized,Intermediário,Aline comprou 60 pacotes com 14 balas cada. Quantas balas ele(a) comprou no total?,14 x 60,840
+710,Contextualized,Complexo,"Cada caixa tem 94,2 itens. Se há 11 caixas, quantos itens há ao todo?","94,2 x 11","1036,2"
+711,Contextualized,Complexo,"Uma sala tem 5 fileiras com 36,8 cadeiras cada. Quantas cadeiras há na sala?","36,8 x 5","184,0"
+712,Contextualized,Complexo,"Um ônibus faz 19 viagens por dia, levando 50,8 passageiros por viagem. Quantos passageiros transporta por dia?","50,8 x 19","965,2"
+713,Contextualized,Complexo,"Um ônibus faz 6 viagens por dia, levando 89,9 passageiros por viagem. Quantos passageiros transporta por dia?","89,9 x 6","539,4"
+714,Contextualized,Complexo,"Rafael comprou 5 pacotes com 34,5 balas cada. Quantas balas ele(a) comprou no total?","34,5 x 5","172,5"
+715,Contextualized,Complexo,"Cada caixa tem 75,7 itens. Se há 10 caixas, quantos itens há ao todo?","75,7 x 10","757,0"
+716,Contextualized,Complexo,"Felipe comprou 11 pacotes com 76,2 balas cada. Quantas balas ele(a) comprou no total?","76,2 x 11","838,2"
+717,Contextualized,Complexo,"Patrícia lê 25,8 páginas por dia durante 14 dias. Quantas páginas ele(a) leu no total?","25,8 x 14","361,2"
+718,Contextualized,Complexo,"Larissa comprou 14 pacotes com 39,5 balas cada. Quantas balas ele(a) comprou no total?","39,5 x 14","553,0"
+719,Contextualized,Complexo,"Rafael comprou 17 pacotes com 98,3 balas cada. Quantas balas ele(a) comprou no total?","98,3 x 17","1671,1"
+720,Contextualized,Complexo,"Um ônibus faz 14 viagens por dia, levando 10,6 passageiros por viagem. Quantos passageiros transporta por dia?","10,6 x 14","148,4"
+721,Contextualized,Complexo,"Beatriz lê 77,8 páginas por dia durante 12 dias. Quantas páginas ele(a) leu no total?","77,8 x 12","933,6"
+722,Contextualized,Complexo,"Uma sala tem 2 fileiras com 75,0 cadeiras cada. Quantas cadeiras há na sala?","75,0 x 2","150,0"
+723,Contextualized,Complexo,"Um ônibus faz 3 viagens por dia, levando 72,3 passageiros por viagem. Quantos passageiros transporta por dia?","72,3 x 3","216,9"
+724,Contextualized,Complexo,"Uma sala tem 14 fileiras com 37,6 cadeiras cada. Quantas cadeiras há na sala?","37,6 x 14","526,4"
+725,Contextualized,Complexo,"Juliana lê 72,1 páginas por dia durante 11 dias. Quantas páginas ele(a) leu no total?","72,1 x 11","793,1"
+726,Contextualized,Complexo,"Aline comprou 6 pacotes com 29,9 balas cada. Quantas balas ele(a) comprou no total?","29,9 x 6","179,4"
+727,Contextualized,Complexo,"Patrícia lê 50,9 páginas por dia durante 13 dias. Quantas páginas ele(a) leu no total?","50,9 x 13","661,7"
+728,Contextualized,Complexo,"Maria comprou 19 pacotes com 92,1 balas cada. Quantas balas ele(a) comprou no total?","92,1 x 19","1749,9"
+729,Contextualized,Complexo,"Um ônibus faz 4 viagens por dia, levando 71,2 passageiros por viagem. Quantos passageiros transporta por dia?","71,2 x 4","284,8"
+730,Contextualized,Complexo,"Diego lê 57,5 páginas por dia durante 13 dias. Quantas páginas ele(a) leu no total?","57,5 x 13","747,5"
+731,Contextualized,Complexo,"Gustavo comprou 19 pacotes com 20,1 balas cada. Quantas balas ele(a) comprou no total?","20,1 x 19","381,9"
+732,Contextualized,Complexo,"Uma sala tem 6 fileiras com 61,5 cadeiras cada. Quantas cadeiras há na sala?","61,5 x 6","369,0"
+733,Contextualized,Complexo,"Larissa comprou 16 pacotes com 86,8 balas cada. Quantas balas ele(a) comprou no total?","86,8 x 16","1388,8"
+734,Contextualized,Complexo,"Diego lê 74,5 páginas por dia durante 17 dias. Quantas páginas ele(a) leu no total?","74,5 x 17","1266,5"
+735,Contextualized,Complexo,"Bruno comprou 3 pacotes com 50,0 balas cada. Quantas balas ele(a) comprou no total?","50,0 x 3","150,0"
+736,Contextualized,Complexo,"Cada caixa tem 56,1 itens. Se há 16 caixas, quantos itens há ao todo?","56,1 x 16","897,6"
+737,Contextualized,Complexo,"Um ônibus faz 11 viagens por dia, levando 60,2 passageiros por viagem. Quantos passageiros transporta por dia?","60,2 x 11","662,2"
+738,Contextualized,Complexo,"Maria lê 32,9 páginas por dia durante 2 dias. Quantas páginas ele(a) leu no total?","32,9 x 2","65,8"
+739,Contextualized,Complexo,"Cada caixa tem 16,6 itens. Se há 15 caixas, quantos itens há ao todo?","16,6 x 15","249,0"
+740,Contextualized,Complexo,"Um ônibus faz 3 viagens por dia, levando 58,7 passageiros por viagem. Quantos passageiros transporta por dia?","58,7 x 3","176,1"
+741,Contextualized,Complexo,"Camila comprou 15 pacotes com 12,9 balas cada. Quantas balas ele(a) comprou no total?","12,9 x 15","193,5"
+742,Contextualized,Complexo,"Um ônibus faz 15 viagens por dia, levando 78,8 passageiros por viagem. Quantos passageiros transporta por dia?","78,8 x 15","1182,0"
+743,Contextualized,Complexo,"Cada caixa tem 50,3 itens. Se há 14 caixas, quantos itens há ao todo?","50,3 x 14","704,2"
+744,Contextualized,Complexo,"Uma sala tem 19 fileiras com 71,4 cadeiras cada. Quantas cadeiras há na sala?","71,4 x 19","1356,6"
+745,Contextualized,Complexo,"Carlos lê 20,7 páginas por dia durante 19 dias. Quantas páginas ele(a) leu no total?","20,7 x 19","393,3"
+746,Contextualized,Complexo,"Cada caixa tem 21,4 itens. Se há 9 caixas, quantos itens há ao todo?","21,4 x 9","192,6"
+747,Contextualized,Complexo,"Um ônibus faz 16 viagens por dia, levando 98,0 passageiros por viagem. Quantos passageiros transporta por dia?","98,0 x 16","1568,0"
+748,Contextualized,Complexo,"Um ônibus faz 9 viagens por dia, levando 57,8 passageiros por viagem. Quantos passageiros transporta por dia?","57,8 x 9","520,2"
+749,Contextualized,Complexo,"Cada caixa tem 41,1 itens. Se há 10 caixas, quantos itens há ao todo?","41,1 x 10","411,0"
+750,Contextualized,Complexo,"Cada caixa tem 12,9 itens. Se há 15 caixas, quantos itens há ao todo?","12,9 x 15","193,5"
+751,Non-contextualized,Simples,40 ÷ 5 = ?,40 ÷ 5,8
+752,Non-contextualized,Simples,24 ÷ 3 = ?,24 ÷ 3,8
+753,Non-contextualized,Simples,60 ÷ 2 = ?,60 ÷ 2,30
+754,Non-contextualized,Simples,34 ÷ 2 = ?,34 ÷ 2,17
+755,Non-contextualized,Simples,54 ÷ 2 = ?,54 ÷ 2,27
+756,Non-contextualized,Simples,45 ÷ 9 = ?,45 ÷ 9,5
+757,Non-contextualized,Simples,15 ÷ 5 = ?,15 ÷ 5,3
+758,Non-contextualized,Simples,72 ÷ 4 = ?,72 ÷ 4,18
+759,Non-contextualized,Simples,30 ÷ 6 = ?,30 ÷ 6,5
+760,Non-contextualized,Simples,77 ÷ 7 = ?,77 ÷ 7,11
+761,Non-contextualized,Simples,35 ÷ 7 = ?,35 ÷ 7,5
+762,Non-contextualized,Simples,96 ÷ 6 = ?,96 ÷ 6,16
+763,Non-contextualized,Simples,92 ÷ 4 = ?,92 ÷ 4,23
+764,Non-contextualized,Simples,75 ÷ 5 = ?,75 ÷ 5,15
+765,Non-contextualized,Simples,36 ÷ 6 = ?,36 ÷ 6,6
+766,Non-contextualized,Simples,74 ÷ 2 = ?,74 ÷ 2,37
+767,Non-contextualized,Simples,88 ÷ 4 = ?,88 ÷ 4,22
+768,Non-contextualized,Simples,80 ÷ 8 = ?,80 ÷ 8,10
+769,Non-contextualized,Simples,18 ÷ 9 = ?,18 ÷ 9,2
+770,Non-contextualized,Simples,84 ÷ 7 = ?,84 ÷ 7,12
+771,Non-contextualized,Simples,80 ÷ 8 = ?,80 ÷ 8,10
+772,Non-contextualized,Simples,91 ÷ 7 = ?,91 ÷ 7,13
+773,Non-contextualized,Simples,64 ÷ 8 = ?,64 ÷ 8,8
+774,Non-contextualized,Simples,44 ÷ 4 = ?,44 ÷ 4,11
+775,Non-contextualized,Simples,32 ÷ 8 = ?,32 ÷ 8,4
+776,Non-contextualized,Simples,45 ÷ 9 = ?,45 ÷ 9,5
+777,Non-contextualized,Simples,55 ÷ 5 = ?,55 ÷ 5,11
+778,Non-contextualized,Simples,64 ÷ 4 = ?,64 ÷ 4,16
+779,Non-contextualized,Simples,74 ÷ 2 = ?,74 ÷ 2,37
+780,Non-contextualized,Simples,64 ÷ 8 = ?,64 ÷ 8,8
+781,Non-contextualized,Simples,56 ÷ 4 = ?,56 ÷ 4,14
+782,Non-contextualized,Simples,50 ÷ 5 = ?,50 ÷ 5,10
+783,Non-contextualized,Simples,60 ÷ 5 = ?,60 ÷ 5,12
+784,Non-contextualized,Simples,90 ÷ 3 = ?,90 ÷ 3,30
+785,Non-contextualized,Simples,21 ÷ 7 = ?,21 ÷ 7,3
+786,Non-contextualized,Simples,15 ÷ 5 = ?,15 ÷ 5,3
+787,Non-contextualized,Simples,48 ÷ 6 = ?,48 ÷ 6,8
+788,Non-contextualized,Simples,12 ÷ 2 = ?,12 ÷ 2,6
+789,Non-contextualized,Simples,95 ÷ 5 = ?,95 ÷ 5,19
+790,Non-contextualized,Simples,85 ÷ 5 = ?,85 ÷ 5,17
+791,Non-contextualized,Simples,60 ÷ 5 = ?,60 ÷ 5,12
+792,Non-contextualized,Simples,96 ÷ 6 = ?,96 ÷ 6,16
+793,Non-contextualized,Intermediário,224 ÷ 2 = ?,224 ÷ 2,112
+794,Non-contextualized,Intermediário,784 ÷ 8 = ?,784 ÷ 8,98
+795,Non-contextualized,Intermediário,975 ÷ 5 = ?,975 ÷ 5,195
+796,Non-contextualized,Intermediário,884 ÷ 26 = ?,884 ÷ 26,34
+797,Non-contextualized,Intermediário,837 ÷ 9 = ?,837 ÷ 9,93
+798,Non-contextualized,Intermediário,357 ÷ 21 = ?,357 ÷ 21,17
+799,Non-contextualized,Intermediário,476 ÷ 14 = ?,476 ÷ 14,34
+800,Non-contextualized,Intermediário,456 ÷ 19 = ?,456 ÷ 19,24
+801,Non-contextualized,Intermediário,572 ÷ 26 = ?,572 ÷ 26,22
+802,Non-contextualized,Intermediário,882 ÷ 14 = ?,882 ÷ 14,63
+803,Non-contextualized,Intermediário,855 ÷ 19 = ?,855 ÷ 19,45
+804,Non-contextualized,Intermediário,559 ÷ 13 = ?,559 ÷ 13,43
+805,Non-contextualized,Intermediário,500 ÷ 10 = ?,500 ÷ 10,50
+806,Non-contextualized,Intermediário,630 ÷ 18 = ?,630 ÷ 18,35
+807,Non-contextualized,Intermediário,160 ÷ 16 = ?,160 ÷ 16,10
+808,Non-contextualized,Intermediário,918 ÷ 27 = ?,918 ÷ 27,34
+809,Non-contextualized,Intermediário,624 ÷ 26 = ?,624 ÷ 26,24
+810,Non-contextualized,Intermediário,408 ÷ 8 = ?,408 ÷ 8,51
+811,Non-contextualized,Intermediário,672 ÷ 12 = ?,672 ÷ 12,56
+812,Non-contextualized,Intermediário,876 ÷ 3 = ?,876 ÷ 3,292
+813,Non-contextualized,Intermediário,319 ÷ 29 = ?,319 ÷ 29,11
+814,Non-contextualized,Intermediário,325 ÷ 25 = ?,325 ÷ 25,13
+815,Non-contextualized,Intermediário,274 ÷ 2 = ?,274 ÷ 2,137
+816,Non-contextualized,Intermediário,779 ÷ 19 = ?,779 ÷ 19,41
+817,Non-contextualized,Intermediário,600 ÷ 20 = ?,600 ÷ 20,30
+818,Non-contextualized,Intermediário,253 ÷ 11 = ?,253 ÷ 11,23
+819,Non-contextualized,Intermediário,368 ÷ 8 = ?,368 ÷ 8,46
+820,Non-contextualized,Intermediário,468 ÷ 9 = ?,468 ÷ 9,52
+821,Non-contextualized,Intermediário,380 ÷ 20 = ?,380 ÷ 20,19
+822,Non-contextualized,Intermediário,663 ÷ 17 = ?,663 ÷ 17,39
+823,Non-contextualized,Intermediário,550 ÷ 22 = ?,550 ÷ 22,25
+824,Non-contextualized,Intermediário,660 ÷ 10 = ?,660 ÷ 10,66
+825,Non-contextualized,Intermediário,875 ÷ 25 = ?,875 ÷ 25,35
+826,Non-contextualized,Intermediário,224 ÷ 16 = ?,224 ÷ 16,14
+827,Non-contextualized,Intermediário,650 ÷ 25 = ?,650 ÷ 25,26
+828,Non-contextualized,Intermediário,273 ÷ 7 = ?,273 ÷ 7,39
+829,Non-contextualized,Intermediário,950 ÷ 25 = ?,950 ÷ 25,38
+830,Non-contextualized,Intermediário,255 ÷ 17 = ?,255 ÷ 17,15
+831,Non-contextualized,Intermediário,630 ÷ 30 = ?,630 ÷ 30,21
+832,Non-contextualized,Intermediário,154 ÷ 22 = ?,154 ÷ 22,7
+833,Non-contextualized,Intermediário,108 ÷ 18 = ?,108 ÷ 18,6
+834,Non-contextualized,Intermediário,224 ÷ 28 = ?,224 ÷ 28,8
+835,Non-contextualized,Complexo,"285,0 ÷ 3 = ?","285,0 ÷ 3","95,0"
+836,Non-contextualized,Complexo,"1180,5 ÷ 15 = ?","1180,5 ÷ 15","78,7"
+837,Non-contextualized,Complexo,"201,6 ÷ 9 = ?","201,6 ÷ 9","22,4"
+838,Non-contextualized,Complexo,"96,6 ÷ 6 = ?","96,6 ÷ 6","16,1"
+839,Non-contextualized,Complexo,"194,4 ÷ 18 = ?","194,4 ÷ 18","10,8"
+840,Non-contextualized,Complexo,"153,0 ÷ 3 = ?","153,0 ÷ 3","51,0"
+841,Non-contextualized,Complexo,"1113,5 ÷ 17 = ?","1113,5 ÷ 17","65,5"
+842,Non-contextualized,Complexo,"138,6 ÷ 2 = ?","138,6 ÷ 2","69,3"
+843,Non-contextualized,Complexo,"201,4 ÷ 19 = ?","201,4 ÷ 19","10,6"
+844,Non-contextualized,Complexo,"94,0 ÷ 2 = ?","94,0 ÷ 2","47,0"
+845,Non-contextualized,Complexo,"576,0 ÷ 10 = ?","576,0 ÷ 10","57,6"
+846,Non-contextualized,Complexo,"640,2 ÷ 11 = ?","640,2 ÷ 11","58,2"
+847,Non-contextualized,Complexo,"172,5 ÷ 15 = ?","172,5 ÷ 15","11,5"
+848,Non-contextualized,Complexo,"577,5 ÷ 7 = ?","577,5 ÷ 7","82,5"
+849,Non-contextualized,Complexo,"98,0 ÷ 5 = ?","98,0 ÷ 5","19,6"
+850,Non-contextualized,Complexo,"513,9 ÷ 9 = ?","513,9 ÷ 9","57,1"
+851,Non-contextualized,Complexo,"491,4 ÷ 18 = ?","491,4 ÷ 18","27,3"
+852,Non-contextualized,Complexo,"425,1 ÷ 13 = ?","425,1 ÷ 13","32,7"
+853,Non-contextualized,Complexo,"476,0 ÷ 14 = ?","476,0 ÷ 14","34,0"
+854,Non-contextualized,Complexo,"239,4 ÷ 14 = ?","239,4 ÷ 14","17,1"
+855,Non-contextualized,Complexo,"461,7 ÷ 9 = ?","461,7 ÷ 9","51,3"
+856,Non-contextualized,Complexo,"891,0 ÷ 9 = ?","891,0 ÷ 9","99,0"
+857,Non-contextualized,Complexo,"148,0 ÷ 4 = ?","148,0 ÷ 4","37,0"
+858,Non-contextualized,Complexo,"206,4 ÷ 3 = ?","206,4 ÷ 3","68,8"
+859,Non-contextualized,Complexo,"257,6 ÷ 14 = ?","257,6 ÷ 14","18,4"
+860,Non-contextualized,Complexo,"746,3 ÷ 17 = ?","746,3 ÷ 17","43,9"
+861,Non-contextualized,Complexo,"30,0 ÷ 2 = ?","30,0 ÷ 2","15,0"
+862,Non-contextualized,Complexo,"292,8 ÷ 4 = ?","292,8 ÷ 4","73,2"
+863,Non-contextualized,Complexo,"823,5 ÷ 15 = ?","823,5 ÷ 15","54,9"
+864,Non-contextualized,Complexo,"816,0 ÷ 12 = ?","816,0 ÷ 12","68,0"
+865,Non-contextualized,Complexo,"304,5 ÷ 5 = ?","304,5 ÷ 5","60,9"
+866,Non-contextualized,Complexo,"271,2 ÷ 3 = ?","271,2 ÷ 3","90,4"
+867,Non-contextualized,Complexo,"614,0 ÷ 20 = ?","614,0 ÷ 20","30,7"
+868,Non-contextualized,Complexo,"158,1 ÷ 3 = ?","158,1 ÷ 3","52,7"
+869,Non-contextualized,Complexo,"931,0 ÷ 10 = ?","931,0 ÷ 10","93,1"
+870,Non-contextualized,Complexo,"1816,0 ÷ 20 = ?","1816,0 ÷ 20","90,8"
+871,Non-contextualized,Complexo,"484,4 ÷ 7 = ?","484,4 ÷ 7","69,2"
+872,Non-contextualized,Complexo,"1122,0 ÷ 12 = ?","1122,0 ÷ 12","93,5"
+873,Non-contextualized,Complexo,"91,2 ÷ 8 = ?","91,2 ÷ 8","11,4"
+874,Non-contextualized,Complexo,"879,2 ÷ 14 = ?","879,2 ÷ 14","62,8"
+875,Non-contextualized,Complexo,"1028,5 ÷ 11 = ?","1028,5 ÷ 11","93,5"
+876,Contextualized,Simples,"Pedro percorreu 80 km em 4 horas, a uma velocidade constante. Quantos km por hora?",80 ÷ 4,20
+877,Contextualized,Simples,"Uma fábrica produziu 96 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?",96 ÷ 8,12
+878,Contextualized,Simples,"Diego percorreu 32 km em 8 horas, a uma velocidade constante. Quantos km por hora?",32 ÷ 8,4
+879,Contextualized,Simples,14 alunos foram distribuídos igualmente em 7 salas. Quantos alunos ficaram em cada sala?,14 ÷ 7,2
+880,Contextualized,Simples,"Rafael percorreu 20 km em 5 horas, a uma velocidade constante. Quantos km por hora?",20 ÷ 5,4
+881,Contextualized,Simples,"Uma fábrica produziu 56 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?",56 ÷ 8,7
+882,Contextualized,Simples,"Uma fábrica produziu 81 peças, embaladas igualmente em 9 caixas. Quantas peças foram em cada caixa?",81 ÷ 9,9
+883,Contextualized,Simples,"Camila percorreu 64 km em 8 horas, a uma velocidade constante. Quantos km por hora?",64 ÷ 8,8
+884,Contextualized,Simples,"Uma fábrica produziu 24 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?",24 ÷ 8,3
+885,Contextualized,Simples,"Uma fábrica produziu 20 peças, embaladas igualmente em 5 caixas. Quantas peças foram em cada caixa?",20 ÷ 5,4
+886,Contextualized,Simples,56 alunos foram distribuídos igualmente em 4 salas. Quantos alunos ficaram em cada sala?,56 ÷ 4,14
+887,Contextualized,Simples,49 balas foram divididas igualmente entre 7 crianças. Quantas balas cada criança recebeu?,49 ÷ 7,7
+888,Contextualized,Simples,"Uma fábrica produziu 42 peças, embaladas igualmente em 2 caixas. Quantas peças foram em cada caixa?",42 ÷ 2,21
+889,Contextualized,Simples,18 balas foram divididas igualmente entre 6 crianças. Quantas balas cada criança recebeu?,18 ÷ 6,3
+890,Contextualized,Simples,"Bruno percorreu 60 km em 4 horas, a uma velocidade constante. Quantos km por hora?",60 ÷ 4,15
+891,Contextualized,Simples,24 balas foram divididas igualmente entre 8 crianças. Quantas balas cada criança recebeu?,24 ÷ 8,3
+892,Contextualized,Simples,"Diego percorreu 70 km em 7 horas, a uma velocidade constante. Quantos km por hora?",70 ÷ 7,10
+893,Contextualized,Simples,"Uma fábrica produziu 56 peças, embaladas igualmente em 7 caixas. Quantas peças foram em cada caixa?",56 ÷ 7,8
+894,Contextualized,Simples,"Diego percorreu 64 km em 8 horas, a uma velocidade constante. Quantos km por hora?",64 ÷ 8,8
+895,Contextualized,Simples,90 alunos foram distribuídos igualmente em 5 salas. Quantos alunos ficaram em cada sala?,90 ÷ 5,18
+896,Contextualized,Simples,"Uma fábrica produziu 24 peças, embaladas igualmente em 4 caixas. Quantas peças foram em cada caixa?",24 ÷ 4,6
+897,Contextualized,Simples,54 balas foram divididas igualmente entre 6 crianças. Quantas balas cada criança recebeu?,54 ÷ 6,9
+898,Contextualized,Simples,60 alunos foram distribuídos igualmente em 4 salas. Quantos alunos ficaram em cada sala?,60 ÷ 4,15
+899,Contextualized,Simples,"Uma fábrica produziu 54 peças, embaladas igualmente em 6 caixas. Quantas peças foram em cada caixa?",54 ÷ 6,9
+900,Contextualized,Simples,"Aline percorreu 30 km em 6 horas, a uma velocidade constante. Quantos km por hora?",30 ÷ 6,5
+901,Contextualized,Simples,Larissa tem 80 reais para dividir igualmente entre 5 amigos. Quanto cada um recebe?,80 ÷ 5,16
+902,Contextualized,Simples,"Uma fábrica produziu 12 peças, embaladas igualmente em 6 caixas. Quantas peças foram em cada caixa?",12 ÷ 6,2
+903,Contextualized,Simples,"Uma fábrica produziu 56 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?",56 ÷ 8,7
+904,Contextualized,Simples,Vanessa tem 96 reais para dividir igualmente entre 8 amigos. Quanto cada um recebe?,96 ÷ 8,12
+905,Contextualized,Simples,Vanessa tem 42 reais para dividir igualmente entre 6 amigos. Quanto cada um recebe?,42 ÷ 6,7
+906,Contextualized,Simples,63 alunos foram distribuídos igualmente em 9 salas. Quantos alunos ficaram em cada sala?,63 ÷ 9,7
+907,Contextualized,Simples,"Aline percorreu 42 km em 7 horas, a uma velocidade constante. Quantos km por hora?",42 ÷ 7,6
+908,Contextualized,Simples,"Uma fábrica produziu 60 peças, embaladas igualmente em 5 caixas. Quantas peças foram em cada caixa?",60 ÷ 5,12
+909,Contextualized,Simples,"Larissa percorreu 56 km em 8 horas, a uma velocidade constante. Quantos km por hora?",56 ÷ 8,7
+910,Contextualized,Simples,"Camila percorreu 95 km em 5 horas, a uma velocidade constante. Quantos km por hora?",95 ÷ 5,19
+911,Contextualized,Simples,Bruno tem 96 reais para dividir igualmente entre 2 amigos. Quanto cada um recebe?,96 ÷ 2,48
+912,Contextualized,Simples,54 alunos foram distribuídos igualmente em 9 salas. Quantos alunos ficaram em cada sala?,54 ÷ 9,6
+913,Contextualized,Simples,Beatriz tem 36 reais para dividir igualmente entre 9 amigos. Quanto cada um recebe?,36 ÷ 9,4
+914,Contextualized,Simples,72 alunos foram distribuídos igualmente em 6 salas. Quantos alunos ficaram em cada sala?,72 ÷ 6,12
+915,Contextualized,Simples,"Bruno percorreu 24 km em 8 horas, a uma velocidade constante. Quantos km por hora?",24 ÷ 8,3
+916,Contextualized,Simples,"Carlos percorreu 99 km em 9 horas, a uma velocidade constante. Quantos km por hora?",99 ÷ 9,11
+917,Contextualized,Simples,"Uma fábrica produziu 80 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?",80 ÷ 8,10
+918,Contextualized,Intermediário,912 balas foram divididas igualmente entre 24 crianças. Quantas balas cada criança recebeu?,912 ÷ 24,38
+919,Contextualized,Intermediário,Juliana tem 335 reais para dividir igualmente entre 5 amigos. Quanto cada um recebe?,335 ÷ 5,67
+920,Contextualized,Intermediário,"Ana percorreu 946 km em 22 horas, a uma velocidade constante. Quantos km por hora?",946 ÷ 22,43
+921,Contextualized,Intermediário,"Uma fábrica produziu 990 peças, embaladas igualmente em 22 caixas. Quantas peças foram em cada caixa?",990 ÷ 22,45
+922,Contextualized,Intermediário,837 balas foram divididas igualmente entre 27 crianças. Quantas balas cada criança recebeu?,837 ÷ 27,31
+923,Contextualized,Intermediário,"Pedro percorreu 350 km em 5 horas, a uma velocidade constante. Quantos km por hora?",350 ÷ 5,70
+924,Contextualized,Intermediário,"Renata percorreu 925 km em 25 horas, a uma velocidade constante. Quantos km por hora?",925 ÷ 25,37
+925,Contextualized,Intermediário,960 alunos foram distribuídos igualmente em 24 salas. Quantos alunos ficaram em cada sala?,960 ÷ 24,40
+926,Contextualized,Intermediário,"Bruno percorreu 702 km em 13 horas, a uma velocidade constante. Quantos km por hora?",702 ÷ 13,54
+927,Contextualized,Intermediário,"Uma fábrica produziu 864 peças, embaladas igualmente em 24 caixas. Quantas peças foram em cada caixa?",864 ÷ 24,36
+928,Contextualized,Intermediário,"Uma fábrica produziu 502 peças, embaladas igualmente em 2 caixas. Quantas peças foram em cada caixa?",502 ÷ 2,251
+929,Contextualized,Intermediário,930 balas foram divididas igualmente entre 15 crianças. Quantas balas cada criança recebeu?,930 ÷ 15,62
+930,Contextualized,Intermediário,"Uma fábrica produziu 364 peças, embaladas igualmente em 28 caixas. Quantas peças foram em cada caixa?",364 ÷ 28,13
+931,Contextualized,Intermediário,"Maria percorreu 744 km em 12 horas, a uma velocidade constante. Quantos km por hora?",744 ÷ 12,62
+932,Contextualized,Intermediário,442 balas foram divididas igualmente entre 17 crianças. Quantas balas cada criança recebeu?,442 ÷ 17,26
+933,Contextualized,Intermediário,"Uma fábrica produziu 800 peças, embaladas igualmente em 16 caixas. Quantas peças foram em cada caixa?",800 ÷ 16,50
+934,Contextualized,Intermediário,320 balas foram divididas igualmente entre 4 crianças. Quantas balas cada criança recebeu?,320 ÷ 4,80
+935,Contextualized,Intermediário,876 balas foram divididas igualmente entre 2 crianças. Quantas balas cada criança recebeu?,876 ÷ 2,438
+936,Contextualized,Intermediário,"Pedro percorreu 322 km em 23 horas, a uma velocidade constante. Quantos km por hora?",322 ÷ 23,14
+937,Contextualized,Intermediário,"Rafael percorreu 308 km em 7 horas, a uma velocidade constante. Quantos km por hora?",308 ÷ 7,44
+938,Contextualized,Intermediário,Bruno tem 975 reais para dividir igualmente entre 15 amigos. Quanto cada um recebe?,975 ÷ 15,65
+939,Contextualized,Intermediário,Camila tem 783 reais para dividir igualmente entre 27 amigos. Quanto cada um recebe?,783 ÷ 27,29
+940,Contextualized,Intermediário,682 balas foram divididas igualmente entre 22 crianças. Quantas balas cada criança recebeu?,682 ÷ 22,31
+941,Contextualized,Intermediário,"Bruno percorreu 400 km em 25 horas, a uma velocidade constante. Quantos km por hora?",400 ÷ 25,16
+942,Contextualized,Intermediário,João tem 420 reais para dividir igualmente entre 15 amigos. Quanto cada um recebe?,420 ÷ 15,28
+943,Contextualized,Intermediário,"Diego percorreu 312 km em 8 horas, a uma velocidade constante. Quantos km por hora?",312 ÷ 8,39
+944,Contextualized,Intermediário,"Uma fábrica produziu 705 peças, embaladas igualmente em 5 caixas. Quantas peças foram em cada caixa?",705 ÷ 5,141
+945,Contextualized,Intermediário,348 balas foram divididas igualmente entre 12 crianças. Quantas balas cada criança recebeu?,348 ÷ 12,29
+946,Contextualized,Intermediário,"Aline percorreu 890 km em 10 horas, a uma velocidade constante. Quantos km por hora?",890 ÷ 10,89
+947,Contextualized,Intermediário,528 alunos foram distribuídos igualmente em 22 salas. Quantos alunos ficaram em cada sala?,528 ÷ 22,24
+948,Contextualized,Intermediário,609 balas foram divididas igualmente entre 21 crianças. Quantas balas cada criança recebeu?,609 ÷ 21,29
+949,Contextualized,Intermediário,"Bruno percorreu 637 km em 13 horas, a uma velocidade constante. Quantos km por hora?",637 ÷ 13,49
+950,Contextualized,Intermediário,"Vanessa percorreu 560 km em 7 horas, a uma velocidade constante. Quantos km por hora?",560 ÷ 7,80
+951,Contextualized,Intermediário,"Uma fábrica produziu 704 peças, embaladas igualmente em 4 caixas. Quantas peças foram em cada caixa?",704 ÷ 4,176
+952,Contextualized,Intermediário,325 balas foram divididas igualmente entre 5 crianças. Quantas balas cada criança recebeu?,325 ÷ 5,65
+953,Contextualized,Intermediário,"Fernanda percorreu 693 km em 7 horas, a uma velocidade constante. Quantos km por hora?",693 ÷ 7,99
+954,Contextualized,Intermediário,Vanessa tem 798 reais para dividir igualmente entre 14 amigos. Quanto cada um recebe?,798 ÷ 14,57
+955,Contextualized,Intermediário,Patrícia tem 560 reais para dividir igualmente entre 20 amigos. Quanto cada um recebe?,560 ÷ 20,28
+956,Contextualized,Intermediário,Renata tem 748 reais para dividir igualmente entre 17 amigos. Quanto cada um recebe?,748 ÷ 17,44
+957,Contextualized,Intermediário,"Uma fábrica produziu 266 peças, embaladas igualmente em 19 caixas. Quantas peças foram em cada caixa?",266 ÷ 19,14
+958,Contextualized,Intermediário,306 alunos foram distribuídos igualmente em 6 salas. Quantos alunos ficaram em cada sala?,306 ÷ 6,51
+959,Contextualized,Intermediário,147 balas foram divididas igualmente entre 21 crianças. Quantas balas cada criança recebeu?,147 ÷ 21,7
+960,Contextualized,Complexo,"Carlos percorreu 428,8 km em 8 horas, a uma velocidade constante. Quantos km por hora?","428,8 ÷ 8","53,6"
+961,Contextualized,Complexo,"941,8 alunos foram distribuídos igualmente em 17 salas. Quantos alunos ficaram em cada sala?","941,8 ÷ 17","55,4"
+962,Contextualized,Complexo,"Aline tem 758,4 reais para dividir igualmente entre 16 amigos. Quanto cada um recebe?","758,4 ÷ 16","47,4"
+963,Contextualized,Complexo,"Uma fábrica produziu 34,8 peças, embaladas igualmente em 2 caixas. Quantas peças foram em cada caixa?","34,8 ÷ 2","17,4"
+964,Contextualized,Complexo,"Uma fábrica produziu 116,1 peças, embaladas igualmente em 9 caixas. Quantas peças foram em cada caixa?","116,1 ÷ 9","12,9"
+965,Contextualized,Complexo,"401,6 alunos foram distribuídos igualmente em 16 salas. Quantos alunos ficaram em cada sala?","401,6 ÷ 16","25,1"
+966,Contextualized,Complexo,"297,0 balas foram divididas igualmente entre 5 crianças. Quantas balas cada criança recebeu?","297,0 ÷ 5","59,4"
+967,Contextualized,Complexo,"Juliana percorreu 647,9 km em 19 horas, a uma velocidade constante. Quantos km por hora?","647,9 ÷ 19","34,1"
+968,Contextualized,Complexo,"Bruno percorreu 252,0 km em 3 horas, a uma velocidade constante. Quantos km por hora?","252,0 ÷ 3","84,0"
+969,Contextualized,Complexo,"Larissa tem 444,0 reais para dividir igualmente entre 15 amigos. Quanto cada um recebe?","444,0 ÷ 15","29,6"
+970,Contextualized,Complexo,"Uma fábrica produziu 110,4 peças, embaladas igualmente em 3 caixas. Quantas peças foram em cada caixa?","110,4 ÷ 3","36,8"
+971,Contextualized,Complexo,"165,2 balas foram divididas igualmente entre 4 crianças. Quantas balas cada criança recebeu?","165,2 ÷ 4","41,3"
+972,Contextualized,Complexo,"Maria percorreu 717,3 km em 9 horas, a uma velocidade constante. Quantos km por hora?","717,3 ÷ 9","79,7"
+973,Contextualized,Complexo,"Camila percorreu 1080,0 km em 15 horas, a uma velocidade constante. Quantos km por hora?","1080,0 ÷ 15","72,0"
+974,Contextualized,Complexo,"180,0 balas foram divididas igualmente entre 8 crianças. Quantas balas cada criança recebeu?","180,0 ÷ 8","22,5"
+975,Contextualized,Complexo,"Lucas percorreu 1162,8 km em 19 horas, a uma velocidade constante. Quantos km por hora?","1162,8 ÷ 19","61,2"
+976,Contextualized,Complexo,"Uma fábrica produziu 700,8 peças, embaladas igualmente em 12 caixas. Quantas peças foram em cada caixa?","700,8 ÷ 12","58,4"
+977,Contextualized,Complexo,"Larissa tem 1107,0 reais para dividir igualmente entre 18 amigos. Quanto cada um recebe?","1107,0 ÷ 18","61,5"
+978,Contextualized,Complexo,"Uma fábrica produziu 1449,0 peças, embaladas igualmente em 15 caixas. Quantas peças foram em cada caixa?","1449,0 ÷ 15","96,6"
+979,Contextualized,Complexo,"Fernanda tem 527,4 reais para dividir igualmente entre 6 amigos. Quanto cada um recebe?","527,4 ÷ 6","87,9"
+980,Contextualized,Complexo,"277,2 alunos foram distribuídos igualmente em 12 salas. Quantos alunos ficaram em cada sala?","277,2 ÷ 12","23,1"
+981,Contextualized,Complexo,"1080,0 alunos foram distribuídos igualmente em 20 salas. Quantos alunos ficaram em cada sala?","1080,0 ÷ 20","54,0"
+982,Contextualized,Complexo,"174,8 alunos foram distribuídos igualmente em 4 salas. Quantos alunos ficaram em cada sala?","174,8 ÷ 4","43,7"
+983,Contextualized,Complexo,"564,0 alunos foram distribuídos igualmente em 10 salas. Quantos alunos ficaram em cada sala?","564,0 ÷ 10","56,4"
+984,Contextualized,Complexo,"1144,8 balas foram divididas igualmente entre 12 crianças. Quantas balas cada criança recebeu?","1144,8 ÷ 12","95,4"
+985,Contextualized,Complexo,"Uma fábrica produziu 352,4 peças, embaladas igualmente em 4 caixas. Quantas peças foram em cada caixa?","352,4 ÷ 4","88,1"
+986,Contextualized,Complexo,"Carlos tem 1641,6 reais para dividir igualmente entre 19 amigos. Quanto cada um recebe?","1641,6 ÷ 19","86,4"
+987,Contextualized,Complexo,"Uma fábrica produziu 776,0 peças, embaladas igualmente em 8 caixas. Quantas peças foram em cada caixa?","776,0 ÷ 8","97,0"
+988,Contextualized,Complexo,"Rafael percorreu 429,0 km em 11 horas, a uma velocidade constante. Quantos km por hora?","429,0 ÷ 11","39,0"
+989,Contextualized,Complexo,"Uma fábrica produziu 1240,0 peças, embaladas igualmente em 20 caixas. Quantas peças foram em cada caixa?","1240,0 ÷ 20","62,0"
+990,Contextualized,Complexo,"271,2 balas foram divididas igualmente entre 3 crianças. Quantas balas cada criança recebeu?","271,2 ÷ 3","90,4"
+991,Contextualized,Complexo,"1060,8 balas foram divididas igualmente entre 16 crianças. Quantas balas cada criança recebeu?","1060,8 ÷ 16","66,3"
+992,Contextualized,Complexo,"655,2 alunos foram distribuídos igualmente em 7 salas. Quantos alunos ficaram em cada sala?","655,2 ÷ 7","93,6"
+993,Contextualized,Complexo,"Maria tem 151,5 reais para dividir igualmente entre 15 amigos. Quanto cada um recebe?","151,5 ÷ 15","10,1"
+994,Contextualized,Complexo,"Uma fábrica produziu 982,3 peças, embaladas igualmente em 11 caixas. Quantas peças foram em cada caixa?","982,3 ÷ 11","89,3"
+995,Contextualized,Complexo,"239,2 balas foram divididas igualmente entre 13 crianças. Quantas balas cada criança recebeu?","239,2 ÷ 13","18,4"
+996,Contextualized,Complexo,"303,8 alunos foram distribuídos igualmente em 7 salas. Quantos alunos ficaram em cada sala?","303,8 ÷ 7","43,4"
+997,Contextualized,Complexo,"595,8 balas foram divididas igualmente entre 9 crianças. Quantas balas cada criança recebeu?","595,8 ÷ 9","66,2"
+998,Contextualized,Complexo,"146,6 alunos foram distribuídos igualmente em 2 salas. Quantos alunos ficaram em cada sala?","146,6 ÷ 2","73,3"
+999,Contextualized,Complexo,"Pedro percorreu 340,0 km em 20 horas, a uma velocidade constante. Quantos km por hora?","340,0 ÷ 20","17,0"
+1000,Contextualized,Complexo,"Uma fábrica produziu 142,2 peças, embaladas igualmente em 2 caixas. Quantas peças foram em cada caixa?","142,2 ÷ 2","71,1"
