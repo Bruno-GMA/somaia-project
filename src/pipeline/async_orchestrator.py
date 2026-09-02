@@ -167,6 +167,8 @@ class AsyncPipelineOrchestrator:
 
         total_model_time = 0.0
         batch_size = settings.gen_concurrency
+        answered_count = 0
+        failed_count = 0
 
         for i in range(0, len(unanswered), batch_size):
             batch = unanswered[i : i + batch_size]
@@ -177,37 +179,78 @@ class AsyncPipelineOrchestrator:
             retrieve_tasks = [
                 self.retriever.retrieve(q.text, settings.top_k, q.id) for q in batch
             ]
-            all_similar = await asyncio.gather(*retrieve_tasks)
+            all_similar = await asyncio.gather(*retrieve_tasks, return_exceptions=True)
             self.metrics.retrieve_time += time.time() - t0
 
-            # Build prompts
-            prompts = [build_prompt(q.text, similar) for q, similar in zip(batch, all_similar)]
+            # Build prompts - handle retrieval failures
+            prompts: list[str] = []
+            valid_indices: list[int] = []
+            for idx, (q, similar) in enumerate(zip(batch, all_similar)):
+                if isinstance(similar, Exception):
+                    failed_count += 1
+                    print(
+                        f"  [{i + idx + 1}/{len(unanswered)}]  "
+                        f"✗ Falha na recuperação: {q.text[:60]}… → {similar}"
+                    )
+                else:
+                    # similar is guaranteed to be list[RetrievedExample] here after isinstance check
+                    prompts.append(build_prompt(q.text, similar))  # type: ignore[arg-type]
+                    valid_indices.append(idx)
 
-            # Batch generate
-            t0 = time.time()
-            answers = await self.llm.generate_batch(prompts)
-            elapsed = time.time() - t0
-            self.metrics.generate_time += elapsed
-            total_model_time += elapsed
+            # Batch generate for valid prompts
+            answers = []
+            if prompts:
+                t0 = time.time()
+                try:
+                    answers = await self.llm.generate_batch(prompts)
+                    elapsed = time.time() - t0
+                    self.metrics.generate_time += elapsed
+                    total_model_time += elapsed
+                except Exception as e:
+                    elapsed = time.time() - t0
+                    self.metrics.generate_time += elapsed
+                    total_model_time += elapsed
+                    # Mark all valid prompts as failed
+                    for idx in valid_indices:
+                        failed_count += 1
+                        q = batch[idx]
+                        print(
+                            f"  [{i + idx + 1}/{len(unanswered)}]  "
+                            f"✗ Falha na geração: {q.text[:60]}… → {e}"
+                        )
+                    answers = [""] * len(prompts)
 
-            # Save answers
-            for idx, (q, answer) in enumerate(zip(batch, answers)):
-                print(
-                    f"  [{i + idx + 1}/{len(unanswered)}]  {q.text[:60]}… → {answer[:80]}"
-                )
+            # Save answers - handle per-question
+            answer_idx = 0
+            for idx, q in enumerate(batch):
+                if idx not in valid_indices:
+                    continue
+
+                answer = answers[answer_idx]
+                answer_idx += 1
+
+                if not answer or not answer.strip():
+                    failed_count += 1
+                    print(f"  [{i + idx + 1}/{len(unanswered)}]  ✗ Resposta vazia: {q.text[:60]}…")
+                    continue
+
+                print(f"  [{i + idx + 1}/{len(unanswered)}]  {q.text[:60]}… → {answer[:80]}")
                 q.answer = answer
                 self.qrepo.upsert(q)
 
-            if batch[0].id is not None:
-                for q in batch:
-                    if q.id is not None:
-                        self.checkpoint.mark_processed(q.id)
+                if q.id is not None:
+                    self.checkpoint.mark_processed(q.id)
+
+                answered_count += 1
 
             self.metrics.batch_times.append(time.time() - batch_start)
 
         print(f"\n  Tempo total gasto no modelo: {total_model_time:.1f} segundos.")
-        if unanswered:
-            print(f"  Tempo médio por questão: {total_model_time / len(unanswered):.1f} segundos.")
+        if answered_count:
+            print(f"  Tempo médio por questão: {total_model_time / answered_count:.1f} segundos.")
+        print(f"  Respondidas com sucesso: {answered_count}")
+        if failed_count:
+            print(f"  Falhas: {failed_count}")
 
     def _phase_export(self, csv_path: Path) -> None:
         output_path = csv_path.with_stem(csv_path.stem + "_respondido")

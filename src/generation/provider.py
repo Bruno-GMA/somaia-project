@@ -5,6 +5,7 @@ from typing import Any
 import aiohttp
 
 from src.config import settings
+from src.utils.retry import async_retry_with_backoff
 
 
 class LLMProvider(ABC):
@@ -33,6 +34,12 @@ class OllamaLLMProvider(LLMProvider):
         if self._session is None or self._session.closed:
             self._session = aiohttp.ClientSession(timeout=self.timeout)
 
+    async def _reset_session(self) -> None:
+        """Force recreate session (e.g., after connection errors)."""
+        if self._session and not self._session.closed:
+            await self._session.close()
+        self._session = aiohttp.ClientSession(timeout=self.timeout)
+
     async def close(self) -> None:
         if self._session and not self._session.closed:
             await self._session.close()
@@ -45,18 +52,35 @@ class OllamaLLMProvider(LLMProvider):
     async def _generate_one(self, prompt: str) -> str:
         await self._ensure_session()
         assert self._session is not None
-        async with self.semaphore:
-            async with self._session.post(
-                f"{self.base_url}/api/chat",
-                json={
-                    "model": self.model,
-                    "messages": [{"role": "user", "content": prompt}],
-                    "stream": False,
-                },
-            ) as resp:
-                resp.raise_for_status()
-                data: dict[str, Any] = await resp.json()
-                return str(data["message"]["content"]).strip()
+        session = self._session
+
+        async def _do_generate() -> str:
+            async with self.semaphore:
+                async with session.post(
+                    f"{self.base_url}/api/chat",
+                    json={
+                        "model": self.model,
+                        "messages": [{"role": "user", "content": prompt}],
+                        "stream": False,
+                    },
+                ) as resp:
+                    resp.raise_for_status()
+                    data: dict[str, Any] = await resp.json()
+                    return str(data["message"]["content"]).strip()
+
+        try:
+            result = await async_retry_with_backoff(
+                _do_generate,
+                max_retries=3,
+                base_delay=2.0,
+                max_delay=30.0,
+                exceptions=(aiohttp.ClientError, asyncio.TimeoutError, ValueError, KeyError),
+            )
+            return result  # type: ignore
+        except (TimeoutError, aiohttp.ClientError):
+            # Reset session on connection errors for subsequent requests
+            await self._reset_session()
+            raise
 
     async def generate(self, prompt: str) -> str:
         return (await self.generate_batch([prompt]))[0]

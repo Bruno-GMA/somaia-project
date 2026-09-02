@@ -1,32 +1,62 @@
+from typing import Any
+
 import requests
 
 from src.config import settings
+from src.utils.retry import retry_with_backoff
 
 
 def ollama_embed_sync(text: str) -> list[float]:
-    resp = requests.post(
-        f"{settings.ollama_base_url}/api/embeddings",
-        json={"model": settings.embed_model, "prompt": text},
-        timeout=60,
+    def _embed() -> list[float]:
+        resp = requests.post(
+            f"{settings.ollama_base_url}/api/embeddings",
+            json={"model": settings.embed_model, "prompt": text},
+            timeout=60,
+        )
+        resp.raise_for_status()
+        data: dict[str, Any] = resp.json()
+        embedding = data.get("embedding")
+        if not isinstance(embedding, list):
+            raise ValueError("Invalid embedding response")
+        return [float(x) for x in embedding]
+
+    return retry_with_backoff(
+        _embed,
+        max_retries=3,
+        base_delay=1.0,
+        max_delay=10.0,
+        exceptions=(requests.RequestException, ValueError, KeyError),
     )
-    resp.raise_for_status()
-    data: dict[str, object] = resp.json()
-    return list(data["embedding"])  # type: ignore[no-any-return, call-overload]
 
 
 def ollama_chat_sync(prompt: str) -> str:
-    resp = requests.post(
-        f"{settings.ollama_base_url}/api/chat",
-        json={
-            "model": settings.chat_model,
-            "messages": [{"role": "user", "content": prompt}],
-            "stream": False,
-        },
-        timeout=settings.request_timeout,
+    def _chat() -> str:
+        resp = requests.post(
+            f"{settings.ollama_base_url}/api/chat",
+            json={
+                "model": settings.chat_model,
+                "messages": [{"role": "user", "content": prompt}],
+                "stream": False,
+            },
+            timeout=settings.request_timeout,
+        )
+        resp.raise_for_status()
+        data: dict[str, Any] = resp.json()
+        message = data.get("message")
+        if not isinstance(message, dict):
+            raise ValueError("Invalid chat response")
+        content = message.get("content")
+        if not isinstance(content, str):
+            raise ValueError("Invalid chat response content")
+        return content.strip()
+
+    return retry_with_backoff(
+        _chat,
+        max_retries=3,
+        base_delay=2.0,
+        max_delay=30.0,
+        exceptions=(requests.RequestException, ValueError, KeyError),
     )
-    resp.raise_for_status()
-    data: dict[str, object] = resp.json()
-    return str(data["message"]["content"]).strip()  # type: ignore[index]
 
 
 def check_ollama_sync() -> None:
