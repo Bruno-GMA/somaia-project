@@ -32,15 +32,39 @@ class ConnectionManager:
         conn.row_factory = sqlite3.Row
         return conn
 
+    def _validate_connection(self, conn: sqlite3.Connection) -> bool:
+        """Check if connection is still valid."""
+        try:
+            conn.execute("SELECT 1")
+            return True
+        except sqlite3.Error:
+            return False
+
     @contextmanager
     def connection(self) -> Generator[sqlite3.Connection, None, None]:
         conn = self._pool.get()
         try:
+            # Validate connection before use
+            if not self._validate_connection(conn):
+                conn.close()
+                conn = self._create_connection()
             yield conn
+        except sqlite3.Error:
+            # On error, discard connection and create new one
+            try:
+                conn.close()
+            except Exception:
+                pass
+            conn = self._create_connection()
+            self._pool.put(conn)
+            raise
         finally:
             self._pool.put(conn)
 
     def close_all(self) -> None:
         while not self._pool.empty():
             conn = self._pool.get()
-            conn.close()
+            try:
+                conn.close()
+            except Exception:
+                pass

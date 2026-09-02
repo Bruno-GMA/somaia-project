@@ -83,41 +83,62 @@ class SyncPipelineOrchestrator:
         print(f"  Respondendo {len(unanswered)} questão(ões) com RAG…\n")
 
         total_model_time = 0.0
+        answered_count = 0
+        failed_count = 0
 
         for i, q in enumerate(unanswered, 1):
-            # Verifica se a questão foi fatiada em chunks
-            has_chunks = False
-            with self.cm.connection() as conn:
-                cur = conn.execute("SELECT 1 FROM chunks WHERE question_id = ? LIMIT 1", (q.id,))
-                has_chunks = cur.fetchone() is not None
+            try:
+                # Verifica se a questão foi fatiada em chunks
+                has_chunks = False
+                with self.cm.connection() as conn:
+                    cur = conn.execute(
+                        "SELECT 1 FROM chunks WHERE question_id = ? LIMIT 1", (q.id,)
+                    )
+                    has_chunks = cur.fetchone() is not None
 
-            if has_chunks:
-                chunks = chunk_question(q.text)
-                first_chunk_emb = ollama_embed_sync(chunks[0])
-                similar = self.vector_store.retrieve_chunks(
-                first_chunk_emb, settings.top_k, exclude_question_id=q.id
-            )
-            else:
-                q_emb = ollama_embed_sync(q.text)
-                similar = self.vector_store.retrieve_questions(
-                    q_emb, settings.top_k, exclude_id=q.id
-                )
+                if has_chunks:
+                    chunks = chunk_question(q.text)
+                    first_chunk_emb = ollama_embed_sync(chunks[0])
+                    similar = self.vector_store.retrieve_chunks(
+                        first_chunk_emb, settings.top_k, exclude_question_id=q.id
+                    )
+                else:
+                    q_emb = ollama_embed_sync(q.text)
+                    similar = self.vector_store.retrieve_questions(
+                        q_emb, settings.top_k, exclude_id=q.id
+                    )
 
-            prompt = build_prompt(q.text, similar)
+                prompt = build_prompt(q.text, similar)
 
-            print(f"  [{i}/{len(unanswered)}]  Resolvendo: {q.text[:60]}…")
-            t0 = time.time()
-            answer = ollama_chat_sync(prompt)
-            elapsed = time.time() - t0
-            total_model_time += elapsed
-            print(f"          ({elapsed:.1f}s) → {answer[:80]}")
+                print(f"  [{i}/{len(unanswered)}]  Resolvendo: {q.text[:60]}…")
+                t0 = time.time()
+                answer = ollama_chat_sync(prompt)
+                elapsed = time.time() - t0
+                total_model_time += elapsed
 
-            q.answer = answer
-            self.qrepo.upsert(q)
+                if not answer or not answer.strip():
+                    raise ValueError("Modelo retornou resposta vazia")
+
+                print(f"          ({elapsed:.1f}s) → {answer[:80]}")
+
+                q.answer = answer
+                self.qrepo.upsert(q)
+
+                if q.id is not None:
+                    self.checkpoint.mark_processed(q.id)
+
+                answered_count += 1
+
+            except Exception as e:
+                failed_count += 1
+                print(f"  [{i}/{len(unanswered)}]  ✗ Falha: {q.text[:60]}… → {e}")
 
         print(f"\n  Tempo total gasto no modelo: {total_model_time:.1f} segundos.")
-        if unanswered:
-            print(f"  Tempo médio por questão: {total_model_time / len(unanswered):.1f} segundos.")
+        if answered_count:
+            print(f"  Tempo médio por questão: {total_model_time / answered_count:.1f} segundos.")
+        print(f"  Respondidas com sucesso: {answered_count}")
+        if failed_count:
+            print(f"  Falhas: {failed_count}")
 
     def _phase_export(self, csv_path: Path) -> None:
         output_path = csv_path.with_stem(csv_path.stem + "_respondido")

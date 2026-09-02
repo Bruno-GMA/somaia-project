@@ -82,8 +82,8 @@ class QuestionRepository:
         with self.cm.connection() as conn:
             cur = conn.execute(
                 (
-                    "SELECT id, text, operation, level, question_type, answer, ground_truth, metadata "
-                    "FROM questions WHERE id = ?"
+                    "SELECT id, text, operation, level, question_type, answer, "
+                    "ground_truth, metadata FROM questions WHERE id = ?"
                 ),
                 (qid,),
             )
@@ -96,8 +96,8 @@ class QuestionRepository:
         with self.cm.connection() as conn:
             cur = conn.execute(
                 (
-                    "SELECT id, text, operation, level, question_type, answer, ground_truth, metadata "
-                    "FROM questions WHERE text = ?"
+                    "SELECT id, text, operation, level, question_type, answer, "
+                    "ground_truth, metadata FROM questions WHERE text = ?"
                 ),
                 (text,),
             )
@@ -109,8 +109,8 @@ class QuestionRepository:
     def get_unanswered(self, limit: int | None = None) -> list[Question]:
         with self.cm.connection() as conn:
             sql = (
-                "SELECT id, text, operation, level, question_type, answer, ground_truth, metadata "
-                "FROM questions WHERE answer IS NULL OR answer = ''"
+                "SELECT id, text, operation, level, question_type, answer, "
+                "ground_truth, metadata FROM questions WHERE answer IS NULL OR answer = ''"
             )
             if limit:
                 sql += f" LIMIT {limit}"
@@ -120,7 +120,8 @@ class QuestionRepository:
     def get_all(self, limit: int | None = None) -> list[Question]:
         with self.cm.connection() as conn:
             sql = (
-                "SELECT id, text, operation, level, question_type, answer, ground_truth, metadata FROM questions"
+                "SELECT id, text, operation, level, question_type, answer, "
+                "ground_truth, metadata FROM questions"
             )
             if limit:
                 sql += f" LIMIT {limit}"
