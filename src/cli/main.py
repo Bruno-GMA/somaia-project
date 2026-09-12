@@ -1,4 +1,5 @@
 import asyncio
+import json
 from pathlib import Path
 
 import typer
@@ -94,6 +95,74 @@ def evaluate(
     """Avalia a acurácia das respostas."""
     import subprocess
     subprocess.run(["python", "acerto.py"], check=False)
+
+
+@app.command()
+def evaluate_retrieval(
+    db_path: Path = typer.Argument(..., help="Caminho do banco SQLite"),
+    top_k: int = typer.Option(None, "--top-k", "-k", help="Número de exemplos similares"),
+    embed_model: str = typer.Option(None, "--embed-model", "-e", help="Modelo de embeddings"),
+    output: Path = typer.Option(
+        None, "--output", "-o", help="Caminho para gravar retrieval_metrics.json"
+    ),
+) -> None:
+    """Avalia a qualidade do retrieval (métricas IR clássicas)."""
+    from src.db.connection import ConnectionManager
+    from src.db.repository import QuestionRepository
+    from src.embedding.provider import OllamaEmbeddingProvider
+    from src.evaluation.retrieval_metrics import aggregate, evaluate_retrieval
+    from src.retrieval.hybrid import HybridRetriever
+
+    if not db_path.exists():
+        print(f"  Arquivo não encontrado: {db_path}")
+        raise typer.Exit(1)
+
+    settings.db_path = str(db_path)
+    if top_k:
+        settings.top_k = top_k
+    if embed_model:
+        settings.embed_model = embed_model
+
+    cm = ConnectionManager(settings.db_path)
+    qrepo = QuestionRepository(cm)
+    embedder = OllamaEmbeddingProvider()
+    retriever = HybridRetriever(cm, embedder)
+
+    answered = [q for q in qrepo.get_all() if q.has_answer]
+    if not answered:
+        print("Nenhuma questão respondida no banco.")
+        raise typer.Exit(1)
+
+    print(f"  Avaliando retrieval de {len(answered)} questões (top_k={settings.top_k})...\n")
+
+    per_query: list[dict[str, object]] = []
+    for i, q in enumerate(answered, 1):
+        similar = asyncio.run(
+            retriever.retrieve(q.text, settings.top_k, exclude_id=q.id)
+        )
+        res = evaluate_retrieval(q, similar, settings.top_k)
+        res["query_id"] = q.id
+        res["query_text"] = q.text
+        per_query.append(res)
+        print(f"  [{i}/{len(answered)}]  {q.text[:60]}…", end="\r")
+
+    print()
+    metrics = aggregate(per_query)
+    print(metrics.summary())
+
+    out_path = output or Path("retrieval_metrics.json")
+    payload: dict[str, object] = {
+        "metrics": metrics.to_dict(),
+        "n_queries": metrics.n_queries,
+        "top_k": settings.top_k,
+        "per_query": per_query,
+    }
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    print(f"  Métricas salvas em: {out_path}")
+
+    asyncio.run(embedder.close())
+    cm.close_all()
 
 
 if __name__ == "__main__":
