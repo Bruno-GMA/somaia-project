@@ -5,7 +5,7 @@ import pandas as pd
 
 from src.evaluation import EvaluationMetrics, evaluate_predictions
 from src.evaluation.validator import validate_answer
-from src.models.question import Question
+from src.models.question import question_type
 from src.models.enums import DifficultyLevel
 
 

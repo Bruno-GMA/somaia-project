@@ -136,3 +136,47 @@ async def test_async_orchestrator_answer_phase(
 
         # Verify generation was called
         assert mock_llm.generate_batch.called
+
+
+@pytest.mark.asyncio
+async def test_async_orchestrator_answer_phase_no_rag(
+    temp_db, tmp_path, mock_embedder, mock_llm, mock_retriever
+):
+    csv_file = tmp_path / "test.csv"
+    csv_file.write_text("""ID,Question,Comparação
+1,2 + 2 = ?,
+2,3 * 3 = ?,
+""", encoding="utf-8")
+
+    from src.models.question import Question
+    from src.models.enums import DifficultyLevel
+
+    unanswered = [
+        Question(id=1, text="2 + 2 = ?", level=DifficultyLevel.SIMPLE),
+        Question(id=2, text="3 * 3 = ?", level=DifficultyLevel.SIMPLE),
+    ]
+
+    with patch("src.pipeline.async_orchestrator.OllamaEmbeddingProvider", return_value=mock_embedder), \
+         patch("src.pipeline.async_orchestrator.OllamaLLMProvider", return_value=mock_llm), \
+         patch("src.pipeline.async_orchestrator.HybridRetriever", return_value=mock_retriever), \
+         patch("src.pipeline.async_orchestrator.check_ollama_sync"), \
+         patch("src.pipeline.async_orchestrator.settings") as mock_settings:
+
+        mock_settings.db_path = temp_db
+        mock_settings.gen_concurrency = 2
+        mock_settings.top_k = 3
+        mock_settings.use_rag = False
+        mock_settings.checkpoint_path = Path(temp_db).with_suffix(".checkpoint")
+        mock_settings.checkpoint_interval = 50
+
+        orchestrator = AsyncPipelineOrchestrator()
+        orchestrator.embedder = mock_embedder
+        orchestrator.llm = mock_llm
+        orchestrator.retriever = mock_retriever
+        orchestrator.qrepo.get_unanswered = MagicMock(return_value=unanswered)
+
+        await orchestrator._phase_answer_async()
+
+        # Retrieval must NOT be called when --no-rag
+        mock_retriever.retrieve.assert_not_called()
+        assert mock_llm.generate_batch.called

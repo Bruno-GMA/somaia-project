@@ -17,6 +17,8 @@ class Settings(BaseSettings):
 
     db_path: str = "math_rag.db"
 
+    use_rag: bool = True
+
     top_k: int = 3
     chunk_threshold: int = 256
     chunk_overlap: int = 32

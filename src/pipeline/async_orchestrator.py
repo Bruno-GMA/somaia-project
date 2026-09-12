@@ -174,12 +174,15 @@ class AsyncPipelineOrchestrator:
             batch = unanswered[i : i + batch_size]
             batch_start = time.time()
 
-            # Retrieve for all in batch (concurrent)
+            # Retrieve for all in batch (concurrent) — skipped when --no-rag
             t0 = time.time()
-            retrieve_tasks = [
-                self.retriever.retrieve(q.text, settings.top_k, q.id) for q in batch
-            ]
-            all_similar = await asyncio.gather(*retrieve_tasks, return_exceptions=True)
+            if settings.use_rag:
+                retrieve_tasks = [
+                    self.retriever.retrieve(q.text, settings.top_k, q.id) for q in batch
+                ]
+                all_similar = await asyncio.gather(*retrieve_tasks, return_exceptions=True)
+            else:
+                all_similar = [[] for _ in batch]
             self.metrics.retrieve_time += time.time() - t0
 
             # Build prompts - handle retrieval failures

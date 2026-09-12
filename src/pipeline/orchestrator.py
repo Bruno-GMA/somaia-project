@@ -88,25 +88,28 @@ class SyncPipelineOrchestrator:
 
         for i, q in enumerate(unanswered, 1):
             try:
-                # Verifica se a questão foi fatiada em chunks
-                has_chunks = False
-                with self.cm.connection() as conn:
-                    cur = conn.execute(
-                        "SELECT 1 FROM chunks WHERE question_id = ? LIMIT 1", (q.id,)
-                    )
-                    has_chunks = cur.fetchone() is not None
+                if settings.use_rag:
+                    # Verifica se a questão foi fatiada em chunks
+                    has_chunks = False
+                    with self.cm.connection() as conn:
+                        cur = conn.execute(
+                            "SELECT 1 FROM chunks WHERE question_id = ? LIMIT 1", (q.id,)
+                        )
+                        has_chunks = cur.fetchone() is not None
 
-                if has_chunks:
-                    chunks = chunk_question(q.text)
-                    first_chunk_emb = ollama_embed_sync(chunks[0])
-                    similar = self.vector_store.retrieve_chunks(
-                        first_chunk_emb, settings.top_k, exclude_question_id=q.id
-                    )
+                    if has_chunks:
+                        chunks = chunk_question(q.text)
+                        first_chunk_emb = ollama_embed_sync(chunks[0])
+                        similar = self.vector_store.retrieve_chunks(
+                            first_chunk_emb, settings.top_k, exclude_question_id=q.id
+                        )
+                    else:
+                        q_emb = ollama_embed_sync(q.text)
+                        similar = self.vector_store.retrieve_questions(
+                            q_emb, settings.top_k, exclude_id=q.id
+                        )
                 else:
-                    q_emb = ollama_embed_sync(q.text)
-                    similar = self.vector_store.retrieve_questions(
-                        q_emb, settings.top_k, exclude_id=q.id
-                    )
+                    similar = []
 
                 prompt = build_prompt(q.text, similar)
 

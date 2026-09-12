@@ -1,7 +1,13 @@
 from src.models.question import RetrievedExample
 
 
-def build_prompt(question: str, similar: list[RetrievedExample]) -> str:
+def build_prompt(
+    question: str,
+    similar: list[RetrievedExample],
+    use_rag: bool = True,
+) -> str:
+    if not use_rag:
+        similar = []
     examples = ""
     for i, doc in enumerate(similar, 1):
         q_text = doc.chunk_text or doc.question.text

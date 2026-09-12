@@ -102,6 +102,9 @@ somaia run dataset_teste.csv --model qwen3:1.7b --top-k 5
 
 # Banco SQLite customizado
 somaia run dataset_teste.csv --db experimento.db
+
+# Ablation study: sem retrieval (gera sem exemplos)
+somaia run dataset_teste.csv --no-rag
 ```
 
 ### 2. Pipeline Assíncrono (recomendado para datasets grandes)
@@ -139,6 +142,7 @@ python acerto.py dataset_teste_respondido.csv
 | `run` / `run_async` | `--top-k` | `-k` | Exemplos similares no contexto | `3` |
 | `run` / `run_async` | `--model` | `-m` | Modelo chat Ollama | `qwen3:1.7b` |
 | `run` / `run_async` | `--embed-model` | `-e` | Modelo embeddings Ollama | `nomic-embed-text` |
+| `run` / `run_async` | `--no-rag` | | Desativa retrieval (gera sem exemplos) | `False` |
 | `run_async` | `--embed-concurrency` | | Paralelismo embeddings | `4` |
 | `run_async` | `--gen-concurrency` | | Paralelismo geração | `2` |
 | `evaluate` | `csv_path` | (posicional) | CSV respondido para avaliar | — |
@@ -158,6 +162,7 @@ chat_model: str = "qwen3:1.7b"
 embed_model: str = "nomic-embed-text"
 embed_dim: int = 768
 top_k: int = 3
+use_rag: bool = True
 chunk_threshold: int = 256
 chunk_overlap: int = 32
 answer_column: str = "resposta"

@@ -19,6 +19,7 @@ def _apply_settings(
     top_k: int | None,
     model: str | None,
     embed_model: str | None,
+    no_rag: bool,
 ) -> None:
     if db_path:
         settings.db_path = str(db_path)
@@ -28,6 +29,7 @@ def _apply_settings(
         settings.chat_model = model
     if embed_model:
         settings.embed_model = embed_model
+    settings.use_rag = not no_rag
 
 
 @app.command()
@@ -37,9 +39,12 @@ def run(
     top_k: int = typer.Option(None, "--top-k", "-k", help="Número de exemplos similares"),
     model: str = typer.Option(None, "--model", "-m", help="Modelo de chat do Ollama"),
     embed_model: str = typer.Option(None, "--embed-model", "-e", help="Modelo de embeddings"),
+    no_rag: bool = typer.Option(
+        False, "--no-rag", help="Desativa retrieval (gera sem exemplos)"
+    ),
 ) -> None:
     """Executa o pipeline RAG síncrono no CSV."""
-    _apply_settings(db_path, top_k, model, embed_model)
+    _apply_settings(db_path, top_k, model, embed_model, no_rag)
 
     if not csv_path.exists():
         print(f"  Arquivo não encontrado: {csv_path}")
@@ -62,9 +67,12 @@ def run_async(
     gen_concurrency: int = typer.Option(
         None, "--gen-concurrency", help="Concorrência para geração"
     ),
+    no_rag: bool = typer.Option(
+        False, "--no-rag", help="Desativa retrieval (gera sem exemplos)"
+    ),
 ) -> None:
     """Executa o pipeline RAG assíncrono no CSV (mais rápido)."""
-    _apply_settings(db_path, top_k, model, embed_model)
+    _apply_settings(db_path, top_k, model, embed_model, no_rag)
 
     if embed_concurrency:
         settings.embed_concurrency = embed_concurrency
