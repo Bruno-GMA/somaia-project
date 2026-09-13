@@ -1,63 +1,207 @@
-> RAG de questões matemáticas conectado ao **Ollama local** — sem nuvem, sem API paga, 100% na sua máquina.
+# SOMAIA — RAG de Questões Matemáticas com Ollama Local
+
+> Pipeline modular de *Retrieval-Augmented Generation* para resolução automática de questões matemáticas, 100% offline, rodando modelos locais via Ollama.
 
 ---
 
-##  O que é o Sistema?
+## 🏗️ Arquitetura
 
- É um pipeline de **Retrieval-Augmented Generation (RAG)** que:
+```
+src/
+├── cli/                 # CLI Typer: run, run_async, evaluate
+├── config.py            # Settings Pydantic (SOMAIA_* env vars)
+├── db/                  # SQLite + sqlite-vec (schema, repository, connection)
+├── pipeline/            # Orquestração sync/async, checkpoint, chunking, prompt
+├── retrieval/           # HybridRetriever (vector + BM25 + RRF)
+├── embedding/           # OllamaEmbeddingProvider (batch async)
+├── generation/          # OllamaLLMProvider (batch async, fallback chat→generate)
+├── io/                  # StreamingCSVReader/Writer (memória constante)
+├── evaluation/          # Métricas tolerância (exact/numeric/symbolic + breakdown)
+└── models/              # Question, RetrievedExample, DifficultyLevel
+```
 
-1. Recebe um arquivo `.csv` com questões matemáticas
-1.1 O Repositório vem com 3 `.csv` de exemplo deixe apenas um, ou adicione o seu
-2. Armazena cada questão em um banco **SQLite** com seu respectivo **embedding vetorial**
-3. Para cada questão sem resposta, busca exemplos similares já resolvidos (busca semântica por cosseno)
-4. Monta um prompt contextualizado e envia ao **LLM local via Ollama**
-5. Salva as respostas geradas de volta no `.csv`, na última coluna
+### Fluxo do Pipeline (Mermaid)
 
-Tudo isso **offline**, usando modelos que rodam diretamente na sua máquina.
+```mermaid
+flowchart TD
+    A[CSV Entrada] --> B[StreamingCSVReader]
+    B --> C{Checkpoint<br/>já processado?}
+    C -->|Não| D[QuestionRepository.upsert]
+    D --> E[OllamaEmbeddingProvider<br/>embed_batch async]
+    E --> F[EmbeddingRepository.store]
+    F --> G{Chunking<br/>threshold 256?}
+    G -->|Sim| H[ChunkRepository.insert_chunks]
+    H --> I[Embedding chunks]
+    I --> J[Checkpoint.marcar]
+    G -->|Não| J
+    J --> K[Todas questões<br/>com embeddings?]
+    K -->|Não| B
+    K -->|Sim| L[HybridRetriever.retrieve<br/>vector + BM25 + RRF]
+    L --> M[build_prompt RAG]
+    M --> N[OllamaLLMProvider<br/>generate_batch async]
+    N --> O[QuestionRepository.upsert<br/>com resposta]
+    O --> P[StreamingCSVWriter]
+    P --> Q[CSV Respondido<br/>+ SQLite persistido]
+```
 
 ---
 
-##  Funcionalidades
+## 📋 Pré-requisitos
 
-| Funcionalidade | Descrição |
-|---|---|
-|  **Banco SQLite** | Questões, respostas e embeddings persistidos localmente |
-|  **Embeddings semânticos** | Gerados via `nomic-embed-text` pelo Ollama |
-|  **Busca por similaridade** | Cosine similarity para encontrar os exemplos mais relevantes |
-|  **Geração com RAG** | Prompt enriquecido com exemplos similares antes de chamar o LLM |
-|  **Idepotente** | Questões já respondidas são puladas em execuções futuras |
-|  **Compatibilidade Ollama** | Suporte automático a `/api/chat` e fallback para `/api/generate` |
-|  **CSV de saída** | Gera `<nome>_respondido.csv` com coluna `resposta` preenchida |
-|  **Detecção automática** | Identifica a coluna de questões automaticamente pelo nome |
-
----
-
-##  Estrutura do projeto
-
-```
-SOMAIA-PROJECT/
-├── rag_math.py            # Script principal
-├── requirements.txt       # Dependências Python
-├── questoes_exemplo.csv   # CSV de exemplo
-├── math_rag.db            # Banco SQLite (gerado na primeira execução)
-└── README.md
-```
+- **Python 3.11+**
+- **Ollama** instalado e rodando (`ollama serve`)
+- Modelos no Ollama:
+  ```bash
+  ollama pull qwen3:1.7b        # modelo de chat (padrão)
+  ollama pull nomic-embed-text  # modelo de embeddings
+  ```
+- Dependências Python:
+  ```bash
+  pip install -r requirements.txt
+  # Inclui: pydantic, pydantic-settings, requests, sqlite-vec,
+  #         aiohttp, rank-bm25, sympy, numpy, typer, pytest, ruff, mypy
+  ```
 
 ---
 
-##  Formato do CSV de entrada
+## 🚀 Instalação Rápida
 
-A coluna de questões pode ter qualquer um desses nomes (case-insensitive):
+```bash
+# 1. Clone e entre no diretório
+git clone <repo>
+cd somaia-project
 
+# 2. Ambiente virtual
+python -m venv venv
+source venv/bin/activate   # Linux/macOS
+# .\venv\Scripts\activate  # Windows
+
+# 3. Dependências
+pip install -r requirements.txt
+
+# 4. Inicie Ollama (em outro terminal)
+ollama serve
+
+# 5. Baixe modelos
+ollama pull qwen3:1.7b
+ollama pull nomic-embed-text
 ```
-operacao | operação | operation | pergunta | problema | enunciado
+
+---
+
+## 🎯 Uso — Tutorial do Pipeline
+
+### 1. Pipeline Síncrono (simples, sequencial)
+
+```bash
+# Básico — usa defaults do config.py
+somaia run dataset_teste.csv
+
+# Sobrescrevendo modelo e top_k
+somaia run dataset_teste.csv --model qwen3:1.7b --top-k 5
+
+# Banco SQLite customizado
+somaia run dataset_teste.csv --db experimento.db
+
+# Ablation study: sem retrieval (gera sem exemplos)
+somaia run dataset_teste.csv --no-rag
 ```
 
-Se nenhum for encontrado, a **primeira coluna** é usada automaticamente.
+### 2. Pipeline Assíncrono (recomendado para datasets grandes)
 
-Questões que já possuírem conteúdo na coluna `resposta` são **ignoradas** — o script não regera respostas desnecessariamente.
+```bash
+# Básico assíncrono
+somaia run_async dataset_teste.csv
 
-**Exemplo mínimo:**
+# Ajustando concorrência (embeddings + geração)
+somaia run_async dataset_teste.csv \
+  --embed-concurrency 8 \
+  --gen-concurrency 4 \
+  --top-k 5
+```
+
+> **Dica**: Para reprodutibilidade, fixe `top_k`, modelo e seed do Ollama. O checkpoint garante retomada exata em caso de interrupção.
+
+### 3. Avaliação de Acurácia
+
+```bash
+# Via CLI (chama acerto.py internamente)
+somaia evaluate dataset_teste_respondido.csv
+
+# Ou direto (aceita CSV como argumento)
+python acerto.py dataset_teste_respondido.csv
+```
+
+### 4. Avaliação da Qualidade do Retrieval
+
+```bash
+# Métricas IR clássicas (Recall@k, Precision@k, MRR, nDCG, Hit@k)
+somaia evaluate-retrieval math_rag.db --top-k 3
+
+# Persistir resultado em JSON customizado
+somaia evaluate-retrieval math_rag.db -k 3 --output experimento_retrieval.json
+```
+
+> **Pseudo-relevância (limitação)**: como o dataset não possui rótulos explícitos de
+> relevância (`qrels`), um vizinho é considerado relevante quando compartilha
+> `Level` + `Type` com a query. Ver seção "Métricas de Retrieval" abaixo.
+
+---
+
+## ⚙️ Flags CLI Completas
+
+| Comando | Flag | Short | Descrição | Default |
+|---------|------|-------|-----------|---------|
+| `run` / `run_async` | `--db` | `-d` | Caminho do SQLite | `math_rag.db` |
+| `run` / `run_async` | `--top-k` | `-k` | Exemplos similares no contexto | `3` |
+| `run` / `run_async` | `--model` | `-m` | Modelo chat Ollama | `qwen3:1.7b` |
+| `run` / `run_async` | `--embed-model` | `-e` | Modelo embeddings Ollama | `nomic-embed-text` |
+| `run` / `run_async` | `--no-rag` | | Desativa retrieval (gera sem exemplos) | `False` |
+| `run_async` | `--embed-concurrency` | | Paralelismo embeddings | `4` |
+| `run_async` | `--gen-concurrency` | | Paralelismo geração | `2` |
+| `evaluate` | `csv_path` | (posicional) | CSV respondido para avaliar | — |
+| `evaluate-retrieval` | `db_path` | (posicional) | Banco SQLite com questões respondidas | — |
+| `evaluate-retrieval` | `--top-k` | `-k` | Nº de exemplos no corte `@k` | `3` |
+| `evaluate-retrieval` | `--output` | `-o` | Caminho do JSON de saída | `retrieval_metrics.json` |
+
+---
+
+## 🔧 Configuração (Hierarquia de Prioridade)
+
+1. **CLI flags** (maior prioridade) — `somaia run data.csv -k 5`
+2. **Variáveis de ambiente** `SOMAIA_*` — `export SOMAIA_TOP_K=5`
+3. **Defaults** em `src/config.py` (menor prioridade)
+
+### Defaults Atuais (config.py)
+
+```python
+chat_model: str = "qwen3:1.7b"
+embed_model: str = "nomic-embed-text"
+embed_dim: int = 768
+top_k: int = 3
+use_rag: bool = True
+chunk_threshold: int = 256
+chunk_overlap: int = 32
+answer_column: str = "resposta"
+embed_batch_size: int = 32
+embed_concurrency: int = 4
+gen_concurrency: int = 2
+request_timeout: int = 120
+checkpoint_interval: int = 50
+db_path: str = "math_rag.db"
+ollama_base_url: str = "http://localhost:11434"
+```
+
+---
+
+## 📄 Formato do CSV de Entrada
+
+### Coluna de Questões (auto-detectada, case-insensitive)
+```
+operacao | operação | operation | pergunta | problema | enunciado | questao | question
+```
+
+### Exemplo Mínimo
 
 ```csv
 questao
@@ -66,116 +210,170 @@ questao
 "Qual é a raiz quadrada de 144?"
 ```
 
+### Exemplo Completo (compatível com `acerto.py`)
+
+```csv
+ID,Question,Level,Type,Comparação
+1,"Quanto é 2 + 2?","Facil","aritmetica",4
+2,"Resolva: 3x + 6 = 21","Medio","algebra",5
+3,"Qual é a raiz quadrada de 144?","Facil","aritmetica",12
+```
+
+> **Nota**: A coluna `resposta` é preenchida automaticamente pelo pipeline. Questões já respondidas são ignoradas (idempotência).
+
 ---
 
-## Pré-requisitos
+## 📤 Saídas Geradas
 
-- Python **3.11+**
-- [Ollama](https://ollama.com) instalado e rodando
-- Modelos No ollama e `nomic-embed-text` baixados
+| Arquivo | Descrição |
+|---------|-----------|
+| `<arquivo>_respondido.csv` | CSV original + coluna `resposta` preenchida |
+| `math_rag.db` | Banco SQLite: questões, embeddings, chunks, metadados |
+| `math_rag.db.checkpoint` | Checkpoint para retomada (intervalo 50) |
+| `retrieval_metrics.json` | Métricas de retrieval (agregadas + por-query) do `evaluate-retrieval` |
 
 ---
 
-##  Como rodar
+## 🔬 Recursos
 
-### 1. Acesse diretório do projeto
+| Recurso | Descrição |
+|---------|-----------|
+| **Checkpointing** | Retoma exata onde parou; intervalo configurável (`checkpoint_interval`) |
+| **Chunking Inteligente** | Fatia enunciados longos (threshold 256 tokens, overlap 32) |
+| **Hybrid Retrieval** | Vector (cosseno) + BM25 lexical + Reciprocal Rank Fusion (k=60) |
+| **Streaming I/O** | Processa CSVs de qualquer tamanho sem OOM (batch_size=32) |
+| **Idempotência** | Pula questões com `resposta` não-vazia; seguro para re-runs |
+| **Fallback Ollama** | Tenta `/api/chat`; cai para `/api/generate` automaticamente |
+
+---
+
+## 📊 Avaliação (`acerto.py`)
+
+Métricas com **tolerância numérica 1%**:
+
+- **Exact Match** — string idêntica após normalização
+- **Numeric Match** — diferença relativa ≤ 1%
+- **Symbolic Match** — equivalência simbólica via SymPy
+- **Breakdown por `Level` e `Type`** — acurácia estratificada
+- **Latência** — média e P95 por questão
 
 ```bash
-cd somaia-project
-```
-### 2. Inicie o Ollama e baixe os modelos
-
-```bash
-# Em outro terminal, Iniciar o servidor Ollama
-ollama serve
-# Baixar modelos necessários
-ollama pull gemma2:2b #pode ser outro SLM
-ollama pull nomic-embed-text
+python acerto.py dataset_respondido.csv
 ```
 
-### 3. Instale as dependências
-
-```bash
-# Volute no mesmo terminal do diretório =
-python -m venv venv
-.\venv\Scripts\activate (windows)
-source venv/bin/activate (linux debian)
-pip install -r requirements.txt
+Saída exemplo:
 ```
+=== Avaliação Detalhada ===
+Total: 600
+Corretas: 542 (90.33%)
+Exact Match: 498 (83.00%)
+Numeric Match: 542
+Symbolic Match: 535
+Latência média: 2.34s
+Latência P95: 5.12s
 
-### 4. Execute o Script
+--- Por Nível ---
+  Facil: 210/220 (95.45%)
+  Medio: 198/230 (86.09%)
+  Dificil: 134/150 (89.33%)
 
-```bash
-python main.py dataset_teste.csv
-```
-
-O arquivo de saída será salvo automaticamente como `questoes_respondido.csv`.
-
----
-
-##  Configurações
-
-Edite as constantes no topo do `rag_math.py` conforme necessário:
-
-```python
-OLLAMA_BASE_URL = "http://localhost:11434"  # URL do Ollama
-CHAT_MODEL      = "llama3"                  # Modelo baixado
-EMBED_MODEL     = "nomic-embed-text"        # Modelo de embeddings
-DB_PATH         = "math_rag.db"             # Caminho do banco SQLite
-ANSWER_COLUMN   = "resposta"                # Nome da coluna de saída no CSV
-TOP_K           = 3                         # Nº de exemplos similares no contexto
-```
-
-> Você pode trocar `gemma2` por qualquer outro modelo disponível no Ollama, como `mistral`, `gemma3` ou `phi3`.
-
----
-
-##  Fluxo interno
-
-```
-CSV de entrada
-     │
-     ▼
-Inserir questões no SQLite
-     │
-     ▼
-Gerar embeddings (nomic-embed-text)
-     │
-     ▼
-Para cada questão sem resposta:
-  ├─ Buscar TOP_K mais similares (cosine similarity)
-  ├─ Montar prompt RAG com exemplos
-  └─ Chamar SLM via Ollama
-     │
-     ▼
-Salvar respostas no SQLite e no CSV
-     │
-     ▼
-questoes_respondido.csv
+--- Por Tipo ---
+  algebra: 180/200 (90.00%)
+  aritmetica: 210/220 (95.45%)
+  geometria: 152/180 (84.44%)
 ```
 
 ---
 
+## 🔍 Métricas de Retrieval
 
-> O SQLite já vem embutido no Python — nenhuma instalação extra necessária.
+Avaliação da qualidade do retrieval com métricas clássicas de *Information Retrieval*
+(baseadas em **BEIR** e **TREC**), via comando `evaluate-retrieval`:
+
+- **Recall@k** — fração de documentos relevantes recuperados no top-k.
+- **Precision@k** — fração do top-k que é relevante.
+- **MRR@k** — posição (recíproca) do primeiro documento relevante.
+- **nDCG@k** — relevância ponderada por posição (graded 2/1/0).
+- **Hit@k** — se há ao menos um relevante no top-k.
+
+### Pseudo-relevância (limitação)
+
+Sem um conjunto de relevância anotado (`qrels`), a relevância é **inferida por metadados**:
+um vizinho é considerado relevante para a query `q` quando `level` e `question_type`
+coincidem. Quando a `operation` também coincide, classifica-se como relevância "forte"
+(maior ganho no nDCG).
+
+> ⚠️ **Limitação acadêmica**: as métricas medem a concordância do retrieval com os
+> metadados (Level/Type), e não a utilidade factual dos exemplos para a resposta.
+
+Referências:
+- Thakur et al., *BEIR* (2021).
+- Järvelin & Kekäläinen, *Cumulated gain-based evaluation of IR techniques* (2002).
+- Voorhees, *The TREC-8 Question Answering Track Report* (1999).
 
 ---
 
-##  Solução de problemas
+## 🧪 Desenvolvimento
 
-| Erro | Causa provável | Solução |
-|---|---|---|
-| ` Ollama não está acessível` | Servidor não iniciado | Execute `ollama serve` |
-| `405 Method Not Allowed` | Versão antiga do Ollama | O script faz fallback automático; ou rode `ollama update` |
-| `Model not found` | Modelo não baixado | Execute `ollama pull <modelo>` |
-| `timeout` | Modelo muito pesado | Aumente o `timeout` nas chamadas ou use um modelo menor |
-
-## Após a Execução
-
-Rode o comando abaixo para ver a acurácia
-
+### Testes
 ```bash
-python acerto.py
+# Suite completa
+pytest -v
+
+# Apenas testes unitários (rápido)
+pytest tests/ -v -k "not async"
+
+# Com coverage
+pytest --cov=src --cov-report=term-missing
 ```
 
-<p align="center">Feito para pesquisa!</p>
+### Qualidade de Código
+```bash
+# Lint (ruff)
+ruff check src/ tests/
+
+# Typecheck (mypy)
+mypy src/
+
+# Formatação
+ruff format src/ tests/
+```
+
+### Estrutura de Testes
+```
+tests/
+├── conftest.py              # Fixtures compartilhadas
+├── test_models.py           # Question, DifficultyLevel, enums
+├── test_io.py               # CSVReader/Writer streaming
+├── test_chunking.py         # chunk_question logic
+├── test_prompt.py           # build_prompt templates
+├── test_checkpoint.py       # CheckpointManager persistência
+├── test_async_pipeline.py   # AsyncPipelineOrchestrator integração
+└── test_models.py           # Modelos Pydantic/validação
+```
+
+---
+
+## 🛠️ Troubleshooting
+
+| Sintoma | Causa | Solução |
+|---------|-------|---------|
+| `Connection refused` / `Ollama não acessível` | Servidor parado | `ollama serve` |
+| `Model not found` | Modelo não baixado | `ollama pull qwen3:1.7b` |
+| `405 Method Not Allowed` | Ollama antigo sem `/api/chat` | Fallback automático; ou `ollama update` |
+| `timeout` na geração | Modelo pesado / CPU | Aumente `request_timeout` (default 120s) ou use modelo menor |
+| `sqlite-vec` erro import | Extensão não compilada | `pip install --force-reinstall sqlite-vec` |
+| CSV grande → MemoryError | Streaming não ativado | Use `run_async` (já usa streaming) |
+
+---
+
+## 📚 Referências Técnicas
+
+- **RAG**: Lewis et al., *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* (2020)
+- **Hybrid Search**: Reciprocal Rank Fusion — Cormack et al. (2009)
+- **sqlite-vec**: Extensão vetorial SQLite para embeddings locais
+- **Ollama API**: `/api/chat`, `/api/embeddings`, `/api/generate`
+
+---
+
+<p align="center">Desenvolvido para pesquisa — Pipeline RAG reprodutível, offline e auditável.</p>

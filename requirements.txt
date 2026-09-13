@@ -1,3 +1,26 @@
-numpy>=1.26
+# Core
+pydantic>=2.0
+pydantic-settings>=2.0
 requests>=2.31
 sqlite-vec>=0.1.5
+psutil>=5.9
+
+# Async
+aiohttp>=3.9
+rank-bm25>=0.2.2
+
+# Math/Evaluation
+sympy>=1.12
+numpy>=1.26
+
+# CLI
+typer>=0.9
+
+# Testing
+pytest>=7.4
+pytest-asyncio>=0.21
+pytest-mock>=3.12
+
+# Dev
+ruff>=0.5
+mypy>=1.10
