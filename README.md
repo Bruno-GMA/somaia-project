@@ -132,6 +132,20 @@ somaia evaluate dataset_teste_respondido.csv
 python acerto.py dataset_teste_respondido.csv
 ```
 
+### 4. Avaliação da Qualidade do Retrieval
+
+```bash
+# Métricas IR clássicas (Recall@k, Precision@k, MRR, nDCG, Hit@k)
+somaia evaluate-retrieval math_rag.db --top-k 3
+
+# Persistir resultado em JSON customizado
+somaia evaluate-retrieval math_rag.db -k 3 --output experimento_retrieval.json
+```
+
+> **Pseudo-relevância (limitação)**: como o dataset não possui rótulos explícitos de
+> relevância (`qrels`), um vizinho é considerado relevante quando compartilha
+> `Level` + `Type` com a query. Ver seção "Métricas de Retrieval" abaixo.
+
 ---
 
 ## ⚙️ Flags CLI Completas
@@ -146,6 +160,9 @@ python acerto.py dataset_teste_respondido.csv
 | `run_async` | `--embed-concurrency` | | Paralelismo embeddings | `4` |
 | `run_async` | `--gen-concurrency` | | Paralelismo geração | `2` |
 | `evaluate` | `csv_path` | (posicional) | CSV respondido para avaliar | — |
+| `evaluate-retrieval` | `db_path` | (posicional) | Banco SQLite com questões respondidas | — |
+| `evaluate-retrieval` | `--top-k` | `-k` | Nº de exemplos no corte `@k` | `3` |
+| `evaluate-retrieval` | `--output` | `-o` | Caminho do JSON de saída | `retrieval_metrics.json` |
 
 ---
 
@@ -213,6 +230,7 @@ ID,Question,Level,Type,Comparação
 | `<arquivo>_respondido.csv` | CSV original + coluna `resposta` preenchida |
 | `math_rag.db` | Banco SQLite: questões, embeddings, chunks, metadados |
 | `math_rag.db.checkpoint` | Checkpoint para retomada (intervalo 50) |
+| `retrieval_metrics.json` | Métricas de retrieval (agregadas + por-query) do `evaluate-retrieval` |
 
 ---
 
@@ -264,6 +282,34 @@ Latência P95: 5.12s
   aritmetica: 210/220 (95.45%)
   geometria: 152/180 (84.44%)
 ```
+
+---
+
+## 🔍 Métricas de Retrieval
+
+Avaliação da qualidade do retrieval com métricas clássicas de *Information Retrieval*
+(baseadas em **BEIR** e **TREC**), via comando `evaluate-retrieval`:
+
+- **Recall@k** — fração de documentos relevantes recuperados no top-k.
+- **Precision@k** — fração do top-k que é relevante.
+- **MRR@k** — posição (recíproca) do primeiro documento relevante.
+- **nDCG@k** — relevância ponderada por posição (graded 2/1/0).
+- **Hit@k** — se há ao menos um relevante no top-k.
+
+### Pseudo-relevância (limitação)
+
+Sem um conjunto de relevância anotado (`qrels`), a relevância é **inferida por metadados**:
+um vizinho é considerado relevante para a query `q` quando `level` e `question_type`
+coincidem. Quando a `operation` também coincide, classifica-se como relevância "forte"
+(maior ganho no nDCG).
+
+> ⚠️ **Limitação acadêmica**: as métricas medem a concordância do retrieval com os
+> metadados (Level/Type), e não a utilidade factual dos exemplos para a resposta.
+
+Referências:
+- Thakur et al., *BEIR* (2021).
+- Järvelin & Kekäläinen, *Cumulated gain-based evaluation of IR techniques* (2002).
+- Voorhees, *The TREC-8 Question Answering Track Report* (1999).
 
 ---
 

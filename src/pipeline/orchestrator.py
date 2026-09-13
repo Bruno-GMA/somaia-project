@@ -15,6 +15,7 @@ from src.pipeline.chunking import chunk_question
 from src.pipeline.ollama_sync import check_ollama_sync, ollama_chat_sync, ollama_embed_sync
 from src.pipeline.prompt import build_prompt
 from src.retrieval.vector_store import VectorStore
+from src.utils.hardware_monitor import HardwareMonitor
 
 
 class SyncPipelineOrchestrator:
@@ -26,20 +27,32 @@ class SyncPipelineOrchestrator:
         self.erepo = EmbeddingRepository(self.cm)
         self.vector_store = VectorStore(self.cm)
         self.checkpoint = CheckpointManager(settings.checkpoint_path, settings.checkpoint_interval)
+        self.monitor = HardwareMonitor()
 
     def run(self, csv_path: Path) -> None:
         check_ollama_sync()
 
+        self.monitor.start()
+
         # Phase 1: Ingest + Embeddings
         self._phase_ingest(csv_path)
+        self.monitor._snapshots.append(self.monitor.snapshot())
 
         # Phase 2: Answer unanswered
         self._phase_answer()
+        self.monitor._snapshots.append(self.monitor.snapshot())
 
         # Phase 3: Export
         self._phase_export(csv_path)
 
+        self.monitor._snapshots.append(self.monitor.snapshot())
+        self._finalize_monitor()
+
         self.cm.close_all()
+
+    def _finalize_monitor(self) -> None:
+        self.monitor.save_json(str(Path("hardware_log.json")))
+        print(self.monitor.format_report())
 
     def _phase_ingest(self, csv_path: Path) -> None:
         print("  Gerando embeddings e populando banco vetorial…")

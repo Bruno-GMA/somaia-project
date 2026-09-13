@@ -3,6 +3,7 @@ pydantic>=2.0
 pydantic-settings>=2.0
 requests>=2.31
 sqlite-vec>=0.1.5
+psutil>=5.9
 
 # Async
 aiohttp>=3.9
