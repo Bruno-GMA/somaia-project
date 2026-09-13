@@ -19,6 +19,7 @@ from src.pipeline.chunking import chunk_question
 from src.pipeline.ollama_sync import check_ollama_sync
 from src.pipeline.prompt import build_prompt
 from src.retrieval import HybridRetriever
+from src.utils.hardware_monitor import HardwareMonitor
 
 
 @dataclass
@@ -31,6 +32,7 @@ class PipelineMetrics:
     generate_time: float = 0.0
     total_time: float = 0.0
     batch_times: list[float] = field(default_factory=list)
+    hardware_summary: dict = field(default_factory=dict)
 
     @property
     def throughput_qps(self) -> float:
@@ -55,6 +57,20 @@ class PipelineMetrics:
             f"  Tempo embeddings: {self.embed_time:.1f}s (média: {self.avg_embed_time:.3f}s/q)\n"
             f"  Tempo retrieval: {self.retrieve_time:.1f}s\n"
             f"  Tempo geração: {self.generate_time:.1f}s (média: {self.avg_generate_time:.3f}s/q)\n"
+            f"{self._hardware_summary_line()}"
+        )
+
+    def _hardware_summary_line(self) -> str:
+        if not self.hardware_summary:
+            return ""
+        hs = self.hardware_summary
+        return (
+            "  === Resumo de Hardware ===\n"
+            f"  CPU média: {hs.get('cpu_percent_mean', 0.0):.1f}%\n"
+            f"  CPU pico: {hs.get('cpu_percent_peak', 0.0):.1f}%\n"
+            f"  RAM pico (RSS): {hs.get('rss_mb_peak', 0.0):.1f} MB\n"
+            f"  Threads máximas: {hs.get('num_threads_peak', 0)}\n"
+            f"  Duração total: {hs.get('total_elapsed_s', 0.0):.1f}s\n"
         )
 
 
@@ -70,26 +86,35 @@ class AsyncPipelineOrchestrator:
         self.retriever = HybridRetriever(self.cm, self.embedder)
         self.checkpoint = CheckpointManager(settings.checkpoint_path, settings.checkpoint_interval)
         self.metrics = PipelineMetrics()
+        self.monitor = HardwareMonitor()
 
     async def run(self, csv_path: Path) -> PipelineMetrics:
         t_start = time.time()
         check_ollama_sync()
 
+        self.monitor.start()
+
         # Phase 1: Ingest + Embeddings (async, batched)
         await self._phase_ingest_async(csv_path)
+        self.monitor._snapshots.append(self.monitor.snapshot())
 
         # Phase 2: Answer unanswered (async, batched)
         await self._phase_answer_async()
+        self.monitor._snapshots.append(self.monitor.snapshot())
 
         # Phase 3: Export
         self._phase_export(csv_path)
+        self.monitor._snapshots.append(self.monitor.snapshot())
 
         await self.embedder.close()
         await self.llm.close()
         self.cm.close_all()
 
         self.metrics.total_time = time.time() - t_start
+        self.monitor.save_json(str(Path("hardware_log.json")))
+        self.metrics.hardware_summary = self.monitor.summarize()
         print(self.metrics.summary())
+        print(self.monitor.format_report())
         return self.metrics
 
     async def _phase_ingest_async(self, csv_path: Path) -> None:
