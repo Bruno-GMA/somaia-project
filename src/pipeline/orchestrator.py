@@ -32,26 +32,26 @@ class SyncPipelineOrchestrator:
     def run(self, csv_path: Path) -> None:
         check_ollama_sync()
 
-        self.monitor.start()
+        self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
         # Phase 1: Ingest + Embeddings
+        self.monitor.sample("preparation_indexing")
         self._phase_ingest(csv_path)
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("embedding_indexing")
 
         # Phase 2: Answer unanswered
         self._phase_answer()
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("retrieval_generation")
 
         # Phase 3: Export
         self._phase_export(csv_path)
-
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("export")
         self._finalize_monitor()
 
         self.cm.close_all()
 
     def _finalize_monitor(self) -> None:
-        self.monitor.save_json(str(Path("hardware_log.json")))
+        self.monitor.save_json(str(Path(f"hardware_log_{int(time.time() * 1000)}.json")))
         print(self.monitor.format_report())
 
     def _phase_ingest(self, csv_path: Path) -> None:

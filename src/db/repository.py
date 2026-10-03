@@ -128,6 +128,16 @@ class QuestionRepository:
             cur = conn.execute(sql)
             return [self._row_to_question(row) for row in cur.fetchall()]
 
+    def get_retrieval_corpus(self) -> list[Question]:
+        """Complete BM25/vector union eligibility, before per-query self exclusion."""
+        with self.cm.connection() as conn:
+            rows = conn.execute(
+                "SELECT id, text, operation, level, question_type, answer, "
+                "ground_truth, metadata FROM questions "
+                "WHERE answer IS NOT NULL AND answer != ''"
+            ).fetchall()
+            return [self._row_to_question(row) for row in rows]
+
     def _row_to_question(self, row: sqlite3.Row) -> Question:
         return Question(
             id=row["id"],

@@ -89,7 +89,7 @@ class HybridRetriever:
         results = []
         for idx in top_indices:
             doc = self._bm25_corpus[idx]
-            if exclude_id and doc["id"] == exclude_id:
+            if exclude_id is not None and doc["id"] == exclude_id:
                 continue
 
             with self.cm.connection() as conn:

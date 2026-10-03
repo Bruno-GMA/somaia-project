@@ -92,26 +92,27 @@ class AsyncPipelineOrchestrator:
         t_start = time.time()
         check_ollama_sync()
 
-        self.monitor.start()
+        self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
         # Phase 1: Ingest + Embeddings (async, batched)
+        self.monitor.sample("preparation_indexing")
         await self._phase_ingest_async(csv_path)
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("embedding_indexing")
 
         # Phase 2: Answer unanswered (async, batched)
         await self._phase_answer_async()
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("retrieval_generation")
 
         # Phase 3: Export
         self._phase_export(csv_path)
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("export")
 
         await self.embedder.close()
         await self.llm.close()
         self.cm.close_all()
 
         self.metrics.total_time = time.time() - t_start
-        self.monitor.save_json(str(Path("hardware_log.json")))
+        self.monitor.save_json(str(Path(f"hardware_log_{int(time.time() * 1000)}.json")))
         self.metrics.hardware_summary = self.monitor.summarize()
         print(self.metrics.summary())
         print(self.monitor.format_report())

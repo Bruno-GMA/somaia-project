@@ -377,3 +377,17 @@ tests/
 ---
 
 <p align="center">Desenvolvido para pesquisa — Pipeline RAG reprodutível, offline e auditável.</p>
+
+## Avaliação de recuperação — schema v2
+
+As instruções atualizadas estão em [src/specs/02_retrieval_metrics.md](src/specs/02_retrieval_metrics.md). Esta seção substitui os exemplos
+anteriores de métricas e caminhos de saída: há cinco métricas, qrels opcionais,
+cobertura de julgamentos e agregação com denominadores explícitos. Artefatos sem
+`schema_version: 2` não são diretamente comparáveis ao novo recall/nDCG.
+
+```bash
+python -m src.cli.main evaluate-retrieval math_rag.db -k 3 --qrels qrels.json -o experimento-v2.json
+```
+
+Sem `--qrels`, usa-se pseudo-relevância por metadados. Sem `-o`, o nome inclui um
+timestamp; arquivos existentes não são sobrescritos.
