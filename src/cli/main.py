@@ -24,6 +24,8 @@ def _apply_settings(
     model: str | None,
     embed_model: str | None,
     no_rag: bool,
+    rerank: bool = False,
+    candidate_k: int | None = None,
 ) -> None:
     if db_path:
         settings.db_path = str(db_path)
@@ -34,6 +36,11 @@ def _apply_settings(
     if embed_model:
         settings.embed_model = embed_model
     settings.use_rag = not no_rag
+    settings.rerank_enabled = rerank
+    if candidate_k is not None:
+        settings.rerank_candidate_k = candidate_k
+    if rerank and not no_rag:
+        settings.validate_reranking()
 
 
 def _file_hash(path: Path) -> str:
@@ -178,9 +185,11 @@ def run(
     model: str = typer.Option(None, "--model", "-m", help="Modelo de chat do Ollama"),
     embed_model: str = typer.Option(None, "--embed-model", "-e", help="Modelo de embeddings"),
     no_rag: bool = typer.Option(False, "--no-rag", help="Desativa retrieval (gera sem exemplos)"),
+    rerank: bool = typer.Option(False, "--rerank", help="Reordena candidatos recuperados"),
+    candidate_k: int = typer.Option(None, "--candidate-k", min=1),
 ) -> None:
     """Executa o pipeline RAG síncrono no CSV."""
-    _apply_settings(db_path, top_k, model, embed_model, no_rag)
+    _apply_settings(db_path, top_k, model, embed_model, no_rag, rerank, candidate_k)
 
     if not csv_path.exists():
         print(f"  Arquivo não encontrado: {csv_path}")
@@ -204,9 +213,11 @@ def run_async(
         None, "--gen-concurrency", help="Concorrência para geração"
     ),
     no_rag: bool = typer.Option(False, "--no-rag", help="Desativa retrieval (gera sem exemplos)"),
+    rerank: bool = typer.Option(False, "--rerank", help="Reordena candidatos recuperados"),
+    candidate_k: int = typer.Option(None, "--candidate-k", min=1),
 ) -> None:
     """Executa o pipeline RAG assíncrono no CSV (mais rápido)."""
-    _apply_settings(db_path, top_k, model, embed_model, no_rag)
+    _apply_settings(db_path, top_k, model, embed_model, no_rag, rerank, candidate_k)
 
     if embed_concurrency:
         settings.embed_concurrency = embed_concurrency

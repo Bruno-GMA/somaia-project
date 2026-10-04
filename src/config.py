@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     use_rag: bool = True
 
     top_k: int = 3
+    rerank_enabled: bool = False
+    rerank_candidate_k: int = 9
     chunk_threshold: int = 256
     chunk_overlap: int = 32
     answer_column: str = "resposta"
@@ -40,6 +42,10 @@ class Settings(BaseSettings):
     @property
     def checkpoint_path(self) -> Path:
         return self.db_path_obj.with_suffix(".checkpoint")
+
+    def validate_reranking(self) -> None:
+        if self.rerank_candidate_k < self.top_k or self.top_k <= 0:
+            raise ValueError("rerank_candidate_k deve ser maior ou igual a top_k, ambos positivos")
 
 
 settings = Settings()
