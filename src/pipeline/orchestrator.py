@@ -1,4 +1,6 @@
+import json
 import time
+from dataclasses import asdict
 from pathlib import Path
 
 from src.config import settings
@@ -15,6 +17,7 @@ from src.pipeline.chunking import chunk_question
 from src.pipeline.ollama_sync import check_ollama_sync, ollama_chat_sync, ollama_embed_sync
 from src.pipeline.prompt import build_prompt
 from src.retrieval.vector_store import VectorStore
+from src.retrieval.reranker import rerank
 from src.utils.hardware_monitor import HardwareMonitor
 
 
@@ -28,9 +31,12 @@ class SyncPipelineOrchestrator:
         self.vector_store = VectorStore(self.cm)
         self.checkpoint = CheckpointManager(settings.checkpoint_path, settings.checkpoint_interval)
         self.monitor = HardwareMonitor()
+        self.rerank_traces: list[dict[str, object]] = []
 
     def run(self, csv_path: Path) -> None:
         check_ollama_sync()
+        if settings.rerank_enabled:
+            settings.validate_reranking()
 
         self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
@@ -58,6 +64,11 @@ class SyncPipelineOrchestrator:
         directory = Path(settings.artifact_dir) if settings.artifact_dir else Path(".")
         directory.mkdir(parents=True, exist_ok=True)
         self.monitor.save_json(str(directory / f"hardware_log_{int(time.time() * 1000)}.json"))
+        if self.rerank_traces:
+            path = directory / f"reranking_{int(time.time() * 1000)}.jsonl"
+            with path.open("x", encoding="utf-8") as target:
+                for trace in self.rerank_traces:
+                    target.write(json.dumps(trace, ensure_ascii=False) + "\n")
         print(self.monitor.format_report())
 
     def _phase_ingest(self, csv_path: Path) -> None:
@@ -127,12 +138,27 @@ class SyncPipelineOrchestrator:
                         chunks = chunk_question(q.text)
                         first_chunk_emb = ollama_embed_sync(chunks[0])
                         similar = self.vector_store.retrieve_chunks(
-                            first_chunk_emb, settings.top_k, exclude_question_id=q.id
+                            first_chunk_emb,
+                            settings.rerank_candidate_k if settings.rerank_enabled else settings.top_k,
+                            exclude_question_id=q.id,
                         )
                     else:
                         q_emb = ollama_embed_sync(q.text)
                         similar = self.vector_store.retrieve_questions(
-                            q_emb, settings.top_k, exclude_id=q.id
+                            q_emb,
+                            settings.rerank_candidate_k if settings.rerank_enabled else settings.top_k,
+                            exclude_id=q.id,
+                        )
+                    if settings.rerank_enabled:
+                        similar, trace = rerank(q.text, similar, settings.top_k)
+                        self.rerank_traces.append(
+                            {
+                                "query_id": q.id,
+                                "candidate_k": settings.rerank_candidate_k,
+                                "final_k": settings.top_k,
+                                "method": "distance-operation-v1",
+                                "candidates": [asdict(item) for item in trace],
+                            }
                         )
                 else:
                     similar = []

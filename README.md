@@ -106,6 +106,9 @@ somaia run dataset_teste.csv --db experimento.db
 # Ablation study: sem retrieval (gera sem exemplos)
 somaia run dataset_teste.csv --no-rag
 
+# Experimental: recupera mais candidatos e reordena antes do prompt
+somaia run dataset_teste.csv --rerank --candidate-k 9
+
 # Comparação pareada: diretórios, bancos e checkpoints isolados por modo
 somaia compare dataset_teste.csv --output-dir resultados/ablacao-001
 # Variante assíncrona e repetições explícitas
@@ -164,6 +167,8 @@ somaia evaluate-retrieval math_rag.db -k 3 --output experimento_retrieval.json
 | `run` / `run_async` | `--no-rag` | | Desativa retrieval (gera sem exemplos) | `False` |
 | `run_async` | `--embed-concurrency` | | Paralelismo embeddings | `4` |
 | `run_async` | `--gen-concurrency` | | Paralelismo geração | `2` |
+| `run` / `run_async` | `--rerank` | | Reordena candidatos (experimental) | `False` |
+| `run` / `run_async` | `--candidate-k` | | Candidatos antes do reranking | `9` |
 | `compare` | `--output-dir` | | Novo diretório de artefatos pareados | — |
 | `compare` | `--async` | | Usa orquestrador assíncrono | `False` |
 | `compare` | `--repetitions` | | Repetições de cada modo | `1` |
