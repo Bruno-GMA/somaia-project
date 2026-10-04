@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     request_timeout: int = 120
 
     checkpoint_interval: int = 50
+    # Optional per-run destination for monitor artifacts (used by paired evaluation).
+    artifact_dir: str | None = None
 
     @property
     def db_path_obj(self) -> Path:
