@@ -94,10 +94,13 @@ class AsyncPipelineOrchestrator:
 
         self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
-        # Phase 1: Ingest + Embeddings (async, batched)
-        self.monitor.sample("preparation_indexing")
-        await self._phase_ingest_async(csv_path)
-        self.monitor.sample("embedding_indexing")
+        # The baseline must remain independent from embedding/index services.
+        if settings.use_rag:
+            self.monitor.sample("preparation_indexing")
+            await self._phase_ingest_async(csv_path)
+            self.monitor.sample("embedding_indexing")
+        else:
+            self._phase_ingest_questions(csv_path)
 
         # Phase 2: Answer unanswered (async, batched)
         await self._phase_answer_async()
@@ -112,7 +115,9 @@ class AsyncPipelineOrchestrator:
         self.cm.close_all()
 
         self.metrics.total_time = time.time() - t_start
-        self.monitor.save_json(str(Path(f"hardware_log_{int(time.time() * 1000)}.json")))
+        directory = Path(settings.artifact_dir) if settings.artifact_dir else Path(".")
+        directory.mkdir(parents=True, exist_ok=True)
+        self.monitor.save_json(str(directory / f"hardware_log_{int(time.time() * 1000)}.json"))
         self.metrics.hardware_summary = self.monitor.summarize()
         print(self.metrics.summary())
         print(self.monitor.format_report())
@@ -179,6 +184,13 @@ class AsyncPipelineOrchestrator:
         print("\n  Embeddings prontos.\n")
         self.checkpoint.force_flush()
 
+    def _phase_ingest_questions(self, csv_path: Path) -> None:
+        """Store input rows for a no-RAG run, without embedding or chunking."""
+        print("  Modo sem RAG: pulando embeddings e índice vetorial.")
+        for batch in StreamingCSVReader(csv_path).iter_batches():
+            for question in batch:
+                self.qrepo.upsert(question)
+
     async def _phase_answer_async(self) -> None:
         unanswered = self.qrepo.get_unanswered()
 
@@ -223,7 +235,9 @@ class AsyncPipelineOrchestrator:
                     )
                 else:
                     # similar is guaranteed to be list[RetrievedExample] here after isinstance check
-                    prompts.append(build_prompt(q.text, similar))  # type: ignore[arg-type]
+                    prompts.append(
+                        build_prompt(q.text, similar, use_rag=settings.use_rag)  # type: ignore[arg-type]
+                    )
                     valid_indices.append(idx)
 
             # Batch generate for valid prompts
