@@ -1,6 +1,7 @@
 import asyncio
+import json
 import time
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 from src.config import settings
@@ -19,6 +20,7 @@ from src.pipeline.chunking import chunk_question
 from src.pipeline.ollama_sync import check_ollama_sync
 from src.pipeline.prompt import build_prompt
 from src.retrieval import HybridRetriever
+from src.retrieval.reranker import rerank
 from src.utils.hardware_monitor import HardwareMonitor
 
 
@@ -87,10 +89,13 @@ class AsyncPipelineOrchestrator:
         self.checkpoint = CheckpointManager(settings.checkpoint_path, settings.checkpoint_interval)
         self.metrics = PipelineMetrics()
         self.monitor = HardwareMonitor()
+        self.rerank_traces: list[dict[str, object]] = []
 
     async def run(self, csv_path: Path) -> PipelineMetrics:
         t_start = time.time()
         check_ollama_sync()
+        if settings.rerank_enabled:
+            settings.validate_reranking()
 
         self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
@@ -118,6 +123,11 @@ class AsyncPipelineOrchestrator:
         directory = Path(settings.artifact_dir) if settings.artifact_dir else Path(".")
         directory.mkdir(parents=True, exist_ok=True)
         self.monitor.save_json(str(directory / f"hardware_log_{int(time.time() * 1000)}.json"))
+        if self.rerank_traces:
+            path = directory / f"reranking_{int(time.time() * 1000)}.jsonl"
+            with path.open("x", encoding="utf-8") as target:
+                for trace in self.rerank_traces:
+                    target.write(json.dumps(trace, ensure_ascii=False) + "\n")
         self.metrics.hardware_summary = self.monitor.summarize()
         print(self.metrics.summary())
         print(self.monitor.format_report())
@@ -216,7 +226,12 @@ class AsyncPipelineOrchestrator:
             t0 = time.time()
             if settings.use_rag:
                 retrieve_tasks = [
-                    self.retriever.retrieve(q.text, settings.top_k, q.id) for q in batch
+                    self.retriever.retrieve(
+                        q.text,
+                        settings.rerank_candidate_k if settings.rerank_enabled else settings.top_k,
+                        q.id,
+                    )
+                    for q in batch
                 ]
                 all_similar = await asyncio.gather(*retrieve_tasks, return_exceptions=True)
             else:
@@ -234,6 +249,17 @@ class AsyncPipelineOrchestrator:
                         f"✗ Falha na recuperação: {q.text[:60]}… → {similar}"
                     )
                 else:
+                    if settings.rerank_enabled:
+                        similar, trace = rerank(q.text, similar, settings.top_k)
+                        self.rerank_traces.append(
+                            {
+                                "query_id": q.id,
+                                "candidate_k": settings.rerank_candidate_k,
+                                "final_k": settings.top_k,
+                                "method": "distance-operation-v1",
+                                "candidates": [asdict(item) for item in trace],
+                            }
+                        )
                     # similar is guaranteed to be list[RetrievedExample] here after isinstance check
                     prompts.append(
                         build_prompt(q.text, similar, use_rag=settings.use_rag)  # type: ignore[arg-type]
