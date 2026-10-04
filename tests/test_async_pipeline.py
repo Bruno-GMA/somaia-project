@@ -180,3 +180,25 @@ async def test_async_orchestrator_answer_phase_no_rag(
         # Retrieval must NOT be called when --no-rag
         mock_retriever.retrieve.assert_not_called()
         assert mock_llm.generate_batch.called
+
+
+def test_no_rag_ingest_stores_rows_without_calling_embedding_service(
+    temp_db, tmp_path, mock_embedder, mock_llm, mock_retriever
+):
+    csv_file = tmp_path / "test.csv"
+    csv_file.write_text("ID,Question,Comparação\n1,2 + 2 = ?,4\n", encoding="utf-8")
+
+    with patch(
+        "src.pipeline.async_orchestrator.OllamaEmbeddingProvider", return_value=mock_embedder
+    ), patch("src.pipeline.async_orchestrator.OllamaLLMProvider", return_value=mock_llm), patch(
+        "src.pipeline.async_orchestrator.HybridRetriever", return_value=mock_retriever
+    ), patch("src.pipeline.async_orchestrator.settings") as mock_settings:
+        mock_settings.db_path = temp_db
+        mock_settings.checkpoint_path = Path(temp_db).with_suffix(".checkpoint")
+        mock_settings.checkpoint_interval = 50
+        orchestrator = AsyncPipelineOrchestrator()
+        orchestrator._phase_ingest_questions(csv_file)
+
+    mock_embedder.embed.assert_not_called()
+    mock_embedder.embed_batch.assert_not_called()
+    assert len(orchestrator.qrepo.get_all()) == 1

@@ -105,6 +105,11 @@ somaia run dataset_teste.csv --db experimento.db
 
 # Ablation study: sem retrieval (gera sem exemplos)
 somaia run dataset_teste.csv --no-rag
+
+# Comparação pareada: diretórios, bancos e checkpoints isolados por modo
+somaia compare dataset_teste.csv --output-dir resultados/ablacao-001
+# Variante assíncrona e repetições explícitas
+somaia compare dataset_teste.csv --output-dir resultados/ablacao-002 --async --repetitions 3
 ```
 
 ### 2. Pipeline Assíncrono (recomendado para datasets grandes)
@@ -159,6 +164,9 @@ somaia evaluate-retrieval math_rag.db -k 3 --output experimento_retrieval.json
 | `run` / `run_async` | `--no-rag` | | Desativa retrieval (gera sem exemplos) | `False` |
 | `run_async` | `--embed-concurrency` | | Paralelismo embeddings | `4` |
 | `run_async` | `--gen-concurrency` | | Paralelismo geração | `2` |
+| `compare` | `--output-dir` | | Novo diretório de artefatos pareados | — |
+| `compare` | `--async` | | Usa orquestrador assíncrono | `False` |
+| `compare` | `--repetitions` | | Repetições de cada modo | `1` |
 | `evaluate` | `csv_path` | (posicional) | CSV respondido para avaliar | — |
 | `evaluate-retrieval` | `db_path` | (posicional) | Banco SQLite com questões respondidas | — |
 | `evaluate-retrieval` | `--top-k` | `-k` | Nº de exemplos no corte `@k` | `3` |
@@ -377,3 +385,17 @@ tests/
 ---
 
 <p align="center">Desenvolvido para pesquisa — Pipeline RAG reprodutível, offline e auditável.</p>
+
+## Avaliação de recuperação — schema v2
+
+As instruções atualizadas estão em [src/specs/02_retrieval_metrics.md](src/specs/02_retrieval_metrics.md). Esta seção substitui os exemplos
+anteriores de métricas e caminhos de saída: há cinco métricas, qrels opcionais,
+cobertura de julgamentos e agregação com denominadores explícitos. Artefatos sem
+`schema_version: 2` não são diretamente comparáveis ao novo recall/nDCG.
+
+```bash
+python -m src.cli.main evaluate-retrieval math_rag.db -k 3 --qrels qrels.json -o experimento-v2.json
+```
+
+Sem `--qrels`, usa-se pseudo-relevância por metadados. Sem `-o`, o nome inclui um
+timestamp; arquivos existentes não são sobrescritos.

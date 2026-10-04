@@ -32,26 +32,32 @@ class SyncPipelineOrchestrator:
     def run(self, csv_path: Path) -> None:
         check_ollama_sync()
 
-        self.monitor.start()
+        self.monitor.start(mode="rag" if settings.use_rag else "no_rag")
 
-        # Phase 1: Ingest + Embeddings
-        self._phase_ingest(csv_path)
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        # Preparation/indexing is a RAG-only cost.  The no-RAG baseline must
+        # not touch the embedding service or vector index merely to answer.
+        if settings.use_rag:
+            self.monitor.sample("preparation_indexing")
+            self._phase_ingest(csv_path)
+            self.monitor.sample("embedding_indexing")
+        else:
+            self._phase_ingest_questions(csv_path)
 
         # Phase 2: Answer unanswered
         self._phase_answer()
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("retrieval_generation")
 
         # Phase 3: Export
         self._phase_export(csv_path)
-
-        self.monitor._snapshots.append(self.monitor.snapshot())
+        self.monitor.sample("export")
         self._finalize_monitor()
 
         self.cm.close_all()
 
     def _finalize_monitor(self) -> None:
-        self.monitor.save_json(str(Path("hardware_log.json")))
+        directory = Path(settings.artifact_dir) if settings.artifact_dir else Path(".")
+        directory.mkdir(parents=True, exist_ok=True)
+        self.monitor.save_json(str(directory / f"hardware_log_{int(time.time() * 1000)}.json"))
         print(self.monitor.format_report())
 
     def _phase_ingest(self, csv_path: Path) -> None:
@@ -85,6 +91,13 @@ class SyncPipelineOrchestrator:
 
         print("\n  Embeddings prontos.\n")
         self.checkpoint.force_flush()
+
+    def _phase_ingest_questions(self, csv_path: Path) -> None:
+        """Persist questions needed for export without creating embeddings."""
+        print("  Modo sem RAG: pulando embeddings e índice vetorial.")
+        for batch in StreamingCSVReader(csv_path).iter_batches():
+            for question in batch:
+                self.qrepo.upsert(question)
 
     def _phase_answer(self) -> None:
         unanswered = self.qrepo.get_unanswered()
@@ -124,7 +137,7 @@ class SyncPipelineOrchestrator:
                 else:
                     similar = []
 
-                prompt = build_prompt(q.text, similar)
+                prompt = build_prompt(q.text, similar, use_rag=settings.use_rag)
 
                 print(f"  [{i}/{len(unanswered)}]  Resolvendo: {q.text[:60]}…")
                 t0 = time.time()

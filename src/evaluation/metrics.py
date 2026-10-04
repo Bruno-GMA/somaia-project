@@ -3,135 +3,98 @@ from typing import Any
 
 import numpy as np
 
-from src.evaluation.validator import validate_batch
+from src.evaluation.validator import DEFAULT_ATOL, DEFAULT_RTOL, validate_answer
 
 
 @dataclass
 class EvaluationMetrics:
+    """Independent correctness checks plus evaluator coverage and latency distribution."""
+
     total: int = 0
+    evaluable: int = 0
     correct: int = 0
     exact_match: int = 0
     numeric_match: int = 0
     symbolic_match: int = 0
+    not_evaluable: int = 0
     by_level: dict[str, dict[str, int]] = field(default_factory=dict)
     by_type: dict[str, dict[str, int]] = field(default_factory=dict)
-    errors: list[str] = field(default_factory=list)
+    reasons: list[str] = field(default_factory=list)
     latencies: list[float] = field(default_factory=list)
 
     @property
-    def accuracy(self) -> float:
-        return self.correct / self.total if self.total > 0 else 0.0
+    def accuracy(self) -> float | None:
+        return self.correct / self.evaluable if self.evaluable else None
 
     @property
-    def exact_match_rate(self) -> float:
-        return self.exact_match / self.total if self.total > 0 else 0.0
+    def coverage(self) -> float | None:
+        return self.evaluable / self.total if self.total else None
 
     @property
-    def avg_latency(self) -> float:
-        return float(np.mean(self.latencies)) if self.latencies else 0.0
+    def exact_match_rate(self) -> float | None:
+        return self.exact_match / self.evaluable if self.evaluable else None
 
-    @property
-    def p95_latency(self) -> float:
-        return float(np.percentile(self.latencies, 95)) if self.latencies else 0.0
+    def latency_summary(self) -> dict[str, float | None]:
+        if not self.latencies:
+            return {"mean_s": None, "median_s": None, "p95_s": None, "stddev_s": None}
+        return {
+            "mean_s": float(np.mean(self.latencies)),
+            "median_s": float(np.median(self.latencies)),
+            "p95_s": float(np.percentile(self.latencies, 95)),
+            "stddev_s": float(np.std(self.latencies)),
+        }
 
     def add_result(
         self,
-        question: Any,  # Question object
+        question: Any,
         predicted: str,
         expected: str,
         latency: float,
-        tolerance: float = 0.01,
+        tolerance: float = DEFAULT_RTOL,
+        *,
+        atol: float = DEFAULT_ATOL,
+        rtol: float | None = None,
     ) -> dict[str, Any]:
         self.total += 1
         self.latencies.append(latency)
-
         level = question.level.value if question.level else "Unknown"
-        qtype = question.question_type or "Unknown"
+        question_type = question.question_type or "Unknown"
+        for key, container in ((level, self.by_level), (question_type, self.by_type)):
+            container.setdefault(key, {"total": 0, "evaluable": 0, "correct": 0})
+            container[key]["total"] += 1
 
-        # Initialize level/type counters
-        for key, container in [(level, self.by_level), (qtype, self.by_type)]:
-            if key not in container:
-                container[key] = {"total": 0, "correct": 0}
+        result = validate_answer(predicted, expected, tolerance, atol=atol, rtol=rtol)
+        if result["status"] == "not_evaluable":
+            self.not_evaluable += 1
+            self.reasons.append(f"Q{question.id}: {result['reason']}")
+            return result
 
-        res = validate_batch([predicted], [expected], tolerance)["details"][0]
-
-        if res["valid"]:
+        self.evaluable += 1
+        self.by_level[level]["evaluable"] += 1
+        self.by_type[question_type]["evaluable"] += 1
+        if result["status"] == "correct":
             self.correct += 1
             self.by_level[level]["correct"] += 1
-            self.by_type[qtype]["correct"] += 1
-            if res["exact_match"]:
-                self.exact_match += 1
-            if res["numeric_match"]:
-                self.numeric_match += 1
-            if res["symbolic_match"]:
-                self.symbolic_match += 1
-        else:
-            self.errors.append(f"Q{question.id}: {res.get('error', 'Unknown error')}")
-
-        self.by_level[level]["total"] += 1
-        self.by_type[qtype]["total"] += 1
-
-        return dict(res)
-        self.total += 1
-        self.latencies.append(latency)
-
-        level = question.level.value if question.level else "Unknown"
-        qtype = question.question_type or "Unknown"
-
-        # Initialize level/type counters
-        for key, container in [(level, self.by_level), (qtype, self.by_type)]:
-            if key not in container:
-                container[key] = {"total": 0, "correct": 0}
-
-        res = validate_batch([predicted], [expected], tolerance)["details"][0]
-
-        if res["valid"]:
-            self.correct += 1
-            self.by_level[level]["correct"] += 1
-            self.by_type[qtype]["correct"] += 1
-            if res["exact_match"]:
-                self.exact_match += 1
-            if res["numeric_match"]:
-                self.numeric_match += 1
-            if res["symbolic_match"]:
-                self.symbolic_match += 1
-        else:
-            self.errors.append(f"Q{question.id}: {res.get('error', 'Unknown error')}")
-
-        self.by_level[level]["total"] += 1
-        self.by_type[qtype]["total"] += 1
-
-        return res
+            self.by_type[question_type]["correct"] += 1
+        for key in ("exact_match", "numeric_match", "symbolic_match"):
+            if result[key]:
+                setattr(self, key, getattr(self, key) + 1)
+        return result
 
     def summary(self) -> str:
-        lines = [
-            "\n=== Avaliação Detalhada ===",
-            f"Total: {self.total}",
-            f"Corretas: {self.correct} ({self.accuracy:.2%})",
-            f"Exact Match: {self.exact_match} ({self.exact_match_rate:.2%})",
-            f"Numeric Match: {self.numeric_match}",
-            f"Symbolic Match: {self.symbolic_match}",
-            f"Latência média: {self.avg_latency:.2f}s",
-            f"Latência P95: {self.p95_latency:.2f}s",
-            "\n--- Por Nível ---",
-        ]
-        for level, stats in sorted(self.by_level.items()):
-            acc = stats["correct"] / stats["total"] if stats["total"] > 0 else 0
-            lines.append(f"  {level}: {stats['correct']}/{stats['total']} ({acc:.2%})")
-
-        lines.append("\n--- Por Tipo ---")
-        for qtype, stats in sorted(self.by_type.items()):
-            acc = stats["correct"] / stats["total"] if stats["total"] > 0 else 0
-            lines.append(f"  {qtype}: {stats['correct']}/{stats['total']} ({acc:.2%})")
-
-        if self.errors:
-            lines.append(f"\nErros ({len(self.errors)}):")
-            for err in self.errors[:10]:
-                lines.append(f"  - {err}")
-            if len(self.errors) > 10:
-                lines.append(f"  ... e mais {len(self.errors) - 10}")
-
-        return "\n".join(lines)
+        latency = self.latency_summary()
+        accuracy = "N/A" if self.accuracy is None else f"{self.accuracy:.2%}"
+        coverage = "N/A" if self.coverage is None else f"{self.coverage:.2%}"
+        return (
+            "\n=== Avaliação Matemática ===\n"
+            f"Total: {self.total}; avaliáveis: {self.evaluable} ({coverage})\n"
+            f"Corretas: {self.correct} ({accuracy})\n"
+            "Exact/Numeric/Symbolic: "
+            f"{self.exact_match}/{self.numeric_match}/{self.symbolic_match}\n"
+            f"Não avaliáveis: {self.not_evaluable}\n"
+            f"Latência média/mediana/P95/desvio: {latency['mean_s']}/{latency['median_s']}/"
+            f"{latency['p95_s']}/{latency['stddev_s']}\n"
+        )
 
 
 def evaluate_predictions(
@@ -139,10 +102,14 @@ def evaluate_predictions(
     predictions: list[str],
     expected: list[str],
     latencies: list[float],
-    tolerance: float = 0.01,
+    tolerance: float = DEFAULT_RTOL,
+    *,
+    atol: float = DEFAULT_ATOL,
+    rtol: float | None = None,
 ) -> EvaluationMetrics:
-    """Evaluate a batch of predictions."""
+    if not (len(questions) == len(predictions) == len(expected) == len(latencies)):
+        raise ValueError("questions, predictions, expected e latencies devem ter o mesmo tamanho")
     metrics = EvaluationMetrics()
-    for q, pred, exp, lat in zip(questions, predictions, expected, latencies):
-        metrics.add_result(q, pred, exp, lat, tolerance)
+    for question, predicted, reference, latency in zip(questions, predictions, expected, latencies):
+        metrics.add_result(question, predicted, reference, latency, tolerance, atol=atol, rtol=rtol)
     return metrics
