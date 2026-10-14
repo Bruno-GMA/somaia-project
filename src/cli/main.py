@@ -2,6 +2,7 @@ import asyncio
 import hashlib
 import json
 import shutil
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -252,7 +253,7 @@ def evaluate(
     """Avalia a acurácia das respostas."""
     import subprocess
 
-    subprocess.run(["python", "acerto.py"], check=False)
+    subprocess.run([sys.executable, "acerto.py", str(csv_path)], check=False)
 
 
 @app.command()
