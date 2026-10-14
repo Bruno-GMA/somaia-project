@@ -3,13 +3,12 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.evaluation import EvaluationMetrics, evaluate_predictions
-from src.evaluation.validator import validate_answer
-from src.models.question import question_type
+from src.evaluation import EvaluationMetrics
 from src.models.enums import DifficultyLevel
+from src.models.question import Question
 
 
-def ler_dataset(csv_path: str = "dataset-600questoes_respondido.csv") -> pd.DataFrame:
+def ler_dataset(csv_path: str = "dataset-1000questoes_respondido.csv") -> pd.DataFrame:
     df = pd.read_csv(csv_path)
     return df
 
@@ -37,7 +36,7 @@ def equalizar_resposta(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main():
-    csv_path = sys.argv[1] if len(sys.argv) > 1 else "dataset-600questoes_respondido.csv"
+    csv_path = sys.argv[1] if len(sys.argv) > 1 else "dataset-1000questoes_respondido.csv"
     path = Path(csv_path)
 
     if not path.exists():
