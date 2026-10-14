@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "scope": "observed_python_process",
+    "n_samples": 2,
+    "cpu_percent_mean": 32.199999999999996,
+    "cpu_percent_peak_observed": 64.3,
+    "rss_mb_peak_observed": 14.7109375,
+    "num_threads_peak_observed": 16,
+    "total_elapsed_s": 2946.5229060730016,
+    "energy_joules": null,
+    "gpu": null
+  },
+  "snapshots": [
+    {
+      "schema_version": 2,
+      "run_id": null,
+      "mode": "no_rag",
+      "stage": "retrieval_generation",
+      "elapsed_s": 2946.4846217310005,
+      "process": {
+        "scope": "python_process",
+        "pid": 222841,
+        "cpu_percent": 0.1,
+        "rss_mb": 13.08203125,
+        "num_threads": 16,
+        "errors": {}
+      },
+      "system": {
+        "scope": "system",
+        "cpu_percent": 51.4,
+        "ram_used_mb": 4859.17578125,
+        "errors": {}
+      },
+      "ollama_process": {
+        "status": "not_collected",
+        "reason": "separate_process_not_attributed"
+      },
+      "energy_joules": null,
+      "gpu": null
+    },
+    {
+      "schema_version": 2,
+      "run_id": null,
+      "mode": "no_rag",
+      "stage": "export",
+      "elapsed_s": 2946.517570608001,
+      "process": {
+        "scope": "python_process",
+        "pid": 222841,
+        "cpu_percent": 64.3,
+        "rss_mb": 14.7109375,
+        "num_threads": 16,
+        "errors": {}
+      },
+      "system": {
+        "scope": "system",
+        "cpu_percent": 2.4,
+        "ram_used_mb": 4859.45703125,
+        "errors": {}
+      },
+      "ollama_process": {
+        "status": "not_collected",
+        "reason": "separate_process_not_attributed"
+      },
+      "energy_joules": null,
+      "gpu": null
+    }
+  ]
+}
