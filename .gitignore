@@ -30,3 +30,6 @@ build/
 .codex/
 openspec/
 math_rag.db
+
+# Especificações locais
+src/specs/
